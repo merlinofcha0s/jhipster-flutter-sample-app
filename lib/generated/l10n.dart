@@ -224,6 +224,33 @@ class S {
       args: [],
     );
   }
+
+  String get drawerSettingsTitle {
+    return Intl.message(
+      'Settings',
+      name: 'drawerSettingsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get drawerLogoutTitle {
+    return Intl.message(
+      'Sign out',
+      name: 'drawerLogoutTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get drawerMenuTitle {
+    return Intl.message(
+      'Menu',
+      name: 'drawerMenuTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -21,6 +21,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "drawerLogoutTitle" : MessageLookupByLibrary.simpleMessage("Sign out"),
+    "drawerMenuTitle" : MessageLookupByLibrary.simpleMessage("Menu"),
+    "drawerSettingsTitle" : MessageLookupByLibrary.simpleMessage("Settings"),
     "pageLoginBar" : MessageLookupByLibrary.simpleMessage("Login"),
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Problem when authenticate, verify your credential"),
     "pageLoginLoginButton" : MessageLookupByLibrary.simpleMessage("Sign in"),

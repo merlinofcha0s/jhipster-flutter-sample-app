@@ -20,5 +20,8 @@
   "pageRegisterSuccess": "Congratulation",
   "pageRegisterSuccessSub": "You have successfuly registered",
   "pageMainTitle": "Main",
-  "pageMainWelcome": "Welcome to your Jhipster flutter app"
+  "pageMainWelcome": "Welcome to your Jhipster flutter app",
+  "drawerSettingsTitle": "Settings",
+  "drawerLogoutTitle": "Sign out",
+  "drawerMenuTitle": "Menu"
 }

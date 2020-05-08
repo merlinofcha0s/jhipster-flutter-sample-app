@@ -21,6 +21,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "drawerLogoutTitle" : MessageLookupByLibrary.simpleMessage("Deconnexion"),
+    "drawerMenuTitle" : MessageLookupByLibrary.simpleMessage("Menu"),
+    "drawerSettingsTitle" : MessageLookupByLibrary.simpleMessage("Profil"),
     "pageLoginBar" : MessageLookupByLibrary.simpleMessage("Se connecter"),
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Un problème est survenu, veuillez vérifier vos identifiants"),
     "pageLoginLoginButton" : MessageLookupByLibrary.simpleMessage("S\'identifier"),
