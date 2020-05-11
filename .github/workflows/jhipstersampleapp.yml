@@ -1,0 +1,32 @@
+name: Jhipster sample app CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v1.3.0
+      with:
+        java-version: '11.x'
+        java-package: jdk
+        architecture: x64
+    - uses: subosito/flutter-action@v1.3.2
+      with:
+        flutter-version: '1.17.0'
+        channel: 'stable'
+    - name: Install dependencies
+      run: flutter pub get
+    - name: Run JSON Reflector
+      run: flutter pub run build_runner build
+    - name: Building APK
+      run: flutter build apk -t lib/main_prod.dart --release --split-per-abi
+    - name: Building APP bundle
+      run: flutter build appbundle -t lib/main_prod.dart --target-platform android-arm,android-arm64,android-x64
