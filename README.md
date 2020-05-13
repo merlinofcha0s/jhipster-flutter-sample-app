@@ -1,10 +1,10 @@
-# Jhispter flutter
+# Jhispter flutter sample app
 
 This application was generated using JHipster Flutter generator, you can find documentation at [https://github.com/merlinofcha0s/generator-jhipster-flutter](https://github.com/merlinofcha0s/generator-jhipster-flutter).
 
 ## Prerequisite
-
-- [flutter-intl](https://plugins.jetbrains.com/plugin/13666-flutter-intl) IDE plugins for I18n if you use Android Studio or IntelliJ
+- if you use Android Studio or IntelliJ
+   - [flutter-intl](https://plugins.jetbrains.com/plugin/13666-flutter-intl) IDE plugins for I18n
 
 ## Development
 
