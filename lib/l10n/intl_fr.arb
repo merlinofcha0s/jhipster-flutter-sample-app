@@ -1,6 +1,6 @@
 {
   "pageLoginBar": "Se connecter",
-  "pageLoginTitle": "Bienvenue sur JhipsterSampleApp",
+  "pageLoginTitle": "Bienvenue sur <%= baseName %>",
   "pageLoginLoginButton": "S'identifier",
   "pageLoginRegisterButton": "Créer un compte",
   "pageLoginErrorAuthentication": "Un problème est survenu, veuillez vérifier vos identifiants",

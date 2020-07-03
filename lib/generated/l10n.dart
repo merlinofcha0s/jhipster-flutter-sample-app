@@ -8,18 +8,24 @@ import 'intl/messages_all.dart';
 // Made by Localizely
 // **************************************************************************
 
+// ignore_for_file: non_constant_identifier_names, lines_longer_than_80_chars
+
 class S {
   S();
+  
+  static S current;
   
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final String name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
-    final String localeName = Intl.canonicalizedLocale(name);
+    final name = (locale.countryCode?.isEmpty ?? false) ? locale.languageCode : locale.toString();
+    final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S();
+      S.current = S();
+      
+      return S.current;
     });
   } 
 
@@ -27,6 +33,7 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Login`
   String get pageLoginBar {
     return Intl.message(
       'Login',
@@ -36,15 +43,17 @@ class S {
     );
   }
 
+  /// `Welcome to <%= baseName %>`
   String get pageLoginTitle {
     return Intl.message(
-      'Welcome to JhipsterSampleApp',
+      'Welcome to <%= baseName %>',
       name: 'pageLoginTitle',
       desc: '',
       args: [],
     );
   }
 
+  /// `Sign in`
   String get pageLoginLoginButton {
     return Intl.message(
       'Sign in',
@@ -54,6 +63,7 @@ class S {
     );
   }
 
+  /// `Register`
   String get pageLoginRegisterButton {
     return Intl.message(
       'Register',
@@ -63,6 +73,7 @@ class S {
     );
   }
 
+  /// `Problem when authenticate, verify your credential`
   String get pageLoginErrorAuthentication {
     return Intl.message(
       'Problem when authenticate, verify your credential',
@@ -72,6 +83,7 @@ class S {
     );
   }
 
+  /// `Register`
   String get pageRegisterTitle {
     return Intl.message(
       'Register',
@@ -81,6 +93,7 @@ class S {
     );
   }
 
+  /// `Login`
   String get pageRegisterFormLogin {
     return Intl.message(
       'Login',
@@ -90,6 +103,7 @@ class S {
     );
   }
 
+  /// `Email`
   String get pageRegisterFormEmail {
     return Intl.message(
       'Email',
@@ -99,6 +113,7 @@ class S {
     );
   }
 
+  /// `you@example.com`
   String get pageRegisterFormEmailHint {
     return Intl.message(
       'you@example.com',
@@ -108,6 +123,7 @@ class S {
     );
   }
 
+  /// `Password`
   String get pageRegisterFormPassword {
     return Intl.message(
       'Password',
@@ -117,6 +133,7 @@ class S {
     );
   }
 
+  /// `Confirm password`
   String get pageRegisterFormConfirmPassword {
     return Intl.message(
       'Confirm password',
@@ -126,6 +143,7 @@ class S {
     );
   }
 
+  /// `I accept the terms of use`
   String get pageRegisterFormTermsConditions {
     return Intl.message(
       'I accept the terms of use',
@@ -135,15 +153,17 @@ class S {
     );
   }
 
+  /// `Please accept the terms and conditions`
   String get pageRegisterFormTermsConditionsNotChecked {
     return Intl.message(
-      '\'Please accept the terms and conditions\'',
+      'Please accept the terms and conditions',
       name: 'pageRegisterFormTermsConditionsNotChecked',
       desc: '',
       args: [],
     );
   }
 
+  /// `Sign up`
   String get pageRegisterFormSubmit {
     return Intl.message(
       'Sign up',
@@ -153,6 +173,7 @@ class S {
     );
   }
 
+  /// `Email already exist`
   String get pageRegisterErrorMailExist {
     return Intl.message(
       'Email already exist',
@@ -162,6 +183,7 @@ class S {
     );
   }
 
+  /// `Login already taken`
   String get pageRegisterErrorLoginExist {
     return Intl.message(
       'Login already taken',
@@ -171,6 +193,7 @@ class S {
     );
   }
 
+  /// `The passwords are not identical`
   String get pageRegisterErrorPasswordNotIdentical {
     return Intl.message(
       'The passwords are not identical',
@@ -180,6 +203,7 @@ class S {
     );
   }
 
+  /// `Register success`
   String get pageRegisterSuccessAltImg {
     return Intl.message(
       'Register success',
@@ -189,6 +213,7 @@ class S {
     );
   }
 
+  /// `Congratulation`
   String get pageRegisterSuccess {
     return Intl.message(
       'Congratulation',
@@ -198,6 +223,7 @@ class S {
     );
   }
 
+  /// `You have successfuly registered`
   String get pageRegisterSuccessSub {
     return Intl.message(
       'You have successfuly registered',
@@ -207,15 +233,67 @@ class S {
     );
   }
 
+  /// `Your profile`
+  String get pageMainProfileButton {
+    return Intl.message(
+      'Your profile',
+      name: 'pageMainProfileButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Event`
+  String get pageMainEventButton {
+    return Intl.message(
+      'Event',
+      name: 'pageMainEventButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open pack`
+  String get pageMainOpenPackButton {
+    return Intl.message(
+      'Open pack',
+      name: 'pageMainOpenPackButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Packs`
+  String get pageMainNumberPackOpen {
+    return Intl.message(
+      'Packs',
+      name: 'pageMainNumberPackOpen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Marketplace`
+  String get pageMainMarketButton {
+    return Intl.message(
+      'Marketplace',
+      name: 'pageMainMarketButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main page`
   String get pageMainTitle {
     return Intl.message(
-      'Main',
+      'Main page',
       name: 'pageMainTitle',
       desc: '',
       args: [],
     );
   }
 
+  /// `Welcome to your Jhipster flutter app`
   String get pageMainWelcome {
     return Intl.message(
       'Welcome to your Jhipster flutter app',
@@ -225,6 +303,7 @@ class S {
     );
   }
 
+  /// `Settings`
   String get drawerSettingsTitle {
     return Intl.message(
       'Settings',
@@ -234,6 +313,7 @@ class S {
     );
   }
 
+  /// `Sign out`
   String get drawerLogoutTitle {
     return Intl.message(
       'Sign out',
@@ -243,6 +323,7 @@ class S {
     );
   }
 
+  /// `Menu`
   String get drawerMenuTitle {
     return Intl.message(
       'Menu',
@@ -272,7 +353,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   bool _isSupported(Locale locale) {
     if (locale != null) {
-      for (Locale supportedLocale in supportedLocales) {
+      for (var supportedLocale in supportedLocales) {
         if (supportedLocale.languageCode == locale.languageCode) {
           return true;
         }

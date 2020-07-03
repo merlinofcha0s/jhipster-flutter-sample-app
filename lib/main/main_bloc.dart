@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:JhipsterAppSample/shared/bloc/bloc.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MainBloc extends Bloc {

@@ -1,13 +1,14 @@
-import 'package:JhipsterAppSample/account/register/register_bloc.dart';
-import 'package:JhipsterAppSample/generated/l10n.dart';
-import 'package:JhipsterAppSample/keys.dart';
-import 'package:JhipsterAppSample/routes.dart';
-import 'package:JhipsterAppSample/shared/bloc/bloc_provider.dart';
+import 'package:jhipsterfluttersample/account/register/register_bloc.dart';
+import 'package:jhipsterfluttersample/generated/l10n.dart';
+import 'package:jhipsterfluttersample/keys.dart';
+import 'package:jhipsterfluttersample/routes.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+
 class RegisterScreen extends StatelessWidget {
-  RegisterScreen() : super(key: JhipsterSampleAppKeys.registerScreen);
+  RegisterScreen() : super(key: JhipsterfluttersampleKeys.registerScreen);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
       children: <Widget>[
         Image(
           image:
-              AssetImage('assets/images/jhipster_family_member_0_head-512.png'),
+              AssetImage('assets/images/jhipster_family_member_1_head-512.png'),
           fit: BoxFit.fill,
           width: MediaQuery.of(context).size.width * 0.35,
         ),
@@ -70,7 +71,7 @@ class RegisterScreen extends StatelessWidget {
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: S.of(context).pageRegisterFormLogin,
+                  labelText:S.of(context).pageRegisterFormLogin,
                   errorText: snapshot.error));
         });
   }
@@ -84,8 +85,8 @@ class RegisterScreen extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: S.of(context).pageRegisterFormEmail,
-                hintText: S.of(context).pageRegisterFormEmailHint,
+                labelText:S.of(context).pageRegisterFormEmail,
+                hintText:S.of(context).pageRegisterFormEmailHint,
                 errorText: snapshot.error),
           );
         });
@@ -100,7 +101,7 @@ class RegisterScreen extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: S.of(context).pageRegisterFormPassword,
+                  labelText:S.of(context).pageRegisterFormPassword,
                   errorText: snapshot.error));
         });
   }
@@ -114,7 +115,7 @@ class RegisterScreen extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: S.of(context).pageRegisterFormConfirmPassword,
+                  labelText:S.of(context).pageRegisterFormConfirmPassword,
                   errorText: snapshot.error));
         });
   }
@@ -146,8 +147,7 @@ class RegisterScreen extends StatelessWidget {
                 visible: snapshot.hasError,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: Text(
-                    S.of(context).pageRegisterFormTermsConditionsNotChecked,
+                  child: Text(S.of(context).pageRegisterFormTermsConditionsNotChecked,
                     style: TextStyle(color: Colors.red),
                   ),
                 ),
@@ -174,12 +174,12 @@ class RegisterScreen extends StatelessWidget {
 
   String generateError(AsyncSnapshot<bool> snapshot, BuildContext context) {
     String errorTranslated = '';
-    if (snapshot.error.toString().compareTo(RegisterBloc.passwordNotIdenticalKey) == 0) {
-      errorTranslated = S.of(context).pageRegisterErrorPasswordNotIdentical;
-    } else if (snapshot.error.toString().compareTo(RegisterBloc.emailExistKey) == 0) {
-      errorTranslated = S.of(context).pageRegisterErrorMailExist;
-    } else if (snapshot.error.toString().compareTo(RegisterBloc.loginExistKey) == 0) {
-      errorTranslated = S.of(context).pageRegisterErrorLoginExist;
+    if(snapshot.error.toString().compareTo(RegisterBloc.passwordNotIdenticalKey) == 0){
+      errorTranslated =S.of(context).pageRegisterErrorPasswordNotIdentical;
+    } else if(snapshot.error.toString().compareTo(RegisterBloc.emailExistKey) == 0) {
+      errorTranslated =S.of(context).pageRegisterErrorMailExist;
+    } else if (snapshot.error.toString().compareTo(RegisterBloc.loginExistKey) == 0){
+      errorTranslated =S.of(context).pageRegisterErrorLoginExist;
     }
 
     return errorTranslated;
@@ -200,10 +200,8 @@ class RegisterScreen extends StatelessWidget {
                       return Center(
                         child: Visibility(
                           replacement: CircularProgressIndicator(value: null),
-                          visible:
-                              snapshotLoading.hasData && !snapshotLoading.data,
-                          child: Text(
-                            S.of(context).pageRegisterFormSubmit.toUpperCase(),
+                          visible: snapshotLoading.hasData && !snapshotLoading.data,
+                          child: Text(S.of(context).pageRegisterFormSubmit.toUpperCase(),
                             style: TextStyle(fontSize: 15),
                           ),
                         ),
@@ -228,7 +226,7 @@ class RegisterScreen extends StatelessWidget {
                     Icons.check_circle,
                     color: Colors.indigoAccent,
                     size: 125.0,
-                    semanticLabel: S.of(context).pageRegisterSuccessAltImg,
+                    semanticLabel:S.of(context).pageRegisterSuccessAltImg,
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 10),
@@ -249,7 +247,7 @@ class RegisterScreen extends StatelessWidget {
                         child: Center(
                             child: Text(S.of(context).pageRegisterFormLogin))),
                     onPressed: () =>
-                        Navigator.pushNamed(context, JhipsterSampleRoutes.login),
+                        Navigator.pushNamed(context, JhipsterfluttersampleRoutes.login),
                   )
                 ],
               ),

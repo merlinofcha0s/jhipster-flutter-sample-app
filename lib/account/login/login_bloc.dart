@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:JhipsterAppSample/account/login/login_repository.dart';
-import 'package:JhipsterAppSample/shared/bloc/bloc.dart';
-import 'package:JhipsterAppSample/shared/mixins/validators_mixin.dart';
-import 'package:JhipsterAppSample/shared/models/jwt_token.dart';
-import 'package:JhipsterAppSample/shared/models/user_jwt.dart';
-import 'package:JhipsterAppSample/shared/repository/http_utils.dart';
+import 'package:jhipsterfluttersample/account/login/login_repository.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc.dart';
+import 'package:jhipsterfluttersample/shared/mixins/validators_mixin.dart';
+import 'package:jhipsterfluttersample/shared/models/jwt_token.dart';
+import 'package:jhipsterfluttersample/shared/models/user_jwt.dart';
+import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:rxdart/rxdart.dart';
 

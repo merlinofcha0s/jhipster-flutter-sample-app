@@ -1,14 +1,15 @@
-import 'package:JhipsterAppSample/generated/l10n.dart';
-import 'package:JhipsterAppSample/keys.dart';
-import 'package:JhipsterAppSample/main/main_bloc.dart';
-import 'package:JhipsterAppSample/shared/bloc/bloc_provider.dart';
-import 'package:JhipsterAppSample/shared/widgets/drawer/drawer_bloc.dart';
-import 'package:JhipsterAppSample/shared/widgets/drawer/drawer_widget.dart';
+import 'package:jhipsterfluttersample/generated/l10n.dart';
+import 'package:jhipsterfluttersample/keys.dart';
+import 'package:jhipsterfluttersample/main/main_bloc.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
+import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_bloc.dart';
+import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
 class MainScreen extends StatelessWidget {
-  MainScreen({Key key}) : super(key: JhipsterSampleAppKeys.mainScreen);
+  MainScreen({Key key}) : super(key: JhipsterfluttersampleKeys.mainScreen);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class MainScreen extends StatelessWidget {
         title: Text(S.of(context).pageMainTitle),
       ),
       body: body(context),
-      drawer: BlocProvider<JhipsterSampleDrawerBloc>(bloc: JhipsterSampleDrawerBloc() ,child: JhipsterSampleDrawer())
+      drawer: BlocProvider<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc() ,child: JhipsterfluttersampleDrawer())
     );
   }
 

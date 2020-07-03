@@ -1,5 +1,5 @@
-import 'package:JhipsterAppSample/shared/models/user.dart';
-import 'package:JhipsterAppSample/shared/repository/http_utils.dart';
+import 'package:jhipsterfluttersample/shared/models/user.dart';
+import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 
 class AccountRepository {
   AccountRepository();

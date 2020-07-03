@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:JhipsterAppSample/shared/bloc/bloc.dart';
-import 'package:JhipsterAppSample/shared/mixins/validators_mixin.dart';
-import 'package:JhipsterAppSample/shared/models/user.dart';
-import 'package:JhipsterAppSample/shared/repository/http_utils.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc.dart';
+import 'package:jhipsterfluttersample/shared/mixins/validators_mixin.dart';
+import 'package:jhipsterfluttersample/shared/models/user.dart';
+import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'account_repository.dart';

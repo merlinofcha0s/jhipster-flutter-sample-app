@@ -1,4 +1,4 @@
-import 'package:JhipsterAppSample/environement.dart';
+import 'package:jhipsterfluttersample/environement.dart';
 import 'package:flutter/material.dart';
 import 'app.dart';
 import 'main.reflectable.dart';
@@ -8,5 +8,5 @@ void main() {
   initializeReflectable();
   configMapper();
   Constants.setEnvironment(Environment.DEV);
-  runApp(JhipsterSampleApp());
+  runApp(JhipsterfluttersampleApp());
 }

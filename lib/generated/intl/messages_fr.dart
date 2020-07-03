@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Un problème est survenu, veuillez vérifier vos identifiants"),
     "pageLoginLoginButton" : MessageLookupByLibrary.simpleMessage("S\'identifier"),
     "pageLoginRegisterButton" : MessageLookupByLibrary.simpleMessage("Créer un compte"),
-    "pageLoginTitle" : MessageLookupByLibrary.simpleMessage("Bienvenue sur JhipsterSampleApp"),
+    "pageLoginTitle" : MessageLookupByLibrary.simpleMessage("Bienvenue sur <%= baseName %>"),
     "pageMainTitle" : MessageLookupByLibrary.simpleMessage("Page principale"),
     "pageMainWelcome" : MessageLookupByLibrary.simpleMessage("Bienvenue sur votre Jhipster flutter app"),
     "pageRegisterErrorLoginExist" : MessageLookupByLibrary.simpleMessage("Cet identifiant est déjà pris"),

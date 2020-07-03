@@ -1,6 +1,6 @@
-import 'package:JhipsterAppSample/generated/l10n.dart';
-import 'package:JhipsterAppSample/keys.dart';
-import 'package:JhipsterAppSample/shared/bloc/bloc_provider.dart';
+import 'package:jhipsterfluttersample/generated/l10n.dart';
+import 'package:jhipsterfluttersample/keys.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +8,7 @@ import '../../routes.dart';
 import 'login_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({Key key}) : super(key: JhipsterSampleAppKeys.loginScreen);
+  LoginScreen({Key key}) : super(key: JhipsterfluttersampleKeys.mainScreen);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text(S.of(context).pageLoginTitle),
+          title:Text(S.of(context).pageLoginTitle),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(15.0),
@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
             header(context),
             loginForm(loginBloc),
             Padding(
-              padding: EdgeInsets.only(bottom: 10),
+              padding: EdgeInsets.only(bottom: 50),
             ),
             register(context)
           ]),
@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
   Widget header(BuildContext context) {
     return Column(
       children: <Widget>[
-        Image(image: AssetImage('assets/images/jhipster_family_member_0_head-512.png'),
+        Image(image: AssetImage('assets/images/jhipster_family_member_1_head-512.png'),
           fit: BoxFit.fill,
           width: MediaQuery.of(context).size.width * 0.4,),
         Padding(padding: EdgeInsets.symmetric(vertical: 20))
@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: S.of(context).pageRegisterFormLogin,
+                  labelText:S.of(context).pageRegisterFormLogin,
                   errorText: snapshot.error));
         });
   }
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: S.of(context).pageRegisterFormPassword,
+                  labelText:S.of(context).pageRegisterFormPassword,
                   errorText: snapshot.error));
         });
   }
@@ -88,12 +88,11 @@ class LoginScreen extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: 50,
           child: Center(
-            child: Text(
-              S.of(context).pageRegisterTitle.toUpperCase(),
+            child: Text(S.of(context).pageRegisterTitle.toUpperCase(),
               style: TextStyle(fontSize: 15),
             ),
           )),
-      onPressed: () => Navigator.pushNamed(context, JhipsterSampleRoutes.register),
+      onPressed: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.register),
     );
   }
 
@@ -129,9 +128,8 @@ class LoginScreen extends StatelessWidget {
                           replacement: CircularProgressIndicator(value: null),
                           visible:
                               snapshotLoading.hasData && !snapshotLoading.data,
-                          child: Text(
-                            S.of(context).pageLoginLoginButton.toUpperCase(),
-                            style: TextStyle(fontSize: 15),
+                          child: Text(S.of(context).pageLoginLoginButton.toUpperCase(),
+                                style: TextStyle(fontSize: 15),
                           ),
                         ),
                       );
@@ -146,14 +144,14 @@ class LoginScreen extends StatelessWidget {
   onAuthenticate(LoginBloc loginBloc, BuildContext context) async {
     bool authenticateSuccess = await loginBloc.authenticate();
     if (authenticateSuccess) {
-      Navigator.pushNamed(context, JhipsterSampleRoutes.main);
+      Navigator.pushNamed(context, JhipsterfluttersampleRoutes.main);
     }
   }
 
   String generateError(AsyncSnapshot<bool> snapshot, BuildContext context) {
     String errorTranslated = '';
     if (snapshot.error.toString().compareTo(LoginBloc.authenticationFailKey) == 0) {
-      errorTranslated = S.of(context).pageLoginErrorAuthentication;
+      errorTranslated =S.of(context).pageLoginErrorAuthentication;
     }
     return errorTranslated;
   }

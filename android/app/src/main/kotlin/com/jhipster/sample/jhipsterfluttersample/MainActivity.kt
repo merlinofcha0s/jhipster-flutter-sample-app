@@ -1,4 +1,4 @@
-package com.sample.JhipsterAppSample
+package com.jhipster.sample.jhipsterfluttersample
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -23,10 +23,10 @@ class _Config {
   static const API = "API";
 
   static Map<String, dynamic> devConstants = {
-    API: "http://192.168.56.1:8080/api",
+    API: "http://127.0.0.1:8080/api",
   };
 
   static Map<String, dynamic> prodConstants = {
-    API: "https://my-jhipster-server/api",
+    API: "https://production-server/api",
   };
 }

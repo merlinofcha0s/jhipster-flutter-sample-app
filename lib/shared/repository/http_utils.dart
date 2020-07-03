@@ -8,7 +8,7 @@ import 'package:http/http.dart';
 import '../../environement.dart';
 
 class HttpUtils {
-  static String errorHeader = 'x-sortyquizzapp-error';
+  static String errorHeader = 'x-jhipsterfluttersampleapp-error';
   static String successResult = 'success';
   static String keyForJWTToken = 'jwt-token';
 

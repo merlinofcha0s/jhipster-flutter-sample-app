@@ -1,6 +1,6 @@
-import 'package:JhipsterAppSample/shared/models/jwt_token.dart';
-import 'package:JhipsterAppSample/shared/models/user_jwt.dart';
-import 'package:JhipsterAppSample/shared/repository/http_utils.dart';
+import 'package:jhipsterfluttersample/shared/models/jwt_token.dart';
+import 'package:jhipsterfluttersample/shared/models/user_jwt.dart';
+import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 import 'package:dart_json_mapper/dart_json_mapper.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
