@@ -125,24 +125,28 @@ class SettingsScreen extends StatelessWidget {
           return Visibility(
               visible: snapshot.hasData || snapshot.hasError,
               child: Center(
-                child: Text(
-                  generateNotificationMessage(snapshot, context),
-                  style: TextStyle(color: Colors.red),
-                ),
+                child: generateNotificationText(snapshot, context),
               ));
         });
   }
 
-  String generateNotificationMessage(AsyncSnapshot<String> snapshot, BuildContext context) {
-    String errorTranslated = '';
+  Widget generateNotificationText(AsyncSnapshot<String> snapshot, BuildContext context) {
+    String notificationTranslated = '';
+    MaterialColor notificationColors;
     if(snapshot.hasData && snapshot.data.compareTo(SettingsBloc.successKey) == 0) {
-      errorTranslated = S.of(context).pageSettingsSuccessSave;
+      notificationTranslated = S.of(context).pageSettingsSuccessSave;
+      notificationColors = Colors.green;
     } else if(snapshot.error.toString().compareTo(SettingsBloc.badrequestKey) == 0) {
-      errorTranslated = S.of(context).pageSettingsSuccessErrorBadRequest;
+      notificationTranslated = S.of(context).pageSettingsSuccessErrorBadRequest;
+      notificationColors = Colors.red;
     } else if (snapshot.error.toString().compareTo(HttpUtils.errorServerKey) == 0) {
-      errorTranslated = S.of(context).pageSettingsSuccessErrorServer;
+      notificationTranslated = S.of(context).pageSettingsSuccessErrorServer;
+      notificationColors = Colors.red;
     }
 
-    return errorTranslated;
+    return Text(
+      notificationTranslated,
+      style: TextStyle(color: notificationColors),
+    );
   }
 }
