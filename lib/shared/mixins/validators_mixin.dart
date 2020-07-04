@@ -30,13 +30,22 @@ class ValidatorMixin {
     }
   });
 
+  final validateTermsAndCondition =
+      StreamTransformer<bool, bool>.fromHandlers(handleData: (agree, sink) {
+    if (agree) {
+      sink.add(agree);
+    } else {
+      sink.addError('Please accept the terms and conditions');
+    }
+  });
 
-  final validateTermsAndCondition = StreamTransformer<bool, bool>.fromHandlers(
-      handleData: (agree, sink) {
-        if (agree) {
-          sink.add(agree);
-        } else {
-          sink.addError('Please accept the terms and conditions');
-        }
-      });
+  final validateName =
+      StreamTransformer<String, String>.fromHandlers(handleData: (name, sink) {
+    int max = 50;
+    if (name == null || (name != null && name.length <= 50)) {
+      sink.add(name);
+    } else {
+      sink.addError('The firstname has to be less than $max characters');
+    }
+  });
 }

@@ -3,6 +3,8 @@ enum Environment { DEV, PROD }
 class Constants {
   static Map<String, dynamic> _config;
 
+  static final Map<String, String> languages = {'en':'English','fr':'Francais'};
+
   static void setEnvironment(Environment env) {
     switch (env) {
       case Environment.DEV:

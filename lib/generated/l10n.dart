@@ -43,10 +43,10 @@ class S {
     );
   }
 
-  /// `Welcome to <%= baseName %>`
+  /// `Welcome to Jhipster flutter app`
   String get pageLoginTitle {
     return Intl.message(
-      'Welcome to <%= baseName %>',
+      'Welcome to Jhipster flutter app',
       name: 'pageLoginTitle',
       desc: '',
       args: [],
@@ -328,6 +328,96 @@ class S {
     return Intl.message(
       'Menu',
       name: 'drawerMenuTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get pageSettingsTitle {
+    return Intl.message(
+      'Settings',
+      name: 'pageSettingsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Firstname`
+  String get pageSettingsFormFirstname {
+    return Intl.message(
+      'Firstname',
+      name: 'pageSettingsFormFirstname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lastname`
+  String get pageSettingsFormLastname {
+    return Intl.message(
+      'Lastname',
+      name: 'pageSettingsFormLastname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get pageSettingsFormEmail {
+    return Intl.message(
+      'Email',
+      name: 'pageSettingsFormEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Languages`
+  String get pageSettingsFormLanguages {
+    return Intl.message(
+      'Languages',
+      name: 'pageSettingsFormLanguages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get pageSettingsFormSave {
+    return Intl.message(
+      'Save',
+      name: 'pageSettingsFormSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings saved !`
+  String get pageSettingsSuccessSave {
+    return Intl.message(
+      'Settings saved !',
+      name: 'pageSettingsSuccessSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something wrong happended with the data`
+  String get pageSettingsSuccessErrorBadRequest {
+    return Intl.message(
+      'Something wrong happended with the data',
+      name: 'pageSettingsSuccessErrorBadRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something wrong when calling the server, please try again`
+  String get pageSettingsSuccessErrorServer {
+    return Intl.message(
+      'Something wrong when calling the server, please try again',
+      name: 'pageSettingsSuccessErrorServer',
       desc: '',
       args: [],
     );

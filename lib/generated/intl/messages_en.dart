@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Problem when authenticate, verify your credential"),
     "pageLoginLoginButton" : MessageLookupByLibrary.simpleMessage("Sign in"),
     "pageLoginRegisterButton" : MessageLookupByLibrary.simpleMessage("Register"),
-    "pageLoginTitle" : MessageLookupByLibrary.simpleMessage("Welcome to <%= baseName %>"),
+    "pageLoginTitle" : MessageLookupByLibrary.simpleMessage("Welcome to Jhipster flutter app"),
     "pageMainEventButton" : MessageLookupByLibrary.simpleMessage("Event"),
     "pageMainMarketButton" : MessageLookupByLibrary.simpleMessage("Marketplace"),
     "pageMainNumberPackOpen" : MessageLookupByLibrary.simpleMessage("Packs"),
@@ -50,6 +50,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageRegisterSuccess" : MessageLookupByLibrary.simpleMessage("Congratulation"),
     "pageRegisterSuccessAltImg" : MessageLookupByLibrary.simpleMessage("Register success"),
     "pageRegisterSuccessSub" : MessageLookupByLibrary.simpleMessage("You have successfuly registered"),
-    "pageRegisterTitle" : MessageLookupByLibrary.simpleMessage("Register")
+    "pageRegisterTitle" : MessageLookupByLibrary.simpleMessage("Register"),
+    "pageSettingsFormEmail" : MessageLookupByLibrary.simpleMessage("Email"),
+    "pageSettingsFormFirstname" : MessageLookupByLibrary.simpleMessage("Firstname"),
+    "pageSettingsFormLanguages" : MessageLookupByLibrary.simpleMessage("Languages"),
+    "pageSettingsFormLastname" : MessageLookupByLibrary.simpleMessage("Lastname"),
+    "pageSettingsFormSave" : MessageLookupByLibrary.simpleMessage("Save"),
+    "pageSettingsSuccessErrorBadRequest" : MessageLookupByLibrary.simpleMessage("Something wrong happended with the data"),
+    "pageSettingsSuccessErrorServer" : MessageLookupByLibrary.simpleMessage("Something wrong when calling the server, please try again"),
+    "pageSettingsSuccessSave" : MessageLookupByLibrary.simpleMessage("Settings saved !"),
+    "pageSettingsTitle" : MessageLookupByLibrary.simpleMessage("Settings")
   };
 }

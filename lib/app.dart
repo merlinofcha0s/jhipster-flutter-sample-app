@@ -1,3 +1,5 @@
+import 'package:jhipsterfluttersample/account/settings/settings_bloc.dart';
+import 'package:jhipsterfluttersample/account/settings/settings_screen.dart';
 import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
 import 'package:jhipsterfluttersample/main/main_bloc.dart';
@@ -33,6 +35,10 @@ class JhipsterfluttersampleApp extends StatelessWidget {
         JhipsterfluttersampleRoutes.main: (context) {
           return BlocProvider<MainBloc>(
               bloc: MainBloc(), child: MainScreen());
+        },
+        JhipsterfluttersampleRoutes.settings: (context) {
+          return BlocProvider<SettingsBloc>(
+              bloc: SettingsBloc(), child: SettingsScreen());
         },
       },
         localizationsDelegates: [

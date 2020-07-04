@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:jhipsterfluttersample/shared/bloc/bloc.dart';
 import 'package:jhipsterfluttersample/shared/mixins/validators_mixin.dart';
 import 'package:jhipsterfluttersample/shared/models/user.dart';
+import 'package:jhipsterfluttersample/shared/repository/account_repository.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'account_repository.dart';
 
 class RegisterBloc extends Bloc with ValidatorMixin {
   final _login = BehaviorSubject<String>();
@@ -87,7 +87,7 @@ class RegisterBloc extends Bloc with ValidatorMixin {
     }
 
     if (validationOk) {
-      User newUser = new User(login, email, password, 'en');
+      User newUser = new User.forRegister(login, email, password, 'en');
       String result = await accountRepository.register(newUser);
       if (result.compareTo(HttpUtils.successResult) != 0) {
         _generalValidation.addError(result);

@@ -18,6 +18,7 @@ class JhipsterfluttersampleDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text(S.of(context).drawerSettingsTitle),
+            onTap: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.settings),
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
@@ -41,6 +42,7 @@ class JhipsterfluttersampleDrawer extends StatelessWidget {
         color: Colors.teal,
       ),
       child: Text(S.of(context).drawerMenuTitle,
+        textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,
           fontSize: 24,
