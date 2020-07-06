@@ -293,6 +293,16 @@ class S {
     );
   }
 
+  /// `Current user : {login}`
+  String pageMainCurrentUser(Object login) {
+    return Intl.message(
+      'Current user : $login',
+      name: 'pageMainCurrentUser',
+      desc: '',
+      args: [login],
+    );
+  }
+
   /// `Welcome to your Jhipster flutter app`
   String get pageMainWelcome {
     return Intl.message(

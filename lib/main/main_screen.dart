@@ -1,7 +1,10 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
 import 'package:jhipsterfluttersample/main/main_bloc.dart';
+import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
+import 'package:jhipsterfluttersample/shared/models/user.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_bloc.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,17 +17,18 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mainBloc = BlocProvider.of<MainBloc>(context);
+    init(context, mainBloc);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(S.of(context).pageMainTitle),
       ),
-      body: body(context),
+      body: body(context, mainBloc),
       drawer: BlocProvider<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc() ,child: JhipsterfluttersampleDrawer())
     );
   }
 
-  Widget body(BuildContext context){
+  Widget body(BuildContext context, MainBloc mainBloc){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -32,7 +36,7 @@ class MainScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(S.of(context).pageMainWelcome, style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+            currentUserWidget(context, mainBloc),
             Padding(padding: EdgeInsets.symmetric(vertical: 10),),
             linkWidget(context, 'Jhipster Docs', 'https://www.jhipster.tech/'),
             linkWidget(context, 'Stackoverflow', 'http://stackoverflow.com/tags/jhipster/info'),
@@ -42,6 +46,22 @@ class MainScreen extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  Widget currentUserWidget(BuildContext context, MainBloc bloc) {
+    return StreamBuilder<User>(
+      stream: bloc.userStream,
+      builder: (context, snapshot) {
+        String login = snapshot.data?.login != null ? snapshot.data?.login : '';
+        return Column(
+          children: <Widget>[
+            Text(S.of(context).pageMainCurrentUser(login), style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+            Padding(padding: EdgeInsets.symmetric(vertical: 5),),
+            Text(S.of(context).pageMainWelcome, style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+          ],
+        );
+      }
     );
   }
 
@@ -60,6 +80,14 @@ class MainScreen extends StatelessWidget {
       await launch(url);
     } else {
       throw 'Could not launch $url';
+    }
+  }
+
+  init(BuildContext context, MainBloc bloc) async {
+    String languageCode = Localizations.localeOf(context).languageCode;
+    bool reload = await bloc.init(languageCode);
+    if(reload) {
+      Navigator.pushNamed(context, JhipsterfluttersampleRoutes.main);
     }
   }
 }

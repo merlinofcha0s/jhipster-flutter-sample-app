@@ -19,6 +19,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'fr';
 
+  static m0(login) => "Utilisateur connecté : ${login}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "drawerLogoutTitle" : MessageLookupByLibrary.simpleMessage("Deconnexion"),
@@ -28,7 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Un problème est survenu, veuillez vérifier vos identifiants"),
     "pageLoginLoginButton" : MessageLookupByLibrary.simpleMessage("S\'identifier"),
     "pageLoginRegisterButton" : MessageLookupByLibrary.simpleMessage("Créer un compte"),
-    "pageLoginTitle" : MessageLookupByLibrary.simpleMessage("Welcome to Jhipster flutter app"),
+    "pageLoginTitle" : MessageLookupByLibrary.simpleMessage("Bienvenue sur Jhipster flutter app"),
+    "pageMainCurrentUser" : m0,
     "pageMainTitle" : MessageLookupByLibrary.simpleMessage("Page principale"),
     "pageMainWelcome" : MessageLookupByLibrary.simpleMessage("Bienvenue sur votre Jhipster flutter app"),
     "pageRegisterErrorLoginExist" : MessageLookupByLibrary.simpleMessage("Cet identifiant est déjà pris"),
@@ -37,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageRegisterFormConfirmPassword" : MessageLookupByLibrary.simpleMessage("Confirmer le mot de passe"),
     "pageRegisterFormEmail" : MessageLookupByLibrary.simpleMessage("Email"),
     "pageRegisterFormEmailHint" : MessageLookupByLibrary.simpleMessage("you@exemple.com"),
-    "pageRegisterFormLogin" : MessageLookupByLibrary.simpleMessage("Login"),
+    "pageRegisterFormLogin" : MessageLookupByLibrary.simpleMessage("Identifiant"),
     "pageRegisterFormPassword" : MessageLookupByLibrary.simpleMessage("Mot de passe"),
     "pageRegisterFormSubmit" : MessageLookupByLibrary.simpleMessage("Créer un compte"),
     "pageRegisterFormTermsConditions" : MessageLookupByLibrary.simpleMessage("J\'accepte les conditions générales d\'utilisations"),

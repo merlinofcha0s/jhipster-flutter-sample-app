@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:jhipsterfluttersample/environement.dart';
+import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/shared/bloc/bloc.dart';
 import 'package:jhipsterfluttersample/shared/mixins/validators_mixin.dart';
 import 'package:jhipsterfluttersample/shared/models/user.dart';
 import 'package:jhipsterfluttersample/shared/repository/account_repository.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 import 'package:rxdart/rxdart.dart';
+
 
 class SettingsBloc extends Bloc with ValidatorMixin {
   final _firstName = BehaviorSubject<String>();
@@ -62,7 +64,6 @@ class SettingsBloc extends Bloc with ValidatorMixin {
   }
 
   void getIdentity() async {
-    _isLoading.sink.add(true);
     currentUser = await accountRepository.getIdentity();
     _firstName.sink.add(currentUser.firstName);
     _lastName.sink.add(currentUser.lastName);
@@ -71,15 +72,21 @@ class SettingsBloc extends Bloc with ValidatorMixin {
     emailController.text = currentUser.email;
     lastNameController.text = currentUser.lastName;
     firstNameController.text = currentUser.firstName;
-    _isLoading.sink.add(false);
+
   }
 
-  submit() async {
+  Future<bool> submit() async {
+    bool reload = false;
     _isLoading.sink.add(true);
     currentUser.firstName = _firstName.value;
     currentUser.lastName = _lastName.value;
     currentUser.email = _email.value;
-    currentUser.langKey = _languageChoose.value;
+
+    if(_languageChoose.value.compareTo(currentUser.langKey) != 0){
+      currentUser.langKey = _languageChoose.value;
+      S.load(Locale(_languageChoose.value));
+      reload = true;
+    }
 
     String result = await accountRepository.saveAccount(currentUser);
 
@@ -88,9 +95,8 @@ class SettingsBloc extends Bloc with ValidatorMixin {
     } else {
       _notificationSaveSettings.sink.add(successKey);
     }
-
-
     _isLoading.sink.add(false);
+    return reload;
   }
 
   @override

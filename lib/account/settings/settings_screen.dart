@@ -4,6 +4,7 @@ import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 
@@ -112,10 +113,17 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     );
                   })),
-          onPressed: snapshotSubmit.hasData ? settingsBloc.submit : null,
+          onPressed: snapshotSubmit.hasData ? () => saveSettings(snapshotSubmit, settingsBloc, context)  : null,
         );
       }
     );
+  }
+
+  saveSettings(AsyncSnapshot<bool> snapshotSubmit, SettingsBloc settingsBloc, BuildContext context) async {
+    var reloadForLanguage = await settingsBloc.submit();
+    if(reloadForLanguage) {
+      Navigator.pushNamed(context, JhipsterfluttersampleRoutes.main);
+    }
   }
 
   Widget notificationZone(SettingsBloc settingsBloc) {

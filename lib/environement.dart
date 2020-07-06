@@ -4,6 +4,7 @@ class Constants {
   static Map<String, dynamic> _config;
 
   static final Map<String, String> languages = {'en':'English','fr':'Francais'};
+  static final String langStorageKey = 'locale';
 
   static void setEnvironment(Environment env) {
     switch (env) {
@@ -25,7 +26,7 @@ class _Config {
   static const API = "API";
 
   static Map<String, dynamic> devConstants = {
-    API: "http://127.0.0.1:8080/api",
+    API: "http://192.168.0.25:8080/api",
   };
 
   static Map<String, dynamic> prodConstants = {

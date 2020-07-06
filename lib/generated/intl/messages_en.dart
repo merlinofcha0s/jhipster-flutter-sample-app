@@ -19,6 +19,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static m0(login) => "Current user : ${login}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "drawerLogoutTitle" : MessageLookupByLibrary.simpleMessage("Sign out"),
@@ -29,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageLoginLoginButton" : MessageLookupByLibrary.simpleMessage("Sign in"),
     "pageLoginRegisterButton" : MessageLookupByLibrary.simpleMessage("Register"),
     "pageLoginTitle" : MessageLookupByLibrary.simpleMessage("Welcome to Jhipster flutter app"),
+    "pageMainCurrentUser" : m0,
     "pageMainEventButton" : MessageLookupByLibrary.simpleMessage("Event"),
     "pageMainMarketButton" : MessageLookupByLibrary.simpleMessage("Marketplace"),
     "pageMainNumberPackOpen" : MessageLookupByLibrary.simpleMessage("Packs"),
