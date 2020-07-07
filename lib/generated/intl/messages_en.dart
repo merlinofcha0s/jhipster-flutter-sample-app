@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "drawerLogoutTitle" : MessageLookupByLibrary.simpleMessage("Sign out"),
     "drawerMenuTitle" : MessageLookupByLibrary.simpleMessage("Menu"),
     "drawerSettingsTitle" : MessageLookupByLibrary.simpleMessage("Settings"),
+    "locale" : MessageLookupByLibrary.simpleMessage("en"),
     "pageLoginBar" : MessageLookupByLibrary.simpleMessage("Login"),
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Problem when authenticate, verify your credential"),
     "pageLoginLoginButton" : MessageLookupByLibrary.simpleMessage("Sign in"),

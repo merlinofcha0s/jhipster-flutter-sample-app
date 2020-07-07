@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "drawerLogoutTitle" : MessageLookupByLibrary.simpleMessage("Deconnexion"),
     "drawerMenuTitle" : MessageLookupByLibrary.simpleMessage("Menu"),
     "drawerSettingsTitle" : MessageLookupByLibrary.simpleMessage("Profil"),
+    "locale" : MessageLookupByLibrary.simpleMessage("fr"),
     "pageLoginBar" : MessageLookupByLibrary.simpleMessage("Se connecter"),
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Un problème est survenu, veuillez vérifier vos identifiants"),
     "pageLoginLoginButton" : MessageLookupByLibrary.simpleMessage("S\'identifier"),

@@ -84,10 +84,9 @@ class MainScreen extends StatelessWidget {
   }
 
   init(BuildContext context, MainBloc bloc) async {
-    String languageCode = Localizations.localeOf(context).languageCode;
-    bool reload = await bloc.init(languageCode);
+    bool reload = await bloc.init();
     if(reload) {
-      Navigator.pushNamed(context, JhipsterfluttersampleRoutes.main);
+      Navigator.popAndPushNamed(context, JhipsterfluttersampleRoutes.main);
     }
   }
 }

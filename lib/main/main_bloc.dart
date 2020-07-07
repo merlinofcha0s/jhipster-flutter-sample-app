@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:jhipsterfluttersample/environement.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/shared/bloc/bloc.dart';
 import 'package:jhipsterfluttersample/shared/models/user.dart';
@@ -28,23 +26,14 @@ class MainBloc extends Bloc {
     return currentUser;
   }
 
-  Future<bool> init(String languageCode) async {
+  Future<bool> init() async {
     await fetchConnectedUser();
-    return await changeLanguage(languageCode);
+    return await detectLanguage();
   }
 
-  Future<bool> changeLanguage(String languageCode) async {
+  Future<bool> detectLanguage() async {
     bool reload = false;
-    FlutterSecureStorage storage = new FlutterSecureStorage();
-    var locale = await storage.read(key: Constants.langStorageKey);
-    if(locale != null) {
-      if(currentUser.langKey.compareTo(locale) != 0) {
-        S.load(Locale(currentUser.langKey));
-        await storage.write(key: Constants.langStorageKey, value: currentUser.langKey);
-        reload = true;
-      }
-    } else {
-      await storage.write(key: Constants.langStorageKey, value: languageCode);
+    if(currentUser.langKey.compareTo(S.current.locale) != 0) {
       S.load(Locale(currentUser.langKey));
       reload = true;
     }

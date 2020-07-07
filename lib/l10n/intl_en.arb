@@ -1,4 +1,5 @@
 {
+  "locale": "en" ,
   "pageLoginBar": "Login",
   "pageLoginTitle": "Welcome to Jhipster flutter app",
   "pageLoginLoginButton": "Sign in",

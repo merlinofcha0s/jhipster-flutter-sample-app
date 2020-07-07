@@ -122,7 +122,7 @@ class SettingsScreen extends StatelessWidget {
   saveSettings(AsyncSnapshot<bool> snapshotSubmit, SettingsBloc settingsBloc, BuildContext context) async {
     var reloadForLanguage = await settingsBloc.submit();
     if(reloadForLanguage) {
-      Navigator.pushNamed(context, JhipsterfluttersampleRoutes.main);
+      Navigator.popAndPushNamed(context, JhipsterfluttersampleRoutes.main);
     }
   }
 

@@ -32,7 +32,7 @@ class JhipsterfluttersampleDrawer extends StatelessWidget {
 
   onSignOut(JhipsterfluttersampleDrawerBloc drawerBloc, BuildContext context) {
     drawerBloc.changeSignOut(true);
-    Navigator.pop(context);
+    Navigator.popUntil(context, ModalRoute.withName(JhipsterfluttersampleRoutes.login));
     Navigator.pushNamed(context, JhipsterfluttersampleRoutes.login);
   }
 

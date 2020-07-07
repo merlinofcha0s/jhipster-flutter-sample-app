@@ -33,6 +33,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `en`
+  String get locale {
+    return Intl.message(
+      'en',
+      name: 'locale',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Login`
   String get pageLoginBar {
     return Intl.message(
