@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "drawerLogoutTitle" : MessageLookupByLibrary.simpleMessage("Deconnexion"),
+    "drawerMenuMain" : MessageLookupByLibrary.simpleMessage("Accueil"),
     "drawerMenuTitle" : MessageLookupByLibrary.simpleMessage("Menu"),
     "drawerSettingsTitle" : MessageLookupByLibrary.simpleMessage("Profil"),
     "locale" : MessageLookupByLibrary.simpleMessage("fr"),

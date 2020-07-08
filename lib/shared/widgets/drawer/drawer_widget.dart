@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 class JhipsterfluttersampleDrawer extends StatelessWidget {
    JhipsterfluttersampleDrawer({Key key}) : super(key: key);
 
+   static final double iconSize = 30;
+
   @override
   Widget build(BuildContext context) {
     final drawerBloc = BlocProvider.of<JhipsterfluttersampleDrawerBloc>(context);
@@ -16,12 +18,17 @@ class JhipsterfluttersampleDrawer extends StatelessWidget {
         children: <Widget>[
           header(context),
           ListTile(
-            leading: Icon(Icons.settings),
+            leading: Icon(Icons.home, size: iconSize,),
+            title: Text(S.of(context).drawerMenuMain),
+            onTap: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.main),
+          ),
+          ListTile(
+            leading: Icon(Icons.settings, size: iconSize,),
             title: Text(S.of(context).drawerSettingsTitle),
             onTap: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.settings),
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
+            leading: Icon(Icons.exit_to_app, size: iconSize,),
             title: Text(S.of(context).drawerLogoutTitle),
             onTap: () => onSignOut(drawerBloc, context),
           )
@@ -39,14 +46,11 @@ class JhipsterfluttersampleDrawer extends StatelessWidget {
   Widget header(BuildContext context) {
     return DrawerHeader(
       decoration: BoxDecoration(
-        color: Colors.teal,
+        color: Theme.of(context).primaryColor,
       ),
       child: Text(S.of(context).drawerMenuTitle,
         textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 24,
-        ),
+        style: Theme.of(context).textTheme.headline2,
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
@@ -24,7 +25,8 @@ class MainScreen extends StatelessWidget {
         title: Text(S.of(context).pageMainTitle),
       ),
       body: body(context, mainBloc),
-      drawer: BlocProvider<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc() ,child: JhipsterfluttersampleDrawer())
+      drawer: BlocProvider<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc(),
+          child: JhipsterfluttersampleDrawer())
     );
   }
 
@@ -34,7 +36,6 @@ class MainScreen extends StatelessWidget {
       children: <Widget>[
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             currentUserWidget(context, mainBloc),
             Padding(padding: EdgeInsets.symmetric(vertical: 10),),
@@ -55,10 +56,13 @@ class MainScreen extends StatelessWidget {
       builder: (context, snapshot) {
         String login = snapshot.data?.login != null ? snapshot.data?.login : '';
         return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(S.of(context).pageMainCurrentUser(login), style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+            Text(S.of(context).pageMainCurrentUser(login), style: Theme.of(context).textTheme.headline3),
             Padding(padding: EdgeInsets.symmetric(vertical: 5),),
-            Text(S.of(context).pageMainWelcome, style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+            SizedBox(width: MediaQuery.of(context).size.width * 0.80,
+                child: Text(S.of(context).pageMainWelcome, textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline3)),
           ],
         );
       }
@@ -66,12 +70,14 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget linkWidget(BuildContext context, String text, String url){
-    return RaisedButton(
-        onPressed: () => _launchURL(url),
-        color: Colors.teal,
-        child: Container(
-          child: Text(text, textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Colors.white),),
-          width: MediaQuery.of(context).size.width * 0.5,)
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15),
+      child: RaisedButton(
+          onPressed: () => _launchURL(url),
+          child: Container(
+            child: Text(text, textAlign: TextAlign.center,),
+            width: MediaQuery.of(context).size.width * 0.5,)
+      ),
     );
   }
 

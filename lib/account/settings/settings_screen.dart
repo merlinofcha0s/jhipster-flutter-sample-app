@@ -7,6 +7,8 @@ import 'package:flutter/widgets.dart';
 import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
+import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_bloc.dart';
+import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen() : super(key: JhipsterfluttersampleKeys.settingsScreen);
@@ -23,7 +25,8 @@ class SettingsScreen extends StatelessWidget {
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(15.0),
           child: Column(children: <Widget>[settingsForm(settingsBloc, context)]),
-        ));
+        ),
+        drawer: BlocProvider<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc() ,child: JhipsterfluttersampleDrawer()));
   }
 
   Widget settingsForm(SettingsBloc settingsBloc, BuildContext context) {
@@ -52,7 +55,6 @@ class SettingsScreen extends StatelessWidget {
                 onChanged: onChange,
                 keyboardType: type,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
                     labelText: labelText,
                     errorText: snapshot.error));
         }
@@ -71,7 +73,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(S.of(context).pageSettingsFormLanguages, style: TextStyle(fontSize: 16)),
+                    Text(S.of(context).pageSettingsFormLanguages, style: Theme.of(context).textTheme.bodyText1,),
                     DropdownButton<String>(
                         value: snapshot.data,
                         onChanged: (key) => settingsBloc.changeLanguage(key),
@@ -96,10 +98,8 @@ class SettingsScreen extends StatelessWidget {
       stream: settingsBloc.submitValid,
       builder: (context, snapshotSubmit) {
         return RaisedButton(
-          color: Colors.teal,
           child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 50,
               child: StreamBuilder<bool>(
                   stream: settingsBloc.isLoadingStream,
                   builder: (context, snapshotLoading) {
@@ -107,9 +107,7 @@ class SettingsScreen extends StatelessWidget {
                       child: Visibility(
                         replacement: CircularProgressIndicator(value: null),
                         visible: snapshotLoading.hasData && !snapshotLoading.data,
-                        child: Text(S.of(context).pageSettingsFormSave.toUpperCase(),
-                          style: TextStyle(fontSize: 15, color: Colors.white),
-                        ),
+                        child: Text(S.of(context).pageSettingsFormSave.toUpperCase()),
                       ),
                     );
                   })),
@@ -143,13 +141,13 @@ class SettingsScreen extends StatelessWidget {
     MaterialColor notificationColors;
     if(snapshot.hasData && snapshot.data.compareTo(SettingsBloc.successKey) == 0) {
       notificationTranslated = S.of(context).pageSettingsSuccessSave;
-      notificationColors = Colors.green;
+      notificationColors = Theme.of(context).primaryColor;
     } else if(snapshot.error.toString().compareTo(SettingsBloc.badrequestKey) == 0) {
       notificationTranslated = S.of(context).pageSettingsSuccessErrorBadRequest;
-      notificationColors = Colors.red;
+      notificationColors = Theme.of(context).errorColor;
     } else if (snapshot.error.toString().compareTo(HttpUtils.errorServerKey) == 0) {
       notificationTranslated = S.of(context).pageSettingsSuccessErrorServer;
-      notificationColors = Colors.red;
+      notificationColors = Theme.of(context).errorColor;
     }
 
     return Text(

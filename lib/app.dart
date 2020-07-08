@@ -7,6 +7,7 @@ import 'package:jhipsterfluttersample/main/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:jhipsterfluttersample/themes.dart';
 import 'generated/l10n.dart';
 
 import 'account/login/login_bloc.dart';
@@ -21,9 +22,7 @@ class JhipsterfluttersampleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Jhipster flutter app',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
+      theme: Themes.jhLight,
       routes: {
         JhipsterfluttersampleRoutes.login: (context) {
           return BlocProvider<LoginBloc>(bloc: LoginBloc(), child: LoginScreen());

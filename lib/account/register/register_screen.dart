@@ -62,6 +62,7 @@ class RegisterScreen extends StatelessWidget {
         });
   }
 
+
   Widget loginField(RegisterBloc registerBloc) {
     return StreamBuilder<String>(
         stream: registerBloc.loginStream,
@@ -70,7 +71,6 @@ class RegisterScreen extends StatelessWidget {
               onChanged: registerBloc.changeLogin,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(),
                   labelText:S.of(context).pageRegisterFormLogin,
                   errorText: snapshot.error));
         });
@@ -84,7 +84,6 @@ class RegisterScreen extends StatelessWidget {
             onChanged: registerBloc.changeEmail,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-                border: OutlineInputBorder(),
                 labelText:S.of(context).pageRegisterFormEmail,
                 hintText:S.of(context).pageRegisterFormEmailHint,
                 errorText: snapshot.error),
@@ -100,7 +99,6 @@ class RegisterScreen extends StatelessWidget {
               onChanged: registerBloc.changePassword,
               obscureText: true,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(),
                   labelText:S.of(context).pageRegisterFormPassword,
                   errorText: snapshot.error));
         });
@@ -114,7 +112,6 @@ class RegisterScreen extends StatelessWidget {
               onChanged: registerBloc.changeConfirmPassword,
               obscureText: true,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(),
                   labelText:S.of(context).pageRegisterFormConfirmPassword,
                   errorText: snapshot.error));
         });
@@ -140,7 +137,7 @@ class RegisterScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(right: 5),
                   ),
-                  Text(S.of(context).pageRegisterFormTermsConditions),
+                  Text(S.of(context).pageRegisterFormTermsConditions, style: Theme.of(context).textTheme.bodyText1,),
                 ],
               ),
               Visibility(
@@ -148,7 +145,7 @@ class RegisterScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(S.of(context).pageRegisterFormTermsConditionsNotChecked,
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: Theme.of(context).errorColor),
                   ),
                 ),
               )
@@ -166,7 +163,7 @@ class RegisterScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   generateError(snapshot, context),
-                  style: TextStyle(color: Colors.red),
+                  style: TextStyle(color: Theme.of(context).errorColor),
                 ),
               ));
         });
@@ -190,7 +187,6 @@ class RegisterScreen extends StatelessWidget {
         stream: registerBloc.submitValid,
         builder: (context, snapshotSubmit) {
           return RaisedButton(
-            color: Colors.blue,
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
@@ -202,7 +198,6 @@ class RegisterScreen extends StatelessWidget {
                           replacement: CircularProgressIndicator(value: null),
                           visible: snapshotLoading.hasData && !snapshotLoading.data,
                           child: Text(S.of(context).pageRegisterFormSubmit.toUpperCase(),
-                            style: TextStyle(fontSize: 15),
                           ),
                         ),
                       );
@@ -224,7 +219,7 @@ class RegisterScreen extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.check_circle,
-                    color: Colors.indigoAccent,
+                    color: Theme.of(context).primaryColor,
                     size: 125.0,
                     semanticLabel:S.of(context).pageRegisterSuccessAltImg,
                   ),
@@ -232,7 +227,7 @@ class RegisterScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: 10),
                   ),
                   Text(S.of(context).pageRegisterSuccess.toUpperCase(),
-                      style: TextStyle(fontSize: 30, color: Colors.indigoAccent)),
+                      style: Theme.of(context).textTheme.headline1),
                   Padding(
                     padding: EdgeInsets.only(top: 10),
                   ),
@@ -241,9 +236,7 @@ class RegisterScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: 30),
                   ),
                   RaisedButton(
-                    color: Colors.blue,
                     child: Container(
-                        width: MediaQuery.of(context).size.width * 0.3,
                         child: Center(
                             child: Text(S.of(context).pageRegisterFormLogin))),
                     onPressed: () =>

@@ -50,7 +50,6 @@ class LoginScreen extends StatelessWidget {
               onChanged: loginBloc.changeLogin,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(),
                   labelText:S.of(context).pageRegisterFormLogin,
                   errorText: snapshot.error));
         });
@@ -64,7 +63,6 @@ class LoginScreen extends StatelessWidget {
               onChanged: loginBloc.changePassword,
               obscureText: true,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(),
                   labelText:S.of(context).pageRegisterFormPassword,
                   errorText: snapshot.error));
         });
@@ -88,8 +86,7 @@ class LoginScreen extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: 50,
           child: Center(
-            child: Text(S.of(context).pageRegisterTitle.toUpperCase(),
-              style: TextStyle(fontSize: 15),
+            child: Text(S.of(context).pageRegisterTitle.toUpperCase()
             ),
           )),
       onPressed: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.register),
@@ -105,7 +102,7 @@ class LoginScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   generateError(snapshot, context),
-                  style: TextStyle(color: Colors.red),
+                  style: TextStyle(fontSize: Theme.of(context).textTheme.bodyText1.fontSize, color: Theme.of(context).errorColor),
                 ),
               ));
         });
@@ -116,7 +113,6 @@ class LoginScreen extends StatelessWidget {
         stream: loginBloc.submitValid,
         builder: (context, snapshotSubmit) {
           return RaisedButton(
-            color: Colors.blue,
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
@@ -126,11 +122,8 @@ class LoginScreen extends StatelessWidget {
                       return Center(
                         child: Visibility(
                           replacement: CircularProgressIndicator(value: null),
-                          visible:
-                              snapshotLoading.hasData && !snapshotLoading.data,
-                          child: Text(S.of(context).pageLoginLoginButton.toUpperCase(),
-                                style: TextStyle(fontSize: 15),
-                          ),
+                          visible: snapshotLoading.hasData && !snapshotLoading.data,
+                          child: Text(S.of(context).pageLoginLoginButton.toUpperCase()),
                         ),
                       );
                     })),

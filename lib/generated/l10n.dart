@@ -353,6 +353,16 @@ class S {
     );
   }
 
+  /// `Home`
+  String get drawerMenuMain {
+    return Intl.message(
+      'Home',
+      name: 'drawerMenuMain',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Settings`
   String get pageSettingsTitle {
     return Intl.message(
