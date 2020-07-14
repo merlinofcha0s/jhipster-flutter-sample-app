@@ -1,6 +1,6 @@
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/routes.dart';
-import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc_provider_legacy.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ class JhipsterfluttersampleDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final drawerBloc = BlocProvider.of<JhipsterfluttersampleDrawerBloc>(context);
+    final drawerBloc = BlocProviderLegacy.of<JhipsterfluttersampleDrawerBloc>(context);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,

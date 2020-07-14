@@ -4,7 +4,7 @@ import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
 import 'package:jhipsterfluttersample/main/main_bloc.dart';
 import 'package:jhipsterfluttersample/routes.dart';
-import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc_provider_legacy.dart';
 import 'package:jhipsterfluttersample/shared/models/user.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_bloc.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';
@@ -17,7 +17,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainBloc = BlocProvider.of<MainBloc>(context);
+    final mainBloc = BlocProviderLegacy.of<MainBloc>(context);
     init(context, mainBloc);
     return Scaffold(
       appBar: AppBar(
@@ -25,7 +25,7 @@ class MainScreen extends StatelessWidget {
         title: Text(S.of(context).pageMainTitle),
       ),
       body: body(context, mainBloc),
-      drawer: BlocProvider<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc(),
+      drawer: BlocProviderLegacy<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc(),
           child: JhipsterfluttersampleDrawer())
     );
   }

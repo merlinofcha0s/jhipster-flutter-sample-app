@@ -68,7 +68,7 @@ class RegisterBloc extends Bloc with ValidatorMixin {
     _isLoading.sink.add(false);
   }
 
-  submit() async {
+  void submit() async {
     _isLoading.sink.add(true);
     final String login = _login.value;
     final String email = _email.value;

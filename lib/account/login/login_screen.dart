@@ -1,34 +1,43 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
+import 'package:jhipsterfluttersample/account/login/bloc/login_bloc_v2.dart';
+import 'package:jhipsterfluttersample/account/login/bloc/login_state.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
-import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jhipsterfluttersample/routes.dart';
 
-import '../../routes.dart';
-import 'login_bloc.dart';
+import 'bloc/login_events.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key key}) : super(key: JhipsterfluttersampleKeys.mainScreen);
 
   @override
   Widget build(BuildContext context) {
-    final loginBloc = BlocProvider.of<LoginBloc>(context);
-    return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title:Text(S.of(context).pageLoginTitle),
-        ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(children: <Widget>[
-            header(context),
-            loginForm(loginBloc),
-            Padding(
-              padding: EdgeInsets.only(bottom: 50),
-            ),
-            register(context)
-          ]),
-        ));
+    return BlocListener<LoginBloc, LoginState>(
+      listener: (context, state) {
+        if(state.status.isSubmissionSuccess){
+          Navigator.pushNamed(context, JhipsterfluttersampleRoutes.main);
+        }
+      },
+      child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title:Text(S.of(context).pageLoginTitle),
+          ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(children: <Widget>[
+              header(context),
+              loginForm(),
+              Padding(
+                padding: EdgeInsets.only(bottom: 50),
+              ),
+              register(context)
+            ]),
+          )),
+    );
   }
 
   Widget header(BuildContext context) {
@@ -42,41 +51,43 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget loginField(LoginBloc loginBloc) {
-    return StreamBuilder<String>(
-        stream: loginBloc.usernameStream,
-        builder: (context, snapshot) {
+  Widget loginField() {
+    return BlocBuilder<LoginBloc, LoginState>(
+        buildWhen: (previous, current) => previous.login != current.login,
+        builder: (context, state) {
           return TextFormField(
-              onChanged: loginBloc.changeLogin,
+              initialValue: state.login.value,
+              onChanged: (value) { context.bloc<LoginBloc>().add(LoginChanged(login: value)); },
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  labelText:S.of(context).pageRegisterFormLogin,
-                  errorText: snapshot.error));
+                  labelText: S.of(context).pageRegisterFormLogin,
+                  errorText: state.login.invalid ? 'Invalid Login' : null));
         });
   }
 
-  Widget passwordField(LoginBloc loginBloc) {
-    return StreamBuilder<String>(
-        stream: loginBloc.passwordStream,
-        builder: (context, snapshot) {
+  Widget passwordField() {
+    return BlocBuilder<LoginBloc, LoginState>(
+        buildWhen:(previous, current) => previous.password != current.password,
+        builder: (context, state) {
           return TextFormField(
-              onChanged: loginBloc.changePassword,
+              initialValue: state.password.value,
+              onChanged: (value) { context.bloc<LoginBloc>().add(PasswordChanged(password: value)); },
               obscureText: true,
               decoration: InputDecoration(
                   labelText:S.of(context).pageRegisterFormPassword,
-                  errorText: snapshot.error));
+                  errorText: state.password.invalid ? 'Invalid Password' : null));
         });
   }
 
-  Widget loginForm(LoginBloc loginBloc) {
+  Widget loginForm() {
     return Form(
-      child: Wrap(runSpacing: 15, children: <Widget>[
-        loginField(loginBloc),
-        passwordField(loginBloc),
-        validationZone(loginBloc),
-        submit(loginBloc)
-      ]),
-    );
+          child: Wrap(runSpacing: 15, children: <Widget>[
+            loginField(),
+            passwordField(),
+            validationZone(),
+            submit()
+          ]),
+        );
   }
 
   Widget register(BuildContext context) {
@@ -93,58 +104,47 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget validationZone(LoginBloc loginBloc) {
-    return StreamBuilder<bool>(
-        stream: loginBloc.generalValidationStream,
-        builder: (context, snapshot) {
+  Widget validationZone() {
+    return BlocBuilder<LoginBloc, LoginState>(
+        buildWhen:(previous, current) => previous.status != current.status,
+        builder: (context, state) {
           return Visibility(
-              visible: snapshot.hasError,
+              visible: state.status.isSubmissionFailure,
               child: Center(
                 child: Text(
-                  generateError(snapshot, context),
+                  generateError(state, context),
                   style: TextStyle(fontSize: Theme.of(context).textTheme.bodyText1.fontSize, color: Theme.of(context).errorColor),
                 ),
               ));
         });
   }
 
-  Widget submit(LoginBloc loginBloc) {
-    return StreamBuilder(
-        stream: loginBloc.submitValid,
-        builder: (context, snapshotSubmit) {
+  Widget submit() {
+    return BlocBuilder<LoginBloc, LoginState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
           return RaisedButton(
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
-                child: StreamBuilder<bool>(
-                    stream: loginBloc.isLoadingStream,
-                    builder: (context, snapshotLoading) {
-                      return Center(
+                child: Center(
                         child: Visibility(
                           replacement: CircularProgressIndicator(value: null),
-                          visible: snapshotLoading.hasData && !snapshotLoading.data,
+                          visible: !state.status.isSubmissionInProgress,
                           child: Text(S.of(context).pageLoginLoginButton.toUpperCase()),
                         ),
-                      );
-                    })),
-            onPressed: snapshotSubmit.hasData
-                ? () => onAuthenticate(loginBloc, context)
-                : null,
+                      )
+                    ),
+            onPressed: state.status.isValidated
+                ? () => context.bloc<LoginBloc>().add(FormSubmitted()) : null,
           );
         });
   }
 
-  onAuthenticate(LoginBloc loginBloc, BuildContext context) async {
-    bool authenticateSuccess = await loginBloc.authenticate();
-    if (authenticateSuccess) {
-      Navigator.pushNamed(context, JhipsterfluttersampleRoutes.main);
-    }
-  }
-
-  String generateError(AsyncSnapshot<bool> snapshot, BuildContext context) {
+  String generateError(LoginState state, BuildContext context) {
     String errorTranslated = '';
-    if (snapshot.error.toString().compareTo(LoginBloc.authenticationFailKey) == 0) {
-      errorTranslated =S.of(context).pageLoginErrorAuthentication;
+    if (state.generalErrorKey.toString().compareTo(LoginState.authenticationFailKey) == 0) {
+      errorTranslated = S.of(context).pageLoginErrorAuthentication;
     }
     return errorTranslated;
   }

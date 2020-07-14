@@ -5,7 +5,7 @@ import 'package:jhipsterfluttersample/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jhipsterfluttersample/routes.dart';
-import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc_provider_legacy.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_bloc.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';
@@ -15,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsBloc = BlocProvider.of<SettingsBloc>(context);
+    final settingsBloc = BlocProviderLegacy.of<SettingsBloc>(context);
     settingsBloc.getIdentity();
     return Scaffold(
         appBar: AppBar(
@@ -26,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(children: <Widget>[settingsForm(settingsBloc, context)]),
         ),
-        drawer: BlocProvider<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc() ,child: JhipsterfluttersampleDrawer()));
+        drawer: BlocProviderLegacy<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc() ,child: JhipsterfluttersampleDrawer()));
   }
 
   Widget settingsForm(SettingsBloc settingsBloc, BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:jhipsterfluttersample/account/register/register_bloc.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
 import 'package:jhipsterfluttersample/routes.dart';
-import 'package:jhipsterfluttersample/shared/bloc/bloc_provider.dart';
+import 'package:jhipsterfluttersample/shared/bloc/bloc_provider_legacy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,7 +12,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final registerBloc = BlocProvider.of<RegisterBloc>(context);
+    final registerBloc = BlocProviderLegacy.of<RegisterBloc>(context);
     return Scaffold(
         appBar: AppBar(
           title: Text(S.of(context).pageRegisterTitle),
