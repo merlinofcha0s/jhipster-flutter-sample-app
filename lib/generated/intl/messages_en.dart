@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "drawerMenuMain" : MessageLookupByLibrary.simpleMessage("Home"),
     "drawerMenuTitle" : MessageLookupByLibrary.simpleMessage("Menu"),
     "drawerSettingsTitle" : MessageLookupByLibrary.simpleMessage("Settings"),
+    "genericErrorBadRequest" : MessageLookupByLibrary.simpleMessage("Something wrong happened with the received data"),
+    "genericErrorServer" : MessageLookupByLibrary.simpleMessage("Something wrong when calling the server, please try again"),
     "locale" : MessageLookupByLibrary.simpleMessage("en"),
     "pageLoginBar" : MessageLookupByLibrary.simpleMessage("Login"),
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Problem when authenticate, verify your credential"),
@@ -61,9 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageSettingsFormLanguages" : MessageLookupByLibrary.simpleMessage("Languages"),
     "pageSettingsFormLastname" : MessageLookupByLibrary.simpleMessage("Lastname"),
     "pageSettingsFormSave" : MessageLookupByLibrary.simpleMessage("Save"),
-    "pageSettingsSuccessErrorBadRequest" : MessageLookupByLibrary.simpleMessage("Something wrong happended with the data"),
-    "pageSettingsSuccessErrorServer" : MessageLookupByLibrary.simpleMessage("Something wrong when calling the server, please try again"),
-    "pageSettingsSuccessSave" : MessageLookupByLibrary.simpleMessage("Settings saved !"),
+    "pageSettingsSave" : MessageLookupByLibrary.simpleMessage("Settings saved !"),
     "pageSettingsTitle" : MessageLookupByLibrary.simpleMessage("Settings")
   };
 }

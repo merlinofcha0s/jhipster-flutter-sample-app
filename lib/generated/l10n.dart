@@ -424,30 +424,30 @@ class S {
   }
 
   /// `Settings saved !`
-  String get pageSettingsSuccessSave {
+  String get pageSettingsSave {
     return Intl.message(
       'Settings saved !',
-      name: 'pageSettingsSuccessSave',
+      name: 'pageSettingsSave',
       desc: '',
       args: [],
     );
   }
 
-  /// `Something wrong happended with the data`
-  String get pageSettingsSuccessErrorBadRequest {
+  /// `Something wrong happened with the received data`
+  String get genericErrorBadRequest {
     return Intl.message(
-      'Something wrong happended with the data',
-      name: 'pageSettingsSuccessErrorBadRequest',
+      'Something wrong happened with the received data',
+      name: 'genericErrorBadRequest',
       desc: '',
       args: [],
     );
   }
 
   /// `Something wrong when calling the server, please try again`
-  String get pageSettingsSuccessErrorServer {
+  String get genericErrorServer {
     return Intl.message(
       'Something wrong when calling the server, please try again',
-      name: 'pageSettingsSuccessErrorServer',
+      name: 'genericErrorServer',
       desc: '',
       args: [],
     );

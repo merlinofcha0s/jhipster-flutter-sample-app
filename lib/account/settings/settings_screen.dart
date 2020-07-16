@@ -140,13 +140,13 @@ class SettingsScreen extends StatelessWidget {
     String notificationTranslated = '';
     MaterialColor notificationColors;
     if(snapshot.hasData && snapshot.data.compareTo(SettingsBloc.successKey) == 0) {
-      notificationTranslated = S.of(context).pageSettingsSuccessSave;
+      notificationTranslated = S.of(context).pageSettingsSave;
       notificationColors = Theme.of(context).primaryColor;
     } else if(snapshot.error.toString().compareTo(SettingsBloc.badrequestKey) == 0) {
-      notificationTranslated = S.of(context).pageSettingsSuccessErrorBadRequest;
+      notificationTranslated = S.of(context).genericErrorBadRequest;
       notificationColors = Theme.of(context).errorColor;
     } else if (snapshot.error.toString().compareTo(HttpUtils.errorServerKey) == 0) {
-      notificationTranslated = S.of(context).pageSettingsSuccessErrorServer;
+      notificationTranslated = S.of(context).genericErrorServer;
       notificationColors = Theme.of(context).errorColor;
     }
 

@@ -1,14 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
-import 'package:jhipsterfluttersample/account/login/bloc/login_bloc_v2.dart';
-import 'package:jhipsterfluttersample/account/login/bloc/login_state.dart';
+import 'package:jhipsterfluttersample/account/login/bloc/login_bloc.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jhipsterfluttersample/routes.dart';
+import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
+import 'package:formz/formz.dart';
 
-import 'bloc/login_events.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key key}) : super(key: JhipsterfluttersampleKeys.mainScreen);
@@ -114,6 +113,7 @@ class LoginScreen extends StatelessWidget {
                 child: Text(
                   generateError(state, context),
                   style: TextStyle(fontSize: Theme.of(context).textTheme.bodyText1.fontSize, color: Theme.of(context).errorColor),
+                  textAlign: TextAlign.center,
                 ),
               ));
         });
@@ -145,6 +145,8 @@ class LoginScreen extends StatelessWidget {
     String errorTranslated = '';
     if (state.generalErrorKey.toString().compareTo(LoginState.authenticationFailKey) == 0) {
       errorTranslated = S.of(context).pageLoginErrorAuthentication;
+    } else if (state.generalErrorKey.toString().compareTo(HttpUtils.errorServerKey) == 0) {
+      errorTranslated = S.of(context).genericErrorServer;
     }
     return errorTranslated;
   }

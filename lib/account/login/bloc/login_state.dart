@@ -1,7 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:formz/formz.dart';
-
-import 'package:jhipsterfluttersample/account/login/bloc/login_models.dart';
+part of 'login_bloc.dart';
 
 class LoginState extends Equatable {
   final LoginInput login;
@@ -15,7 +12,7 @@ class LoginState extends Equatable {
     this.login = const LoginInput.pure(),
     this.password = const PasswordInput.pure(),
     this.status = FormzStatus.pure,
-    this.generalErrorKey = 'none'
+    this.generalErrorKey = HttpUtils.generalNoErrorKey
   });
 
   LoginState copyWith({

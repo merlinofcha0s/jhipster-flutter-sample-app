@@ -8,13 +8,14 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:jhipsterfluttersample/shared/exceptions/app_exception.dart';
 
-import '../../environement.dart';
+import '../../environment.dart';
 
 class HttpUtils {
   static String errorHeader = 'x-jhipsterfluttersampleapp-error';
   static String successResult = 'success';
   static String keyForJWTToken = 'jwt-token';
   static String errorServerKey = 'error.500';
+  static const String generalNoErrorKey = 'none';
   static int timeout = 5;
 
   static String encodeUTF8(String toEncode) {
@@ -37,27 +38,29 @@ class HttpUtils {
 
   static Future<Response> postRequest<T>(String endpoint, T body) async {
     var headers = await HttpUtils.headers();
-    final String json = JsonMapper.serialize(
-        body, SerializationOptions(indent: ''));
-
+    final String json = JsonMapper.serialize(body, SerializationOptions(indent: ''));
     Response response;
-
     try {
       response = await http.post(Constants.api + endpoint, headers: headers, body: json,
-          encoding: Encoding.getByName('utf-8')).timeout(
-          Duration(seconds: timeout));
+          encoding: Encoding.getByName('utf-8')).timeout(Duration(seconds: timeout));
     } on SocketException {
       throw FetchDataException('No Internet connection');
     } on TimeoutException {
       throw FetchDataException('Request timeout');
     }
-
     return response;
   }
 
   static Future<Response> getRequest(String endpoint) async {
     var headers = await HttpUtils.headers();
-    return await http.get(Constants.api + endpoint, headers: headers);
+    try {
+      return await http.get(Constants.api + endpoint, headers: headers)
+          .timeout(Duration(seconds: timeout));
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    } on TimeoutException {
+      throw FetchDataException('Request timeout');
+    }
   }
 
   dynamic returnResponse(http.Response response) {

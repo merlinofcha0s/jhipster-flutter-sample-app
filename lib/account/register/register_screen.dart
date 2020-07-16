@@ -1,10 +1,12 @@
-import 'package:jhipsterfluttersample/account/register/register_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jhipsterfluttersample/account/register/bloc/register_bloc.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
 import 'package:jhipsterfluttersample/routes.dart';
-import 'package:jhipsterfluttersample/shared/bloc/bloc_provider_legacy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:formz/formz.dart';
+import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 
 
 class RegisterScreen extends StatelessWidget {
@@ -12,7 +14,6 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final registerBloc = BlocProviderLegacy.of<RegisterBloc>(context);
     return Scaffold(
         appBar: AppBar(
           title: Text(S.of(context).pageRegisterTitle),
@@ -21,8 +22,8 @@ class RegisterScreen extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(children: <Widget>[
             header(context),
-            successZone(registerBloc),
-            registerForm(registerBloc)
+            successZone(),
+            registerForm()
           ]),
         ));
   }
@@ -41,86 +42,86 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Widget registerForm(RegisterBloc registerBloc) {
-    return StreamBuilder<bool>(
-        stream: registerBloc.successRegisterStream,
-        builder: (context, snapshot) {
+  Widget registerForm() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
           return Visibility(
-            visible: !snapshot.hasData || !snapshot.data,
+            visible: !state.status.isSubmissionSuccess,
             child: Form(
               child: Wrap(runSpacing: 15, children: <Widget>[
-                loginField(registerBloc),
-                emailField(registerBloc),
-                passwordField(registerBloc),
-                confirmPasswordField(registerBloc),
-                termsAndConditionsField(registerBloc),
-                validationZone(registerBloc),
-                submit(registerBloc)
+                loginField(),
+                emailField(),
+                passwordField(),
+                confirmPasswordField(),
+                termsAndConditionsField(),
+                validationZone(),
+                submit()
               ]),
             ),
           );
         });
   }
 
-
-  Widget loginField(RegisterBloc registerBloc) {
-    return StreamBuilder<String>(
-        stream: registerBloc.loginStream,
-        builder: (context, snapshot) {
+  Widget loginField() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+        buildWhen: (previous, current) => previous.login != current.login,
+        builder: (context, state) {
           return TextFormField(
-              onChanged: registerBloc.changeLogin,
+              initialValue: state.login.value,
+              onChanged: (value) { context.bloc<RegisterBloc>().add(LoginChanged(login: value)); },
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  labelText:S.of(context).pageRegisterFormLogin,
-                  errorText: snapshot.error));
+                  labelText: S.of(context).pageRegisterFormLogin,
+                  errorText: state.login.invalid ? 'Invalid Login' : null));
         });
   }
 
-  Widget emailField(RegisterBloc registerBloc) {
-    return StreamBuilder<String>(
-        stream: registerBloc.emailStream,
-        builder: (context, snapshot) {
+  Widget emailField() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+        buildWhen: (previous, current) => previous.email != current.email,
+        builder: (context, state) {
           return TextFormField(
-            onChanged: registerBloc.changeEmail,
+            onChanged: (value) { context.bloc<RegisterBloc>().add(EmailChanged(email: value)); },
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-                labelText:S.of(context).pageRegisterFormEmail,
-                hintText:S.of(context).pageRegisterFormEmailHint,
-                errorText: snapshot.error),
+                labelText: S.of(context).pageRegisterFormEmail,
+                hintText: S.of(context).pageRegisterFormEmailHint,
+                errorText: state.email.invalid ? 'Invalid email' : null),
           );
         });
   }
 
-  Widget passwordField(RegisterBloc registerBloc) {
-    return StreamBuilder<String>(
-        stream: registerBloc.passwordStream,
-        builder: (context, snapshot) {
+  Widget passwordField() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+        buildWhen: (previous, current) => previous.password != current.password,
+        builder: (context, state) {
           return TextFormField(
-              onChanged: registerBloc.changePassword,
+              onChanged: (value) { context.bloc<RegisterBloc>().add(PasswordChanged(password: value)); },
               obscureText: true,
               decoration: InputDecoration(
                   labelText:S.of(context).pageRegisterFormPassword,
-                  errorText: snapshot.error));
+                  errorText: state.password.invalid ? 'Invalid password' : null));
         });
   }
 
-  Widget confirmPasswordField(RegisterBloc registerBloc) {
-    return StreamBuilder<String>(
-        stream: registerBloc.confirmPasswordStream,
-        builder: (context, snapshot) {
+  Widget confirmPasswordField() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+        buildWhen: (previous, current) => previous.confirmPassword != current.confirmPassword,
+        builder: (context, state) {
           return TextFormField(
-              onChanged: registerBloc.changeConfirmPassword,
+              onChanged: (value) { context.bloc<RegisterBloc>().add(ConfirmPasswordChanged(confirmPassword: value, password: state.password.value)); },
               obscureText: true,
               decoration: InputDecoration(
-                  labelText:S.of(context).pageRegisterFormConfirmPassword,
-                  errorText: snapshot.error));
+                  labelText: S.of(context).pageRegisterFormConfirmPassword,
+                  errorText: state.confirmPassword.invalid ? 'Invalid confirm password' : null));
         });
   }
 
-  Widget termsAndConditionsField(RegisterBloc registerBloc) {
-    return StreamBuilder<bool>(
-        stream: registerBloc.termsAndConditionsStream,
-        builder: (context, snapshot) {
+  Widget termsAndConditionsField() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+        buildWhen: (previous, current) => previous.termsAndConditions != current.termsAndConditions,
+        builder: (context, state) {
           return Column(
             children: <Widget>[
               Row(
@@ -131,8 +132,8 @@ class RegisterScreen extends StatelessWidget {
                     height: 24,
                     width: 24,
                     child: Checkbox(
-                        onChanged: registerBloc.changeTermsAndConditions,
-                        value: snapshot.hasData ? snapshot.data : false),
+                        onChanged: (value) { context.bloc<RegisterBloc>().add(TermsAndConditionsChanged(termsAndConditions: value)); },
+                        value: state.termsAndConditions.value),
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 5),
@@ -141,7 +142,7 @@ class RegisterScreen extends StatelessWidget {
                 ],
               ),
               Visibility(
-                visible: snapshot.hasError,
+                visible: state.termsAndConditions.status != FormzInputStatus.pure && state.termsAndConditions.invalid,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(S.of(context).pageRegisterFormTermsConditionsNotChecked,
@@ -154,65 +155,66 @@ class RegisterScreen extends StatelessWidget {
         });
   }
 
-  Widget validationZone(RegisterBloc registerBloc) {
-    return StreamBuilder<bool>(
-        stream: registerBloc.generalValidationStream,
-        builder: (context, snapshot) {
+  Widget validationZone() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+        buildWhen: (previous, current) => previous.status != current.status
+            || previous.generalErrorKey != current.generalErrorKey,
+        builder: (context, state) {
           return Visibility(
-              visible: snapshot.hasError,
+              visible: state.status.isSubmissionFailure || state.status.isInvalid && state.generalErrorKey != HttpUtils.generalNoErrorKey,
               child: Center(
                 child: Text(
-                  generateError(snapshot, context),
+                  generateError(state, context),
+                  textAlign: TextAlign.center,
                   style: TextStyle(color: Theme.of(context).errorColor),
                 ),
               ));
         });
   }
 
-  String generateError(AsyncSnapshot<bool> snapshot, BuildContext context) {
+  String generateError(RegisterState state, BuildContext context) {
     String errorTranslated = '';
-    if(snapshot.error.toString().compareTo(RegisterBloc.passwordNotIdenticalKey) == 0){
-      errorTranslated =S.of(context).pageRegisterErrorPasswordNotIdentical;
-    } else if(snapshot.error.toString().compareTo(RegisterBloc.emailExistKey) == 0) {
-      errorTranslated =S.of(context).pageRegisterErrorMailExist;
-    } else if (snapshot.error.toString().compareTo(RegisterBloc.loginExistKey) == 0){
-      errorTranslated =S.of(context).pageRegisterErrorLoginExist;
+    if(state.generalErrorKey.toString().compareTo(RegisterBloc.passwordNotIdenticalKey) == 0){
+      errorTranslated = S.of(context).pageRegisterErrorPasswordNotIdentical;
+    } else if(state.generalErrorKey.toString().compareTo(RegisterBloc.emailExistKey) == 0) {
+      errorTranslated = S.of(context).pageRegisterErrorMailExist;
+    } else if (state.generalErrorKey.toString().compareTo(RegisterBloc.loginExistKey) == 0){
+      errorTranslated = S.of(context).pageRegisterErrorLoginExist;
+    } else if (state.generalErrorKey.toString().compareTo(HttpUtils.errorServerKey) == 0) {
+      errorTranslated = S.of(context).genericErrorServer;
     }
 
     return errorTranslated;
   }
 
-  Widget submit(RegisterBloc registerBloc) {
-    return StreamBuilder(
-        stream: registerBloc.submitValid,
-        builder: (context, snapshotSubmit) {
+  Widget submit() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
           return RaisedButton(
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
-                child: StreamBuilder<bool>(
-                    stream: registerBloc.isLoadingStream,
-                    builder: (context, snapshotLoading) {
-                      return Center(
-                        child: Visibility(
-                          replacement: CircularProgressIndicator(value: null),
-                          visible: snapshotLoading.hasData && !snapshotLoading.data,
-                          child: Text(S.of(context).pageRegisterFormSubmit.toUpperCase(),
-                          ),
-                        ),
-                      );
-                    })),
-            onPressed: snapshotSubmit.hasData ? registerBloc.submit : null,
+                child:  Center(
+                  child: Visibility(
+                    replacement: CircularProgressIndicator(value: null),
+                    visible: !state.status.isSubmissionInProgress,
+                    child: Text(S.of(context).pageRegisterFormSubmit.toUpperCase(),
+                    ),
+                  ),
+                )),
+            onPressed: state.status.isValidated
+                ? () => context.bloc<RegisterBloc>().add(FormSubmitted()) : null,
           );
         });
   }
 
-  Widget successZone(RegisterBloc registerBloc) {
-    return StreamBuilder<bool>(
-        stream: registerBloc.successRegisterStream,
-        builder: (context, snapshot) {
+  Widget successZone() {
+    return BlocBuilder<RegisterBloc, RegisterState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
           return Visibility(
-            visible: snapshot.hasData && snapshot.data,
+            visible: state.status.isSubmissionSuccess,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

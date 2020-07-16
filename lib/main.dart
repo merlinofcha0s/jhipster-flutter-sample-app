@@ -1,4 +1,4 @@
-import 'package:jhipsterfluttersample/environement.dart';
+import 'package:jhipsterfluttersample/environment.dart';
 import 'package:flutter/material.dart';
 import 'app.dart';
 import 'main.reflectable.dart';

@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "drawerMenuMain" : MessageLookupByLibrary.simpleMessage("Accueil"),
     "drawerMenuTitle" : MessageLookupByLibrary.simpleMessage("Menu"),
     "drawerSettingsTitle" : MessageLookupByLibrary.simpleMessage("Profil"),
+    "genericErrorBadRequest" : MessageLookupByLibrary.simpleMessage("Mauvais format de données"),
+    "genericErrorServer" : MessageLookupByLibrary.simpleMessage("Problème de communication avec le serveur, merci de réessayer"),
     "locale" : MessageLookupByLibrary.simpleMessage("fr"),
     "pageLoginBar" : MessageLookupByLibrary.simpleMessage("Se connecter"),
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Un problème est survenu, veuillez vérifier vos identifiants"),
@@ -55,9 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageSettingsFormFirstname" : MessageLookupByLibrary.simpleMessage("Prénom"),
     "pageSettingsFormLastname" : MessageLookupByLibrary.simpleMessage("Nom"),
     "pageSettingsFormSave" : MessageLookupByLibrary.simpleMessage("Enregistrer"),
-    "pageSettingsSuccessErrorBadRequest" : MessageLookupByLibrary.simpleMessage("Mauvais format de données"),
-    "pageSettingsSuccessErrorServer" : MessageLookupByLibrary.simpleMessage("Problème de communication avec le serveur, merci de réessayer"),
-    "pageSettingsSuccessSave" : MessageLookupByLibrary.simpleMessage("Paramètres sauvegardés !"),
+    "pageSettingsSave" : MessageLookupByLibrary.simpleMessage("Paramètres sauvegardés !"),
     "pageSettingsTitle" : MessageLookupByLibrary.simpleMessage("Paramètres")
   };
 }

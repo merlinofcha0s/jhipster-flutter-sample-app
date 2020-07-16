@@ -38,7 +38,7 @@
   "pageSettingsFormEmail": "Email",
   "pageSettingsFormLanguages": "Languages",
   "pageSettingsFormSave": "Save",
-  "pageSettingsSuccessSave": "Settings saved !",
-  "pageSettingsSuccessErrorBadRequest": "Something wrong happended with the data",
-  "pageSettingsSuccessErrorServer": "Something wrong when calling the server, please try again"
+  "pageSettingsSave": "Settings saved !",
+  "genericErrorBadRequest": "Something wrong happened with the received data",
+  "genericErrorServer": "Something wrong when calling the server, please try again"
 }

@@ -33,7 +33,7 @@
   "pageSettingsFormEmail": "Email",
   "pageSettingsFormLanguage": "Langues",
   "pageSettingsFormSave": "Enregistrer",
-  "pageSettingsSuccessSave": "Paramètres sauvegardés !",
-  "pageSettingsSuccessErrorBadRequest": "Mauvais format de données",
-  "pageSettingsSuccessErrorServer": "Problème de communication avec le serveur, merci de réessayer"
+  "pageSettingsSave": "Paramètres sauvegardés !",
+  "genericErrorBadRequest": "Mauvais format de données",
+  "genericErrorServer": "Problème de communication avec le serveur, merci de réessayer"
 }

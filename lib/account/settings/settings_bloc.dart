@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:jhipsterfluttersample/environement.dart';
+import 'package:jhipsterfluttersample/environment.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/shared/bloc/bloc.dart';
 import 'package:jhipsterfluttersample/shared/mixins/validators_mixin.dart';

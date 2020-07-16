@@ -1,14 +1,14 @@
 import 'package:formz/formz.dart';
 
-enum EmailValidationError { invalid }
+enum LoginValidationError { invalid }
 
-class LoginInput extends FormzInput<String, EmailValidationError> {
+class LoginInput extends FormzInput<String, LoginValidationError> {
   const LoginInput.pure() : super.pure('');
   const LoginInput.dirty([String value = '']) : super.dirty(value);
 
   @override
-  EmailValidationError validator(String value) {
-    return value.length >= 3 ? null : EmailValidationError.invalid;
+  LoginValidationError validator(String value) {
+    return value.length >= 3 ? null : LoginValidationError.invalid;
   }
 }
 
