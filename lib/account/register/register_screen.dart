@@ -203,8 +203,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                 )),
-            onPressed: state.status.isValidated
-                ? () => context.bloc<RegisterBloc>().add(FormSubmitted()) : null,
+            onPressed: state.status.isValidated ? () => context.bloc<RegisterBloc>().add(FormSubmitted()) : null,
           );
         });
   }

@@ -14,6 +14,7 @@ class HttpUtils {
   static String errorHeader = 'x-jhipsterfluttersampleapp-error';
   static String successResult = 'success';
   static String keyForJWTToken = 'jwt-token';
+  static String badRequestServerKey = 'error.400';
   static String errorServerKey = 'error.500';
   static const String generalNoErrorKey = 'none';
   static int timeout = 5;

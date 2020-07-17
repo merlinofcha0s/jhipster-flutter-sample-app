@@ -3,7 +3,7 @@ enum Environment { DEV, PROD }
 class Constants {
   static Map<String, dynamic> _config;
 
-  static final Map<String, String> languages = {'en':'English','fr':'Francais'};
+  static final Map<String, String> languages = const {'en':'English','fr':'Francais'};
   static final String langStorageKey = 'locale';
 
   static void setEnvironment(Environment env) {
