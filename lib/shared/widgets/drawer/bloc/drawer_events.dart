@@ -1,4 +1,4 @@
-part of 'drawer_blocv2.dart';
+part of 'drawer_bloc.dart';
 
 abstract class DrawerEvent extends Equatable {
   const DrawerEvent();

@@ -1,9 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/routes.dart';
-import 'package:jhipsterfluttersample/shared/bloc/bloc_provider_legacy.dart';
-import 'package:jhipsterfluttersample/shared/widgets/drawer/bloc/drawer_blocv2.dart';
-import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_bloc.dart';
+import 'package:jhipsterfluttersample/shared/widgets/drawer/bloc/drawer_bloc.dart';
 import 'package:flutter/material.dart';
 
 class JhipsterfluttersampleDrawer extends StatelessWidget {

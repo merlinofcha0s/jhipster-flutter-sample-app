@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 import 'package:formz/formz.dart';
-import 'package:jhipsterfluttersample/shared/widgets/drawer/bloc/drawer_blocv2.dart';
+import 'package:jhipsterfluttersample/shared/widgets/drawer/bloc/drawer_bloc.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';
 
 import 'bloc/settings_models.dart';

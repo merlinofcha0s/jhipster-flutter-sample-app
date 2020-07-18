@@ -3,9 +3,8 @@ import 'package:jhipsterfluttersample/account/login/bloc/login_bloc.dart';
 import 'package:jhipsterfluttersample/account/login/login_repository.dart';
 import 'package:jhipsterfluttersample/account/register/bloc/register_bloc.dart';
 import 'package:jhipsterfluttersample/account/settings/settings_screen.dart';
+import 'package:jhipsterfluttersample/main/bloc/main_bloc.dart';
 import 'package:jhipsterfluttersample/routes.dart';
-import 'package:jhipsterfluttersample/shared/bloc/bloc_provider_legacy.dart';
-import 'package:jhipsterfluttersample/main/main_bloc.dart';
 import 'package:jhipsterfluttersample/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -38,8 +37,10 @@ class JhipsterfluttersampleApp extends StatelessWidget {
               child: RegisterScreen());
         },
         JhipsterfluttersampleRoutes.main: (context) {
-          return BlocProviderLegacy<MainBloc>(
-              bloc: MainBloc(), child: MainScreen());
+          return BlocProvider<MainBloc>(
+              create: (context) => MainBloc(accountRepository: AccountRepository())
+                ..add(Init()),
+              child: MainScreen());
         },
         JhipsterfluttersampleRoutes.settings: (context) {
           return BlocProvider<SettingsBloc>(

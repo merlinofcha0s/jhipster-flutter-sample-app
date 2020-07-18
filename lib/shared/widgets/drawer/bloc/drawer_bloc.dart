@@ -1,16 +1,9 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:formz/formz.dart';
 import 'package:jhipsterfluttersample/account/login/login_repository.dart';
-import 'package:jhipsterfluttersample/account/settings/bloc/settings_models.dart';
-import 'package:jhipsterfluttersample/generated/l10n.dart';
-import 'package:jhipsterfluttersample/shared/models/user.dart';
-import 'package:jhipsterfluttersample/shared/repository/account_repository.dart';
-import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 
 part 'drawer_events.dart';
 part 'drawer_state.dart';
