@@ -8,6 +8,8 @@ import 'package:flutter/widgets.dart';
 import 'package:formz/formz.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 
+import 'bloc/register_models.dart';
+
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen() : super(key: JhipsterfluttersampleKeys.registerScreen);
@@ -73,7 +75,7 @@ class RegisterScreen extends StatelessWidget {
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                   labelText: S.of(context).pageRegisterFormLogin,
-                  errorText: state.login.invalid ? 'Invalid Login' : null));
+                  errorText: state.login.invalid ? LoginValidationError.invalid.invalidMessage : null));
         });
   }
 
@@ -87,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
             decoration: InputDecoration(
                 labelText: S.of(context).pageRegisterFormEmail,
                 hintText: S.of(context).pageRegisterFormEmailHint,
-                errorText: state.email.invalid ? 'Invalid email' : null),
+                errorText: state.email.invalid ? EmailValidationError.invalid.invalidMessage : null),
           );
         });
   }
@@ -101,7 +103,7 @@ class RegisterScreen extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                   labelText:S.of(context).pageRegisterFormPassword,
-                  errorText: state.password.invalid ? 'Invalid password' : null));
+                  errorText: state.password.invalid ? PasswordValidationError.invalid.invalidMessage : null));
         });
   }
 
@@ -114,7 +116,7 @@ class RegisterScreen extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                   labelText: S.of(context).pageRegisterFormConfirmPassword,
-                  errorText: state.confirmPassword.invalid ? 'Invalid confirm password' : null));
+                  errorText: state.confirmPassword.invalid ? ConfirmPasswordValidationError.invalid.invalidMessage : null));
         });
   }
 

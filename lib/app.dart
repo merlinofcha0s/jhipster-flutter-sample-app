@@ -28,7 +28,8 @@ class JhipsterfluttersampleApp extends StatelessWidget {
       routes: {
         JhipsterfluttersampleRoutes.login: (context) {
           return BlocProvider<LoginBloc>(
-               create: (context) => LoginBloc(loginRepository: LoginRepository()), child: LoginScreen()
+              create: (context) => LoginBloc(loginRepository: LoginRepository()),
+              child: LoginScreen()
           );
         },
         JhipsterfluttersampleRoutes.register: (context) {
@@ -43,7 +44,8 @@ class JhipsterfluttersampleApp extends StatelessWidget {
         JhipsterfluttersampleRoutes.settings: (context) {
           return BlocProvider<SettingsBloc>(
               create: (context) => SettingsBloc(accountRepository: AccountRepository())
-                ..add(LoadCurrentUser()), child: SettingsScreen());
+                ..add(LoadCurrentUser()),
+              child: SettingsScreen());
         },
       },
         localizationsDelegates: [
@@ -55,6 +57,4 @@ class JhipsterfluttersampleApp extends StatelessWidget {
         supportedLocales: S.delegate.supportedLocales
     );
   }
-
-
 }

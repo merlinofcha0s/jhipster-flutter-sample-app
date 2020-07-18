@@ -243,6 +243,46 @@ class S {
     );
   }
 
+  /// `The login has to contain more than {min}`
+  String pageRegisterLoginValidationError(Object min) {
+    return Intl.message(
+      'The login has to contain more than $min',
+      name: 'pageRegisterLoginValidationError',
+      desc: '',
+      args: [min],
+    );
+  }
+
+  /// `Please enter a valid address email`
+  String get pageRegisterMailValidationError {
+    return Intl.message(
+      'Please enter a valid address email',
+      name: 'pageRegisterMailValidationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rules : 1 uppercase, 1 number and {min} characters`
+  String pageRegisterPasswordValidationError(Object min) {
+    return Intl.message(
+      'Rules : 1 uppercase, 1 number and $min characters',
+      name: 'pageRegisterPasswordValidationError',
+      desc: '',
+      args: [min],
+    );
+  }
+
+  /// `Rules : 1 uppercase, 1 number and {min} characters`
+  String pageRegisterConfirmationPasswordValidationError(Object min) {
+    return Intl.message(
+      'Rules : 1 uppercase, 1 number and $min characters',
+      name: 'pageRegisterConfirmationPasswordValidationError',
+      desc: '',
+      args: [min],
+    );
+  }
+
   /// `Your profile`
   String get pageMainProfileButton {
     return Intl.message(
@@ -428,6 +468,36 @@ class S {
     return Intl.message(
       'Settings saved !',
       name: 'pageSettingsSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Firstname has to be {min} characters minimum`
+  String pageSettingsFirstnameErrorValidation(Object min) {
+    return Intl.message(
+      'Firstname has to be $min characters minimum',
+      name: 'pageSettingsFirstnameErrorValidation',
+      desc: '',
+      args: [min],
+    );
+  }
+
+  /// `Lastname has to be {min} characters minimum`
+  String pageSettingsLastnameErrorValidation(Object min) {
+    return Intl.message(
+      'Lastname has to be $min characters minimum',
+      name: 'pageSettingsLastnameErrorValidation',
+      desc: '',
+      args: [min],
+    );
+  }
+
+  /// `Email format incorrect`
+  String get pageSettingsEmailErrorValidation {
+    return Intl.message(
+      'Email format incorrect',
+      name: 'pageSettingsEmailErrorValidation',
       desc: '',
       args: [],
     );

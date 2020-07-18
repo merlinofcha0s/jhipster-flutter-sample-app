@@ -1,37 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jhipsterfluttersample/account/login/login_repository.dart';
 import 'package:jhipsterfluttersample/account/settings/bloc/settings_bloc.dart';
 import 'package:jhipsterfluttersample/environment.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 import 'package:formz/formz.dart';
+import 'package:jhipsterfluttersample/shared/widgets/drawer/bloc/drawer_blocv2.dart';
+import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';
+
+import 'bloc/settings_models.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen() : super(key: JhipsterfluttersampleKeys.settingsScreen);
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SettingsBloc, SettingsState>(
-      listener: (context, state) {
-        if(state.action == SettingsAction.reloadForLanguage) {
-          Navigator.popAndPushNamed(context, JhipsterfluttersampleRoutes.main);
-        }
-      },
-      child: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text(S.of(context).pageSettingsTitle),
-          ),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(children: <Widget>[settingsForm(context)]),
-          )
-          //drawer: BlocProviderLegacy<JhipsterfluttersampleDrawerBloc>(bloc: JhipsterfluttersampleDrawerBloc() ,child: JhipsterfluttersampleDrawer())
-      ),
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: BlocBuilder<SettingsBloc, SettingsState>(
+              buildWhen: (previous, current) => previous.firstname != current.firstname
+                  || current.action == SettingsAction.reloadForLanguage,
+              builder: (context, state) {
+                return Text(S.of(context).pageSettingsTitle);
+              })
+        ),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(children: <Widget>[settingsForm(context)]),
+        ),
+        drawer: BlocProvider<DrawerBloc>(
+            create: (context) => DrawerBloc(loginRepository: LoginRepository()),
+            child: JhipsterfluttersampleDrawer())
     );
   }
 
@@ -50,7 +54,8 @@ class SettingsScreen extends StatelessWidget {
 
   Widget firstnameField() {
     return BlocBuilder<SettingsBloc, SettingsState>(
-        buildWhen: (previous, current) => previous.firstname != current.firstname,
+        buildWhen: (previous, current) => previous.firstname != current.firstname
+            || current.action == SettingsAction.reloadForLanguage,
         builder: (context, state) {
           return TextFormField(
               controller: context.bloc<SettingsBloc>().firstNameController,
@@ -58,14 +63,15 @@ class SettingsScreen extends StatelessWidget {
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                   labelText: S.of(context).pageSettingsFormFirstname,
-                  errorText: state.firstname.invalid ? 'Invalid Firstname' : null));
+                  errorText: state.firstname.invalid ? FirstnameValidationError.invalid.invalidMessage : null));
         }
     );
   }
 
   Widget lastnameNameField() {
     return BlocBuilder<SettingsBloc, SettingsState>(
-        buildWhen: (previous, current) => previous.lastname != current.lastname,
+        buildWhen: (previous, current) => previous.lastname != current.lastname
+            || current.action == SettingsAction.reloadForLanguage,
         builder: (context, state) {
           return TextFormField(
               controller: context.bloc<SettingsBloc>().lastNameController,
@@ -73,14 +79,15 @@ class SettingsScreen extends StatelessWidget {
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                   labelText: S.of(context).pageSettingsFormLastname,
-                  errorText: state.lastname.invalid ? 'Invalid Lastname' : null));
+                  errorText: state.lastname.invalid ? LastnameValidationError.invalid.invalidMessage : null));
         }
     );
   }
 
   Widget emailField() {
     return BlocBuilder<SettingsBloc, SettingsState>(
-        buildWhen: (previous, current) => previous.email != current.email,
+        buildWhen: (previous, current) => previous.email != current.email
+            || current.action == SettingsAction.reloadForLanguage,
         builder: (context, state) {
           return TextFormField(
               controller: context.bloc<SettingsBloc>().emailController,
@@ -88,7 +95,7 @@ class SettingsScreen extends StatelessWidget {
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                   labelText: S.of(context).pageSettingsFormEmail,
-                  errorText: state.email.invalid ? 'Invalid Email' : null));
+                  errorText: state.email.invalid ? EmailValidationError.invalid.invalidMessage : null));
         }
     );
   }
@@ -144,7 +151,7 @@ class SettingsScreen extends StatelessWidget {
         buildWhen: (previous, current) => previous.formStatus != current.formStatus,
         builder: (context, state) {
           return Visibility(
-              visible: state.formStatus.isSubmissionFailure,
+              visible: state.formStatus.isSubmissionFailure ||  state.formStatus.isSubmissionSuccess,
               child: Center(
                 child: generateNotificationText(state, context),
               ));
@@ -154,13 +161,13 @@ class SettingsScreen extends StatelessWidget {
   Widget generateNotificationText(SettingsState state, BuildContext context) {
     String notificationTranslated = '';
     MaterialColor notificationColors;
-    if(state.generalErrorKey.compareTo(SettingsBloc.successKey) == 0) {
+    if(state.generalNotificationKey.compareTo(SettingsBloc.successKey) == 0) {
       notificationTranslated = S.of(context).pageSettingsSave;
       notificationColors = Theme.of(context).primaryColor;
-    } else if(state.generalErrorKey.compareTo(HttpUtils.errorServerKey) == 0) {
+    } else if(state.generalNotificationKey.compareTo(HttpUtils.errorServerKey) == 0) {
       notificationTranslated = S.of(context).genericErrorBadRequest;
       notificationColors = Theme.of(context).errorColor;
-    } else if (state.generalErrorKey.compareTo(HttpUtils.errorServerKey) == 0) {
+    } else if (state.generalNotificationKey.compareTo(HttpUtils.errorServerKey) == 0) {
       notificationTranslated = S.of(context).genericErrorServer;
       notificationColors = Theme.of(context).errorColor;
     }

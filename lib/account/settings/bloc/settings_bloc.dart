@@ -55,25 +55,26 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       SettingsAction action = SettingsAction.none;
       try {
         if(state.language.compareTo(state.currentUser.langKey) != 0) {
-          User newCurrentUser = User(state.currentUser.login, state.currentUser.email,
-              state.currentUser.password, state.language, state.firstname.value, state.lastname.value);
-          yield state.copyWith(currentUser: newCurrentUser);
           S.load(Locale(state.language));
           action = SettingsAction.reloadForLanguage;
         }
 
-        String result = await _accountRepository.saveAccount(state.currentUser);
+        User newCurrentUser = User(state.currentUser.login, state.email.value,
+            state.currentUser.password, state.language, state.firstname.value, state.lastname.value);
+
+        String result = await _accountRepository.saveAccount(newCurrentUser);
 
         if (result.compareTo(HttpUtils.successResult) != 0) {
           yield state.copyWith(status: FormzStatus.submissionFailure,
-              generalErrorKey: result);
+              generalNotificationKey: result);
         } else {
-          yield state.copyWith(status: FormzStatus.submissionSuccess,
-              action: action);
+          yield state.copyWith(currentUser: newCurrentUser,
+              status: FormzStatus.submissionSuccess, action: action
+          , generalNotificationKey: successKey);
         }
       } catch (e) {
         yield state.copyWith(status: FormzStatus.submissionFailure,
-            generalErrorKey: HttpUtils.errorServerKey);
+            generalNotificationKey: HttpUtils.errorServerKey);
       }
     }
   }
@@ -111,11 +112,18 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
   Stream<SettingsState> onLoadCurrentUser() async* {
     User currentUser = await _accountRepository.getIdentity();
+    final firstname = FirstnameInput.dirty(currentUser?.firstName != null ? currentUser.firstName: '');
+    final lastname = LastnameInput.dirty(currentUser?.lastName != null ? currentUser.lastName: '');
+    final email = EmailInput.dirty(currentUser?.email != null ? currentUser.email: '');
+
     yield state.copyWith(
-        firstname: currentUser.firstName != null ? FirstnameInput.dirty(currentUser.firstName) : FirstnameInput.dirty(''),
-        lastname: currentUser.lastName != null ? LastnameInput.dirty(currentUser.lastName) : LastnameInput.dirty(''),
-        email:  currentUser.email != null ? EmailInput.dirty(currentUser.email) : EmailInput.pure(),
-        currentUser: currentUser);
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        language: currentUser.langKey,
+        currentUser: currentUser,
+        status: Formz.validate([firstname, lastname, email]));
+
     emailController.text = currentUser.email;
     lastNameController.text = currentUser.lastName;
     firstNameController.text = currentUser.firstName;

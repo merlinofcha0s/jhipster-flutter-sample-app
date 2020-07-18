@@ -9,7 +9,7 @@ class SettingsState extends Equatable {
   final String language;
   final FormzStatus formStatus;
   final SettingsAction action;
-  final String generalErrorKey;
+  final String generalNotificationKey;
   final User currentUser;
 
   const SettingsState({
@@ -19,7 +19,7 @@ class SettingsState extends Equatable {
     this.language = 'en',
     this.action = SettingsAction.none,
     this.formStatus = FormzStatus.pure,
-    this.generalErrorKey = HttpUtils.generalNoErrorKey,
+    this.generalNotificationKey = HttpUtils.generalNoErrorKey,
     this.currentUser = const User('', '', '', '', '', '')
   });
 
@@ -29,7 +29,7 @@ class SettingsState extends Equatable {
     EmailInput email,
     String language,
     FormzStatus status,
-    String generalErrorKey,
+    String generalNotificationKey,
     SettingsAction action,
     User currentUser
   }) {
@@ -39,14 +39,14 @@ class SettingsState extends Equatable {
       email: email ?? this.email,
       language: language ?? this.language,
       formStatus: status ?? this.formStatus,
-      generalErrorKey: generalErrorKey ?? this.generalErrorKey,
+      generalNotificationKey: generalNotificationKey ?? this.generalNotificationKey,
       action: action ?? this.action,
       currentUser: currentUser ?? this.currentUser
     );
   }
 
   @override
-  List<Object> get props => [firstname, lastname, email, language, formStatus, generalErrorKey];
+  List<Object> get props => [firstname, lastname, email, language, formStatus, generalNotificationKey];
 
   @override
   bool get stringify => true;

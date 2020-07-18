@@ -8,6 +8,8 @@ import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 import 'package:formz/formz.dart';
 
+import 'bloc/login_models.dart';
+
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key key}) : super(key: JhipsterfluttersampleKeys.mainScreen);
@@ -60,7 +62,7 @@ class LoginScreen extends StatelessWidget {
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                   labelText: S.of(context).pageRegisterFormLogin,
-                  errorText: state.login.invalid ? 'Invalid Login' : null));
+                  errorText: state.login.invalid ? LoginValidationError.invalid.invalidMessage : null));
         });
   }
 
@@ -74,7 +76,7 @@ class LoginScreen extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                   labelText:S.of(context).pageRegisterFormPassword,
-                  errorText: state.password.invalid ? 'Invalid Password' : null));
+                  errorText: state.password.invalid ? PasswordValidationError.invalid.invalidMessage : null));
         });
   }
 
