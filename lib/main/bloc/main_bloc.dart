@@ -31,16 +31,13 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   Stream<MainState> onInit(Init event) async* {
     User currentUser = await _accountRepository.getIdentity();
-    MainAction action = MainAction.none;
 
     if(currentUser.langKey.compareTo(S.current.locale) != 0) {
       S.load(Locale(currentUser.langKey));
-      action = MainAction.reloadForLanguage;
     }
 
     yield state.copyWith(
       currentUser: currentUser,
-      mainAction: action
     );
   }
 }
