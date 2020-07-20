@@ -3,6 +3,9 @@ import 'package:jhipsterfluttersample/account/login/bloc/login_bloc.dart';
 import 'package:jhipsterfluttersample/account/login/login_repository.dart';
 import 'package:jhipsterfluttersample/account/register/bloc/register_bloc.dart';
 import 'package:jhipsterfluttersample/account/settings/settings_screen.dart';
+import 'package:jhipsterfluttersample/entities/employee/bloc/employee_bloc.dart';
+import 'package:jhipsterfluttersample/entities/employee/employee_list_screen.dart';
+import 'package:jhipsterfluttersample/entities/employee/employee_repository.dart';
 import 'package:jhipsterfluttersample/main/bloc/main_bloc.dart';
 import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/main/main_screen.dart';
@@ -48,7 +51,12 @@ class JhipsterfluttersampleApp extends StatelessWidget {
                 ..add(LoadCurrentUser()),
               child: SettingsScreen());
         },
-      },
+        JhipsterfluttersampleRoutes.entitiesEmployeeList: (context) {
+          return BlocProvider<EmployeeBloc>(
+              create: (context) => EmployeeBloc(employeeRepository: EmployeeRepository())
+                ..add(InitList()),
+              child: EmployeeListScreen());
+        },     },
         localizationsDelegates: [
           S.delegate,
           GlobalMaterialLocalizations.delegate,

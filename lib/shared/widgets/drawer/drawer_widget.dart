@@ -37,6 +37,12 @@ class JhipsterfluttersampleDrawer extends StatelessWidget {
               leading: Icon(Icons.exit_to_app, size: iconSize,),
               title: Text(S.of(context).drawerLogoutTitle),
               onTap: () => context.bloc<DrawerBloc>().add(Logout())
+            ),
+            Divider(thickness: 2),
+            ListTile(
+                leading: Icon(Icons.label, size: iconSize,),
+                title: Text('Employees'),
+                onTap: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.entitiesEmployeeList),
             )
           ],
         ),

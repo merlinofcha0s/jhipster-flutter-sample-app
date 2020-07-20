@@ -522,6 +522,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Loading...`
+  String get loadingLabel {
+    return Intl.message(
+      'Loading...',
+      name: 'loadingLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View`
+  String get entityActionView {
+    return Intl.message(
+      'View',
+      name: 'entityActionView',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get entityActionEdit {
+    return Intl.message(
+      'Edit',
+      name: 'entityActionEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get entityActionCreate {
+    return Intl.message(
+      'Create',
+      name: 'entityActionCreate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get entityActionDelete {
+    return Intl.message(
+      'Delete',
+      name: 'entityActionDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employees list`
+  String get pageEntitiesEmployeeListTitle {
+    return Intl.message(
+      'Employees list',
+      name: 'pageEntitiesEmployeeListTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
