@@ -3,7 +3,7 @@ enum Environment { DEV, PROD }
 class Constants {
   static Map<String, dynamic> _config;
 
-  static final Map<String, String> languages = {'en':'English','fr':'Francais'};
+  static final Map<String, String> languages = const {'en':'English','fr':'Francais'};
   static final String langStorageKey = 'locale';
 
   static void setEnvironment(Environment env) {
@@ -26,7 +26,7 @@ class _Config {
   static const API = "API";
 
   static Map<String, dynamic> devConstants = {
-    API: "http://192.168.0.25:8080/api",
+    API: "http://192.168.0.24:8080/api",
   };
 
   static Map<String, dynamic> prodConstants = {

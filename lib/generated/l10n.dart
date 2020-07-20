@@ -243,6 +243,46 @@ class S {
     );
   }
 
+  /// `The login has to contain more than {min}`
+  String pageRegisterLoginValidationError(Object min) {
+    return Intl.message(
+      'The login has to contain more than $min',
+      name: 'pageRegisterLoginValidationError',
+      desc: '',
+      args: [min],
+    );
+  }
+
+  /// `Please enter a valid address email`
+  String get pageRegisterMailValidationError {
+    return Intl.message(
+      'Please enter a valid address email',
+      name: 'pageRegisterMailValidationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rules : 1 uppercase, 1 number and {min} characters`
+  String pageRegisterPasswordValidationError(Object min) {
+    return Intl.message(
+      'Rules : 1 uppercase, 1 number and $min characters',
+      name: 'pageRegisterPasswordValidationError',
+      desc: '',
+      args: [min],
+    );
+  }
+
+  /// `Rules : 1 uppercase, 1 number and {min} characters`
+  String pageRegisterConfirmationPasswordValidationError(Object min) {
+    return Intl.message(
+      'Rules : 1 uppercase, 1 number and $min characters',
+      name: 'pageRegisterConfirmationPasswordValidationError',
+      desc: '',
+      args: [min],
+    );
+  }
+
   /// `Your profile`
   String get pageMainProfileButton {
     return Intl.message(
@@ -424,30 +464,60 @@ class S {
   }
 
   /// `Settings saved !`
-  String get pageSettingsSuccessSave {
+  String get pageSettingsSave {
     return Intl.message(
       'Settings saved !',
-      name: 'pageSettingsSuccessSave',
+      name: 'pageSettingsSave',
       desc: '',
       args: [],
     );
   }
 
-  /// `Something wrong happended with the data`
-  String get pageSettingsSuccessErrorBadRequest {
+  /// `Firstname has to be {min} characters minimum`
+  String pageSettingsFirstnameErrorValidation(Object min) {
     return Intl.message(
-      'Something wrong happended with the data',
-      name: 'pageSettingsSuccessErrorBadRequest',
+      'Firstname has to be $min characters minimum',
+      name: 'pageSettingsFirstnameErrorValidation',
+      desc: '',
+      args: [min],
+    );
+  }
+
+  /// `Lastname has to be {min} characters minimum`
+  String pageSettingsLastnameErrorValidation(Object min) {
+    return Intl.message(
+      'Lastname has to be $min characters minimum',
+      name: 'pageSettingsLastnameErrorValidation',
+      desc: '',
+      args: [min],
+    );
+  }
+
+  /// `Email format incorrect`
+  String get pageSettingsEmailErrorValidation {
+    return Intl.message(
+      'Email format incorrect',
+      name: 'pageSettingsEmailErrorValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something wrong happened with the received data`
+  String get genericErrorBadRequest {
+    return Intl.message(
+      'Something wrong happened with the received data',
+      name: 'genericErrorBadRequest',
       desc: '',
       args: [],
     );
   }
 
   /// `Something wrong when calling the server, please try again`
-  String get pageSettingsSuccessErrorServer {
+  String get genericErrorServer {
     return Intl.message(
       'Something wrong when calling the server, please try again',
-      name: 'pageSettingsSuccessErrorServer',
+      name: 'genericErrorServer',
       desc: '',
       args: [],
     );

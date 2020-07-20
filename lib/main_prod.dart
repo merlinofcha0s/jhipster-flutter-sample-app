@@ -1,7 +1,7 @@
-import 'package:jhipsterfluttersample/environement.dart';
+import 'package:jhipsterfluttersample/environment.dart';
 import 'package:flutter/material.dart';
 import 'app.dart';
-import 'main_prod.reflectable.dart';
+import 'main.reflectable.dart';
 import 'mapper.dart';
 
 void main() {
