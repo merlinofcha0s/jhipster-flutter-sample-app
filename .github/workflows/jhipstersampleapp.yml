@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: flutter pub get
     - name: Run JSON Reflector
-      run: flutter pub run build_runner build
+      run: flutter pub run build_runner build --delete-conflicting-outputs
     - name: Building APK
       run: flutter build apk -t lib/main_prod.dart --release --split-per-abi
     - name: Building APP bundle
