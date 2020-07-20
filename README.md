@@ -16,7 +16,7 @@ Building the project:
         
 2. Running reflection (You will only need to run this command when you change DTOs or models) : 
 
-        flutter pub run build_runner build
+        flutter pub run build_runner build --delete-conflicting-outputs
         
 3. Start the project (You can also start it with your IDE) :
 

@@ -21,12 +21,24 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static m0(login) => "Utilisateur connecté : ${login}";
 
+  static m1(min) => "Régles : 1 majuscule, 1 chiffre, ${min} caractères";
+
+  static m2(min) => "Le login doit contenir au moins ${min} caractères";
+
+  static m3(min) => "Régles : 1 majuscule, 1 chiffre, ${min} caractères";
+
+  static m4(min) => "Prénom doit avoir au moins ${min} caractères";
+
+  static m5(min) => "Le nom doit avoir au moins ${min} caractères";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "drawerLogoutTitle" : MessageLookupByLibrary.simpleMessage("Deconnexion"),
     "drawerMenuMain" : MessageLookupByLibrary.simpleMessage("Accueil"),
     "drawerMenuTitle" : MessageLookupByLibrary.simpleMessage("Menu"),
     "drawerSettingsTitle" : MessageLookupByLibrary.simpleMessage("Profil"),
+    "genericErrorBadRequest" : MessageLookupByLibrary.simpleMessage("Mauvais format de données"),
+    "genericErrorServer" : MessageLookupByLibrary.simpleMessage("Problème de communication avec le serveur, merci de réessayer"),
     "locale" : MessageLookupByLibrary.simpleMessage("fr"),
     "pageLoginBar" : MessageLookupByLibrary.simpleMessage("Se connecter"),
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Un problème est survenu, veuillez vérifier vos identifiants"),
@@ -36,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageMainCurrentUser" : m0,
     "pageMainTitle" : MessageLookupByLibrary.simpleMessage("Page principale"),
     "pageMainWelcome" : MessageLookupByLibrary.simpleMessage("Bienvenue sur votre Jhipster flutter app"),
+    "pageRegisterConfirmationPasswordValidationError" : m1,
     "pageRegisterErrorLoginExist" : MessageLookupByLibrary.simpleMessage("Cet identifiant est déjà pris"),
     "pageRegisterErrorMailExist" : MessageLookupByLibrary.simpleMessage("Cette adresse existe déjà"),
     "pageRegisterErrorPasswordNotIdentical" : MessageLookupByLibrary.simpleMessage("Les mots de passe ne sont pas identiques"),
@@ -47,17 +60,21 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageRegisterFormSubmit" : MessageLookupByLibrary.simpleMessage("Créer un compte"),
     "pageRegisterFormTermsConditions" : MessageLookupByLibrary.simpleMessage("J\'accepte les conditions générales d\'utilisations"),
     "pageRegisterFormTermsConditionsNotChecked" : MessageLookupByLibrary.simpleMessage("Merci d\'accepter les conditions générales d\'utilisations"),
+    "pageRegisterLoginValidationError" : m2,
+    "pageRegisterMailValidationError" : MessageLookupByLibrary.simpleMessage("L\'email n\'est pas valide"),
+    "pageRegisterPasswordValidationError" : m3,
     "pageRegisterSuccess" : MessageLookupByLibrary.simpleMessage("Félicitation"),
     "pageRegisterSuccessAltImg" : MessageLookupByLibrary.simpleMessage("Votre compte a été créé avec succés"),
     "pageRegisterSuccessSub" : MessageLookupByLibrary.simpleMessage("Votre compte a été créé avec succés"),
     "pageRegisterTitle" : MessageLookupByLibrary.simpleMessage("Créer un compte"),
+    "pageSettingsEmailErrorValidation" : MessageLookupByLibrary.simpleMessage("Format d\'email incorrect"),
+    "pageSettingsFirstnameErrorValidation" : m4,
     "pageSettingsFormEmail" : MessageLookupByLibrary.simpleMessage("Email"),
     "pageSettingsFormFirstname" : MessageLookupByLibrary.simpleMessage("Prénom"),
     "pageSettingsFormLastname" : MessageLookupByLibrary.simpleMessage("Nom"),
     "pageSettingsFormSave" : MessageLookupByLibrary.simpleMessage("Enregistrer"),
-    "pageSettingsSuccessErrorBadRequest" : MessageLookupByLibrary.simpleMessage("Mauvais format de données"),
-    "pageSettingsSuccessErrorServer" : MessageLookupByLibrary.simpleMessage("Problème de communication avec le serveur, merci de réessayer"),
-    "pageSettingsSuccessSave" : MessageLookupByLibrary.simpleMessage("Paramètres sauvegardés !"),
+    "pageSettingsLastnameErrorValidation" : m5,
+    "pageSettingsSave" : MessageLookupByLibrary.simpleMessage("Paramètres sauvegardés !"),
     "pageSettingsTitle" : MessageLookupByLibrary.simpleMessage("Paramètres")
   };
 }
