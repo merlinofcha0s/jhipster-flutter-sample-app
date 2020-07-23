@@ -4,7 +4,6 @@ import 'package:jhipsterfluttersample/entities/employee/bloc/employee_bloc.dart'
 import 'package:jhipsterfluttersample/entities/employee/employee_model.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/bloc/drawer_bloc.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';

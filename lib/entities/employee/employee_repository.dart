@@ -13,7 +13,7 @@ class EmployeeRepository {
   }
 
   Future<Employee> getEmployee(int id) async {
-    final allEmployeesRequest = await HttpUtils.getRequest('$uriEndpoint/$id');
-    return JsonMapper.deserialize<Employee>(allEmployeesRequest.body);
+    final employeeRequest = await HttpUtils.getRequest('$uriEndpoint/$id');
+    return JsonMapper.deserialize<Employee>(employeeRequest.body);
   }
 }
