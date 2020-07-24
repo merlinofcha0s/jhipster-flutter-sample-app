@@ -44,6 +44,7 @@ class JhipsterfluttersampleDrawer extends StatelessWidget {
                 title: Text('Employees'),
                 onTap: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.entitiesEmployeeList),
             )
+            // jhipster-merlin-needle-menu-entry-add
           ],
         ),
       ),
