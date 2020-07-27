@@ -53,8 +53,8 @@ class EmployeeListScreen extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: Icon(Icons.turned_in),
-              title: Text(employee.lastName),
-              subtitle: Text(employee.firstName),
+              title: Text('Lastname : ${employee.lastName}'),
+              subtitle: Text('Firstname : ${employee.firstName}'),
             ),
             ButtonBar(
               children: <Widget>[
