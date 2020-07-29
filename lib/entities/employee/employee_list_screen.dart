@@ -5,6 +5,7 @@ import 'package:jhipsterfluttersample/entities/employee/employee_model.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
 import 'package:flutter/material.dart';
+import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/bloc/drawer_bloc.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';
 import 'package:jhipsterfluttersample/shared/widgets/loading_indicator_widget.dart';
@@ -25,7 +26,7 @@ class EmployeeListScreen extends StatelessWidget {
             buildWhen: (previous, current) => previous.employees != current.employees,
             builder: (context, state) {
               return Visibility(
-                visible: state.employeeStatusUI == EmployeeStatusUI.done,
+                visible: state.employeeListStatusUI == EmployeeListStatusUI.done,
                 replacement: LoadingIndicator(),
                 child: Column(children: <Widget>[
                   for (Employee employee in state.employees) employeeCard(employee, context)
@@ -38,7 +39,7 @@ class EmployeeListScreen extends StatelessWidget {
           create: (context) => DrawerBloc(loginRepository: LoginRepository()),
           child: JhipsterfluttersampleDrawer()),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => null,
+        onPressed: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.entitiesEmployeeCreate),
         child: Icon(Icons.add, color: Theme.of(context).iconTheme.color,),
         backgroundColor: Theme.of(context).primaryColor,
       )

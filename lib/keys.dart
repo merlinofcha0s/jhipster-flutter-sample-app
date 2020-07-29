@@ -8,4 +8,5 @@ class JhipsterfluttersampleKeys {
 
   //Entities
   static const employeeListScreen = Key('__employeeListScreen__');
+  static const employeeCreateScreen = Key('__employeeCreateScreen__');
 }

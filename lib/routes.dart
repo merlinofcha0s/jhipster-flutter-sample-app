@@ -4,4 +4,5 @@ class JhipsterfluttersampleRoutes {
   static final main = '/main';
   static final settings = '/settings';
   static final entitiesEmployeeList = '/entities/employee-list';
+  static final entitiesEmployeeCreate = '/entities/employee-created';
 }

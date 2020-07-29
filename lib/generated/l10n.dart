@@ -582,6 +582,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Create Employees`
+  String get pageEntitiesEmployeeUpdateTitle {
+    return Intl.message(
+      'Create Employees',
+      name: 'pageEntitiesEmployeeUpdateTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Firstname`
+  String get pageEntitiesEmployeeFirstnameField {
+    return Intl.message(
+      'Firstname',
+      name: 'pageEntitiesEmployeeFirstnameField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lastname`
+  String get pageEntitiesEmployeeLastnameField {
+    return Intl.message(
+      'Lastname',
+      name: 'pageEntitiesEmployeeLastnameField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get pageEntitiesEmployeeEmailField {
+    return Intl.message(
+      'Email',
+      name: 'pageEntitiesEmployeeEmailField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number`
+  String get pageEntitiesEmployeePhoneNumberField {
+    return Intl.message(
+      'Phone number',
+      name: 'pageEntitiesEmployeePhoneNumberField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hire date`
+  String get pageEntitiesEmployeeHireDateField {
+    return Intl.message(
+      'Hire date',
+      name: 'pageEntitiesEmployeeHireDateField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salary`
+  String get pageEntitiesEmployeeSalaryField {
+    return Intl.message(
+      'Salary',
+      name: 'pageEntitiesEmployeeSalaryField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Commission`
+  String get pageEntitiesEmployeeCommissionField {
+    return Intl.message(
+      'Commission',
+      name: 'pageEntitiesEmployeeCommissionField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get pageEntitiesEmployeeSubmitCreate {
+    return Intl.message(
+      'Create',
+      name: 'pageEntitiesEmployeeSubmitCreate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

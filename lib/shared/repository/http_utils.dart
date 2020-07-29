@@ -52,6 +52,21 @@ class HttpUtils {
     return response;
   }
 
+  static Future<Response> putRequest<T>(String endpoint, T body) async {
+    var headers = await HttpUtils.headers();
+    final String json = JsonMapper.serialize(body, SerializationOptions(indent: ''));
+    Response response;
+    try {
+      response = await http.put(Constants.api + endpoint, headers: headers, body: json,
+          encoding: Encoding.getByName('utf-8')).timeout(Duration(seconds: timeout));
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    } on TimeoutException {
+      throw FetchDataException('Request timeout');
+    }
+    return response;
+  }
+
   static Future<Response> getRequest(String endpoint) async {
     var headers = await HttpUtils.headers();
     try {

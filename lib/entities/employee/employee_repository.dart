@@ -16,4 +16,14 @@ class EmployeeRepository {
     final employeeRequest = await HttpUtils.getRequest('$uriEndpoint/$id');
     return JsonMapper.deserialize<Employee>(employeeRequest.body);
   }
+
+  Future<Employee> create(Employee employee) async {
+    final employeeRequest = await HttpUtils.postRequest('$uriEndpoint', employee);
+    return JsonMapper.deserialize<Employee>(employeeRequest.body);
+  }
+
+  Future<Employee> update(Employee employee) async {
+    final employeeRequest = await HttpUtils.putRequest('$uriEndpoint', employee);
+    return JsonMapper.deserialize<Employee>(employeeRequest.body);
+  }
 }
