@@ -53,8 +53,13 @@
   "entityActionEdit": "Edit",
   "entityActionCreate": "Create",
   "entityActionDelete": "Delete",
+  "entityActionConfirmDelete": "Are you sure?",
+  "entityActionConfirmDeleteYes": "Yes",
+  "entityActionConfirmDeleteNo": "No",
   "pageEntitiesEmployeeListTitle": "Employees list",
-  "pageEntitiesEmployeeUpdateTitle": "Create Employees",
+  "pageEntitiesEmployeeCreateTitle": "Create Employees",
+  "pageEntitiesEmployeeUpdateTitle": "Edit Employees",
+  "pageEntitiesEmployeeDeletePopupTitle": "Delete employee",
   "pageEntitiesEmployeeFirstnameField": "Firstname",
   "pageEntitiesEmployeeLastnameField": "Lastname",
   "pageEntitiesEmployeeEmailField": "Email",
@@ -62,5 +67,7 @@
   "pageEntitiesEmployeeHireDateField": "Hire date",
   "pageEntitiesEmployeeSalaryField": "Salary",
   "pageEntitiesEmployeeCommissionField": "Commission",
-  "pageEntitiesEmployeeSubmitCreate": "Create"
+  "pageEntitiesEmployeeSubmitCreate": "Create",
+  "pageEntitiesEmployeeSubmitEdit": "Edit",
+  "pageEntitiesEmployeeDeleteOk": "Employee deleted successfuly"
 }

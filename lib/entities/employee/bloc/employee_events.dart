@@ -50,7 +50,7 @@ class PhoneNumberChanged extends EmployeeEvent {
 }
 
 class HireDateChanged extends EmployeeEvent {
-  final String hireDate;
+  final DateTime hireDate;
 
   const HireDateChanged({@required this.hireDate});
 
@@ -67,13 +67,32 @@ class SalaryChanged extends EmployeeEvent {
   List<Object> get props => [salary];
 }
 
-class CommissionChanged extends EmployeeEvent {
-  final int commission;
+class CommissionPctChanged extends EmployeeEvent {
+  final int commissionPct;
 
-  const CommissionChanged({@required this.commission});
+  const CommissionPctChanged({@required this.commissionPct});
 
   @override
-  List<Object> get props => [commission];
+  List<Object> get props => [commissionPct];
 }
 
-class EmployeeFormCreateSubmitted extends EmployeeEvent {}
+class EmployeeFormSubmitted extends EmployeeEvent {}
+
+class LoadEmployeeById extends EmployeeEvent {
+  final int id;
+
+  const LoadEmployeeById({@required this.id});
+
+  @override
+  List<Object> get props => [id];
+}
+
+class DeleteEmployeeById extends EmployeeEvent {
+  final int id;
+
+  const DeleteEmployeeById({@required this.id});
+
+  @override
+  List<Object> get props => [id];
+}
+

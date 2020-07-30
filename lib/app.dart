@@ -12,6 +12,7 @@ import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:jhipsterfluttersample/shared/models/entity_argument.dart';
 import 'package:jhipsterfluttersample/shared/repository/account_repository.dart';
 import 'package:jhipsterfluttersample/themes.dart';
 import 'account/settings/bloc/settings_bloc.dart';
@@ -61,6 +62,13 @@ class JhipsterfluttersampleApp extends StatelessWidget {
         JhipsterfluttersampleRoutes.entitiesEmployeeCreate: (context) {
           return BlocProvider<EmployeeBloc>(
               create: (context) => EmployeeBloc(employeeRepository: EmployeeRepository()),
+              child: EmployeeUpdateScreen());
+        },
+        JhipsterfluttersampleRoutes.entitiesEmployeeEdit: (context) {
+          EntityArguments arguments = ModalRoute.of(context).settings.arguments;
+          return BlocProvider<EmployeeBloc>(
+              create: (context) => EmployeeBloc(employeeRepository: EmployeeRepository())
+                ..add(LoadEmployeeById(id: arguments.id)),
               child: EmployeeUpdateScreen());
         },
       },

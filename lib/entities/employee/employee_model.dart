@@ -3,6 +3,9 @@ import 'package:dart_json_mapper/dart_json_mapper.dart';
 @jsonSerializable
 class Employee {
 
+  @JsonProperty(name: 'id')
+  final int id;
+
   @JsonProperty(name: 'firstName')
   final String firstName;
 
@@ -15,7 +18,7 @@ class Employee {
   @JsonProperty(name: 'phoneNumber')
   final String phoneNumber;
 
-  @JsonProperty(name: 'hireDate')
+  @JsonProperty(name: 'hireDate', converterParams: {'format': 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\''})
   final DateTime hireDate;
 
   @JsonProperty(name: 'salary')
@@ -24,7 +27,7 @@ class Employee {
   @JsonProperty(name: 'commissionPct')
   final int commissionPct;
 
-  const Employee(this.firstName, this.lastName, this.email, this.phoneNumber,
+  const Employee(this.id, this.firstName, this.lastName, this.email, this.phoneNumber,
       this.hireDate, this.salary, this.commissionPct);
 
   @override
@@ -39,16 +42,11 @@ class Employee {
       identical(this, other) ||
       other is Employee &&
           runtimeType == other.runtimeType &&
-          firstName == other.firstName &&
-          lastName == other.lastName &&
-          email == other.email &&
-          phoneNumber == other.phoneNumber &&
-          hireDate == other.hireDate &&
-          salary == other.salary &&
-          commissionPct == other.commissionPct;
+          id == other.id;
 
   @override
   int get hashCode =>
+      id.hashCode ^
       firstName.hashCode ^
       lastName.hashCode ^
       email.hashCode ^

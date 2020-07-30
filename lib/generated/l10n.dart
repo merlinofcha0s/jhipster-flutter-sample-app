@@ -573,6 +573,36 @@ class S {
     );
   }
 
+  /// `Are you sure?`
+  String get entityActionConfirmDelete {
+    return Intl.message(
+      'Are you sure?',
+      name: 'entityActionConfirmDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get entityActionConfirmDeleteYes {
+    return Intl.message(
+      'Yes',
+      name: 'entityActionConfirmDeleteYes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get entityActionConfirmDeleteNo {
+    return Intl.message(
+      'No',
+      name: 'entityActionConfirmDeleteNo',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Employees list`
   String get pageEntitiesEmployeeListTitle {
     return Intl.message(
@@ -584,10 +614,30 @@ class S {
   }
 
   /// `Create Employees`
-  String get pageEntitiesEmployeeUpdateTitle {
+  String get pageEntitiesEmployeeCreateTitle {
     return Intl.message(
       'Create Employees',
+      name: 'pageEntitiesEmployeeCreateTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Employees`
+  String get pageEntitiesEmployeeUpdateTitle {
+    return Intl.message(
+      'Edit Employees',
       name: 'pageEntitiesEmployeeUpdateTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete employee`
+  String get pageEntitiesEmployeeDeletePopupTitle {
+    return Intl.message(
+      'Delete employee',
+      name: 'pageEntitiesEmployeeDeletePopupTitle',
       desc: '',
       args: [],
     );
@@ -668,6 +718,26 @@ class S {
     return Intl.message(
       'Create',
       name: 'pageEntitiesEmployeeSubmitCreate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get pageEntitiesEmployeeSubmitEdit {
+    return Intl.message(
+      'Edit',
+      name: 'pageEntitiesEmployeeSubmitEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee deleted successfuly`
+  String get pageEntitiesEmployeeDeleteOk {
+    return Intl.message(
+      'Employee deleted successfuly',
+      name: 'pageEntitiesEmployeeDeleteOk',
       desc: '',
       args: [],
     );

@@ -48,13 +48,21 @@
   "entityActionEdit": "Editer",
   "entityActionCreate": "Créer",
   "entityActionDelete": "Supprimer",
+  "entityActionConfirmDelete": "Êtes vous sûr ?",
+  "entityActionConfirmDeleteYes": "Oui",
+  "entityActionConfirmDeleteNo": "Non",
   "pageEntitiesEmployeeListTitle": "Liste Employees",
-  "pageEntitiesEmployeeUpdateTitle": "Créer Employees",
+  "pageEntitiesEmployeeCreateTitle": "Créer Employees",
+  "pageEntitiesEmployeeUpdateTitle": "Editer Employees",
+  "pageEntitiesEmployeeDeletePopupTitle": "Suppression Employee",
   "pageEntitiesEmployeeFirstnameField": "Firstname",
   "pageEntitiesEmployeeLastnameField": "Lastname",
   "pageEntitiesEmployeeEmailField": "Email",
   "pageEntitiesEmployeePhoneNumberField": "Phone number",
   "pageEntitiesEmployeeHireDateField": "Hire date",
   "pageEntitiesEmployeeSalaryField": "Salary",
-  "pageEntitiesEmployeeCommissionField": "Commission"
+  "pageEntitiesEmployeeCommissionField": "Commission",
+  "pageEntitiesEmployeeSubmitCreate": "Créer",
+  "pageEntitiesEmployeeSubmitEdit": "Editer",
+  "pageEntitiesEmployeeDeleteOk": "Employee supprimé avec succés"
 }

@@ -9,6 +9,7 @@ import 'package:jhipsterfluttersample/entities/employee/employee_model.dart';
 import 'package:jhipsterfluttersample/entities/employee/employee_repository.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
+import 'package:intl/intl.dart';
 
 part 'employee_events.dart';
 part 'employee_state.dart';
@@ -49,10 +50,14 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
       yield* onHireDateChange(event);
     } else if (event is SalaryChanged) {
       yield* onSalaryChange(event);
-    } else if (event is CommissionChanged) {
+    } else if (event is CommissionPctChanged) {
       yield* onCommissionChange(event);
-    } else if (event is EmployeeFormCreateSubmitted) {
-      yield* onCreate();
+    } else if (event is EmployeeFormSubmitted) {
+      yield* onSubmit();
+    } else if (event is LoadEmployeeById) {
+      yield* onLoadEmployeeId(event);
+    } else if (event is DeleteEmployeeById) {
+      yield* onDeleteEmployeeId(event);
     }
   }
 
@@ -66,7 +71,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     final firstname = FirstnameInput.dirty(event.firstname);
     yield state.copyWith(
       firstname: firstname,
-      formStatus: Formz.validate([firstname, state.lastname, state.email, state.commission,
+      formStatus: Formz.validate([firstname, state.lastname, state.email, state.commissionPct,
         state.salary, state.phoneNumber, state.hireDate]),
     );
   }
@@ -75,7 +80,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     final lastname = LastnameInput.dirty(event.lastname);
     yield state.copyWith(
       lastname: lastname,
-      formStatus: Formz.validate([state.firstname, lastname, state.email, state.commission,
+      formStatus: Formz.validate([state.firstname, lastname, state.email, state.commissionPct,
         state.salary, state.phoneNumber, state.hireDate]),
     );
   }
@@ -84,7 +89,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     final email = EmailInput.dirty(event.email);
     yield state.copyWith(
       email: email,
-      formStatus: Formz.validate([state.firstname, state.lastname, email, state.commission,
+      formStatus: Formz.validate([state.firstname, state.lastname, email, state.commissionPct,
         state.salary, state.phoneNumber, state.hireDate]),
     );
   }
@@ -93,16 +98,16 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     final phoneNumber = PhoneNumberInput.dirty(event.phoneNumber);
     yield state.copyWith(
       phoneNumber: phoneNumber,
-      formStatus: Formz.validate([state.firstname, state.lastname, state.email, state.commission,
+      formStatus: Formz.validate([state.firstname, state.lastname, state.email, state.commissionPct,
         state.salary, phoneNumber, state.hireDate]),
     );
   }
 
   Stream<EmployeeState> onHireDateChange(HireDateChanged event) async* {
-    final hireDate = HireDateInput.dirty(event.hireDate);
+    final hireDate = HireDateInput.dirty(event.hireDate.toIso8601String());
     yield state.copyWith(
       hireDate: hireDate,
-      formStatus: Formz.validate([state.firstname, state.lastname, state.email, state.commission,
+      formStatus: Formz.validate([state.firstname, state.lastname, state.email, state.commissionPct,
         state.salary, state.phoneNumber, hireDate]),
     );
   }
@@ -111,41 +116,86 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     final salary = SalaryInput.dirty(event.salary);
     yield state.copyWith(
       salary: salary,
-      formStatus: Formz.validate([state.firstname, state.lastname, state.email, state.commission,
+      formStatus: Formz.validate([state.firstname, state.lastname, state.email, state.commissionPct,
         salary, state.phoneNumber, state.hireDate]),
     );
   }
 
-  Stream<EmployeeState> onCommissionChange(CommissionChanged event) async* {
-    final commission = CommissionInput.dirty(event.commission);
+  Stream<EmployeeState> onCommissionChange(CommissionPctChanged event) async* {
+    final commissionPct = CommissionPctInput.dirty(event.commissionPct);
     yield state.copyWith(
-      commission: commission,
-      formStatus: Formz.validate([state.firstname, state.lastname, state.email, commission,
+      commissionPct: commissionPct,
+      formStatus: Formz.validate([state.firstname, state.lastname, state.email, commissionPct,
         state.salary, state.phoneNumber, state.hireDate]),
     );
   }
 
-  Stream<EmployeeState> onCreate() async* {
+  Stream<EmployeeState> onSubmit() async* {
     if (state.formStatus.isValidated) {
       yield state.copyWith(formStatus: FormzStatus.submissionInProgress);
       try {
-        Employee newEmployee = Employee(state.firstname.value, state.lastname.value,
-            state.email.value, state.phoneNumber.value, DateTime.now(), state.salary.value,
-            state.commission.value);
+        Employee result;
+        if(state.editMode) {
+          Employee newEmployee = Employee(state.loadedEmployee.id, state.firstname.value, state.lastname.value,
+              state.email.value, state.phoneNumber.value, DateTime.parse(state.hireDate.value), state.salary.value,
+              state.commissionPct.value);
 
-        Employee result = await _employeeRepository.create(newEmployee);
+          result = await _employeeRepository.update(newEmployee);
+        } else {
+          Employee newEmployee = Employee(0, state.firstname.value, state.lastname.value,
+              state.email.value, state.phoneNumber.value, DateTime.parse(state.hireDate.value), state.salary.value,
+              state.commissionPct.value);
+
+          result = await _employeeRepository.create(newEmployee);
+        }
 
         if (result == null) {
           yield state.copyWith(formStatus: FormzStatus.submissionFailure,
-              generalNotificationKey: S.current.genericErrorBadRequest);
+              generalNotificationKey: HttpUtils.badRequestServerKey);
         } else {
           yield state.copyWith(formStatus: FormzStatus.submissionSuccess,
-              generalNotificationKey: 'Employee created');
+              generalNotificationKey: HttpUtils.successResult);
         }
       } catch (e) {
         yield state.copyWith(formStatus: FormzStatus.submissionFailure,
             generalNotificationKey: HttpUtils.errorServerKey);
       }
+    }
+  }
+
+  Stream<EmployeeState> onLoadEmployeeId(LoadEmployeeById event) async* {
+    Employee loadedEmployee = await _employeeRepository.getEmployee(event.id);
+
+    final firstname = FirstnameInput.dirty(loadedEmployee?.firstName != null ? loadedEmployee.firstName: '');
+    final lastname = LastnameInput.dirty(loadedEmployee?.lastName != null ? loadedEmployee.lastName: '');
+    final email = EmailInput.dirty(loadedEmployee?.email != null ? loadedEmployee.email: '');
+    final phoneNumber = PhoneNumberInput.dirty(loadedEmployee?.phoneNumber != null ? loadedEmployee.phoneNumber: '');
+    final hireDate = HireDateInput.dirty(loadedEmployee?.hireDate != null ? DateFormat.yMMMMd(S.current.locale).format(loadedEmployee?.hireDate) : '');
+    final salary = SalaryInput.dirty(loadedEmployee?.salary != null ? loadedEmployee.salary: 0);
+    final commissionPct = CommissionPctInput.dirty(loadedEmployee?.commissionPct != null ? loadedEmployee.commissionPct: 0);
+
+    yield state.copyWith(loadedEmployee: loadedEmployee, editMode: true,
+        firstname: firstname, lastname: lastname, email: email,
+        phoneNumber: phoneNumber, hireDate: hireDate, salary: salary,
+        commissionPct: commissionPct);
+
+    emailController.text = loadedEmployee.email;
+    lastNameController.text = loadedEmployee.lastName;
+    firstNameController.text = loadedEmployee.firstName;
+    phoneNumberController.text = loadedEmployee.phoneNumber;
+    hireDateController.text = DateFormat.yMMMMd(S.current.locale).format(loadedEmployee?.hireDate);
+    salaryController.text = loadedEmployee.salary.toString();
+    commissionController.text = loadedEmployee.commissionPct.toString();
+  }
+
+  Stream<EmployeeState> onDeleteEmployeeId(DeleteEmployeeById event) async* {
+    try {
+      //await _employeeRepository.delete(event.id);
+      //this.add(InitList());
+      yield state.copyWith(deleteStatus: EmployeeDeleteStatus.ok);
+    } catch (e) {
+      yield state.copyWith(deleteStatus: EmployeeDeleteStatus.ko,
+          generalNotificationKey: HttpUtils.errorServerKey);
     }
   }
 

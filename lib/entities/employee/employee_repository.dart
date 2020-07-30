@@ -26,4 +26,8 @@ class EmployeeRepository {
     final employeeRequest = await HttpUtils.putRequest('$uriEndpoint', employee);
     return JsonMapper.deserialize<Employee>(employeeRequest.body);
   }
+
+  Future<void> delete(int id) async {
+    final employeeRequest = await HttpUtils.deleteRequest('$uriEndpoint/$id');
+  }
 }

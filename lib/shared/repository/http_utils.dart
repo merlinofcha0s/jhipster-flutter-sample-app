@@ -42,7 +42,7 @@ class HttpUtils {
     final String json = JsonMapper.serialize(body, SerializationOptions(indent: ''));
     Response response;
     try {
-      response = await http.post(Constants.api + endpoint, headers: headers, body: json,
+      response = await http.post('${Constants.api}$endpoint', headers: headers, body: json,
           encoding: Encoding.getByName('utf-8')).timeout(Duration(seconds: timeout));
     } on SocketException {
       throw FetchDataException('No Internet connection');
@@ -57,7 +57,7 @@ class HttpUtils {
     final String json = JsonMapper.serialize(body, SerializationOptions(indent: ''));
     Response response;
     try {
-      response = await http.put(Constants.api + endpoint, headers: headers, body: json,
+      response = await http.put('${Constants.api}$endpoint', headers: headers, body: json,
           encoding: Encoding.getByName('utf-8')).timeout(Duration(seconds: timeout));
     } on SocketException {
       throw FetchDataException('No Internet connection');
@@ -70,7 +70,19 @@ class HttpUtils {
   static Future<Response> getRequest(String endpoint) async {
     var headers = await HttpUtils.headers();
     try {
-      return await http.get(Constants.api + endpoint, headers: headers)
+      return await http.get('${Constants.api}$endpoint', headers: headers)
+          .timeout(Duration(seconds: timeout));
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    } on TimeoutException {
+      throw FetchDataException('Request timeout');
+    }
+  }
+
+  static Future<Response> deleteRequest(String endpoint) async {
+    var headers = await HttpUtils.headers();
+    try {
+      return await http.delete('${Constants.api}$endpoint', headers: headers)
           .timeout(Duration(seconds: timeout));
     } on SocketException {
       throw FetchDataException('No Internet connection');

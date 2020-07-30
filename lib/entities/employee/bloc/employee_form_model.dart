@@ -76,9 +76,9 @@ class SalaryInput extends FormzInput<int, SalaryValidationError> {
 
 enum CommissionValidationError { invalid }
 
-class CommissionInput extends FormzInput<int, CommissionValidationError> {
-  const CommissionInput.pure() : super.pure(0);
-  const CommissionInput.dirty([int value]) : super.dirty(value);
+class CommissionPctInput extends FormzInput<int, CommissionValidationError> {
+  const CommissionPctInput.pure() : super.pure(0);
+  const CommissionPctInput.dirty([int value]) : super.dirty(value);
 
   @override
   CommissionValidationError validator(int value) {
