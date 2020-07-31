@@ -20,7 +20,8 @@ class EmployeeState extends Equatable {
   final FormzStatus formStatus;
   final String generalNotificationKey;
 
-  const EmployeeState({
+  EmployeeState(
+      HireDateInput hiredate, {
     this.employees = const [],
     this.loadedEmployee = const Employee(0, '', '', '', '', null, 0, 0),
     this.editMode = false,
@@ -29,13 +30,12 @@ class EmployeeState extends Equatable {
     this.lastname = const LastnameInput.pure(),
     this.email = const EmailInput.pure(),
     this.phoneNumber = const PhoneNumberInput.pure(),
-    this.hireDate = const HireDateInput.pure(),
     this.salary = const SalaryInput.pure(),
     this.commissionPct = const CommissionPctInput.pure(),
     this.formStatus = FormzStatus.pure,
     this.generalNotificationKey = '',
-    this.deleteStatus = EmployeeDeleteStatus.none
-  });
+    this.deleteStatus = EmployeeDeleteStatus.none,
+  }) : this.hireDate = hiredate ?? HireDateInput.pure();
 
   EmployeeState copyWith({
     List<Employee> employees,
@@ -54,6 +54,7 @@ class EmployeeState extends Equatable {
     EmployeeDeleteStatus deleteStatus
   }) {
     return EmployeeState(
+      hireDate,
       employees: employees ?? this.employees,
       loadedEmployee: loadedEmployee ?? this.loadedEmployee,
       editMode: editMode ?? this.editMode,
@@ -62,7 +63,6 @@ class EmployeeState extends Equatable {
       lastname: lastname ?? this.lastname,
       email: email ?? this.email,
       phoneNumber: phoneNumber ?? this.phoneNumber,
-      hireDate: hireDate ?? this.hireDate,
       salary: salary ?? this.salary,
       commissionPct: commissionPct ?? this.commissionPct,
       formStatus: formStatus ?? this.formStatus,

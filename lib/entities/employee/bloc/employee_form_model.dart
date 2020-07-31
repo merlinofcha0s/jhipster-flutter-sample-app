@@ -52,12 +52,12 @@ class PhoneNumberInput extends FormzInput<String, PhoneNumberValidationError> {
 
 enum HireDateValidationError { invalid }
 
-class HireDateInput extends FormzInput<String, HireDateValidationError> {
-  const HireDateInput.pure() : super.pure('');
-  const HireDateInput.dirty([String value]) : super.dirty(value);
+class HireDateInput extends FormzInput<DateTime, HireDateValidationError> {
+  HireDateInput.pure() : super.pure(DateTime.now());
+  HireDateInput.dirty([DateTime value]) : super.dirty(value);
 
   @override
-  HireDateValidationError validator(String value) {
+  HireDateValidationError validator(DateTime value) {
     return null;
   }
 }

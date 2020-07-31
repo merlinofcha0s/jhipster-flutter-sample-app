@@ -27,7 +27,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
 
 
   EmployeeBloc({@required EmployeeRepository employeeRepository}) : assert(employeeRepository != null),
-        _employeeRepository = employeeRepository, super(const EmployeeState());
+        _employeeRepository = employeeRepository, super(EmployeeState(null));
 
   @override
   void onTransition(Transition<EmployeeEvent, EmployeeState> transition) {
@@ -106,7 +106,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
   }
 
   Stream<EmployeeState> onHireDateChange(HireDateChanged event) async* {
-    final hireDate = HireDateInput.dirty(event.hireDate.toIso8601String());
+    final hireDate = HireDateInput.dirty(event.hireDate);
     yield state.copyWith(
       hireDate: hireDate,
       formStatus: Formz.validate([state.firstname, state.lastname, state.email, state.commissionPct,
@@ -139,13 +139,13 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
         Employee result;
         if(state.editMode) {
           Employee newEmployee = Employee(state.loadedEmployee.id, state.firstname.value, state.lastname.value,
-              state.email.value, state.phoneNumber.value, DateTime.parse(state.hireDate.value), state.salary.value,
+              state.email.value, state.phoneNumber.value, state.hireDate.value, state.salary.value,
               state.commissionPct.value);
 
           result = await _employeeRepository.update(newEmployee);
         } else {
           Employee newEmployee = Employee(0, state.firstname.value, state.lastname.value,
-              state.email.value, state.phoneNumber.value, DateTime.parse(state.hireDate.value), state.salary.value,
+              state.email.value, state.phoneNumber.value, state.hireDate.value, state.salary.value,
               state.commissionPct.value);
 
           result = await _employeeRepository.create(newEmployee);
@@ -173,7 +173,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     final lastname = LastnameInput.dirty(loadedEmployee?.lastName != null ? loadedEmployee.lastName: '');
     final email = EmailInput.dirty(loadedEmployee?.email != null ? loadedEmployee.email: '');
     final phoneNumber = PhoneNumberInput.dirty(loadedEmployee?.phoneNumber != null ? loadedEmployee.phoneNumber: '');
-    final hireDate = HireDateInput.dirty(loadedEmployee?.hireDate != null ? DateFormat.yMMMMd(S.current.locale).format(loadedEmployee?.hireDate) : '');
+    final hireDate = HireDateInput.dirty(loadedEmployee?.hireDate != null ? loadedEmployee?.hireDate : DateTime.now());
     final salary = SalaryInput.dirty(loadedEmployee?.salary != null ? loadedEmployee.salary: 0);
     final commissionPct = CommissionPctInput.dirty(loadedEmployee?.commissionPct != null ? loadedEmployee.commissionPct: 0);
 
