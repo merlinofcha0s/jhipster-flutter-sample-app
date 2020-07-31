@@ -10,4 +10,5 @@ class JhipsterfluttersampleKeys {
   static const employeeListScreen = Key('__employeeListScreen__');
   static const employeeCreateScreen = Key('__employeeCreateScreen__');
   static const employeeEditScreen = Key('__employeeEditScreen__');
+  static const employeeViewScreen = Key('__employeeViewScreen__');
 }

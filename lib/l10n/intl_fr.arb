@@ -55,6 +55,7 @@
   "pageEntitiesEmployeeCreateTitle": "Créer Employees",
   "pageEntitiesEmployeeUpdateTitle": "Editer Employees",
   "pageEntitiesEmployeeDeletePopupTitle": "Suppression Employee",
+  "pageEntitiesEmployeeViewTitle": "Voir Employee",
   "pageEntitiesEmployeeFirstnameField": "Firstname",
   "pageEntitiesEmployeeLastnameField": "Lastname",
   "pageEntitiesEmployeeEmailField": "Email",

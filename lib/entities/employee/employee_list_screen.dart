@@ -38,7 +38,7 @@ class EmployeeListScreen extends StatelessWidget {
               buildWhen: (previous, current) => previous.employees != current.employees,
               builder: (context, state) {
                 return Visibility(
-                  visible: state.employeeListStatusUI == EmployeeListStatusUI.done,
+                  visible: state.employeeListStatusUI == EmployeeStatusUI.done,
                   replacement: LoadingIndicator(),
                   child: Column(children: <Widget>[
                     for (Employee employee in state.employees) employeeCard(employee, context)
@@ -75,7 +75,11 @@ class EmployeeListScreen extends StatelessWidget {
               children: <Widget>[
                 FlatButton(
                   child: Text(S.of(context).entityActionView),
-                  onPressed: () {/* ... */},
+                  onPressed: () => Navigator.pushNamed(
+                      context,
+                      JhipsterfluttersampleRoutes.entitiesEmployeeView,
+                      arguments: EntityArguments(employee.id)
+                  ),
                 ),
                 FlatButton(
                   child: Text(S.of(context).entityActionEdit),

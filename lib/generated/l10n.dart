@@ -643,6 +643,16 @@ class S {
     );
   }
 
+  /// `Employees view`
+  String get pageEntitiesEmployeeViewTitle {
+    return Intl.message(
+      'Employees view',
+      name: 'pageEntitiesEmployeeViewTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Firstname`
   String get pageEntitiesEmployeeFirstnameField {
     return Intl.message(

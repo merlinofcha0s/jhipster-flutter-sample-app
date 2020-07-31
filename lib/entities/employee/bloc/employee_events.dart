@@ -78,10 +78,10 @@ class CommissionPctChanged extends EmployeeEvent {
 
 class EmployeeFormSubmitted extends EmployeeEvent {}
 
-class LoadEmployeeById extends EmployeeEvent {
+class LoadEmployeeByIdForEdit extends EmployeeEvent {
   final int id;
 
-  const LoadEmployeeById({@required this.id});
+  const LoadEmployeeByIdForEdit({@required this.id});
 
   @override
   List<Object> get props => [id];
@@ -91,6 +91,15 @@ class DeleteEmployeeById extends EmployeeEvent {
   final int id;
 
   const DeleteEmployeeById({@required this.id});
+
+  @override
+  List<Object> get props => [id];
+}
+
+class LoadEmployeeByIdForView extends EmployeeEvent {
+  final int id;
+
+  const LoadEmployeeByIdForView({@required this.id});
 
   @override
   List<Object> get props => [id];

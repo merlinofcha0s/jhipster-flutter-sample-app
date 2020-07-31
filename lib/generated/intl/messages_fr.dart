@@ -62,6 +62,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageEntitiesEmployeeSubmitCreate" : MessageLookupByLibrary.simpleMessage("Créer"),
     "pageEntitiesEmployeeSubmitEdit" : MessageLookupByLibrary.simpleMessage("Editer"),
     "pageEntitiesEmployeeUpdateTitle" : MessageLookupByLibrary.simpleMessage("Editer Employees"),
+    "pageEntitiesEmployeeViewTitle" : MessageLookupByLibrary.simpleMessage("Voir Employee"),
     "pageLoginBar" : MessageLookupByLibrary.simpleMessage("Se connecter"),
     "pageLoginErrorAuthentication" : MessageLookupByLibrary.simpleMessage("Un problème est survenu, veuillez vérifier vos identifiants"),
     "pageLoginLoginButton" : MessageLookupByLibrary.simpleMessage("S\'identifier"),

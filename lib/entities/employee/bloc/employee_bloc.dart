@@ -54,17 +54,19 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
       yield* onCommissionChange(event);
     } else if (event is EmployeeFormSubmitted) {
       yield* onSubmit();
-    } else if (event is LoadEmployeeById) {
-      yield* onLoadEmployeeId(event);
+    } else if (event is LoadEmployeeByIdForEdit) {
+      yield* onLoadEmployeeIdForEdit(event);
     } else if (event is DeleteEmployeeById) {
       yield* onDeleteEmployeeId(event);
+    } else if (event is LoadEmployeeByIdForView) {
+      yield* onLoadEmployeeIdForView(event);
     }
   }
 
   Stream<EmployeeState> onInitList(InitList event) async* {
-    yield state.copyWith(employeeStatusUI: EmployeeListStatusUI.loading);
+    yield state.copyWith(employeeStatusUI: EmployeeStatusUI.loading);
     List<Employee> employees = await _employeeRepository.getAllEmployees();
-    yield state.copyWith(employees: employees, employeeStatusUI: EmployeeListStatusUI.done);
+    yield state.copyWith(employees: employees, employeeStatusUI: EmployeeStatusUI.done);
   }
 
   Stream<EmployeeState> onFirstnameChange(FirstnameChanged event) async* {
@@ -163,7 +165,8 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     }
   }
 
-  Stream<EmployeeState> onLoadEmployeeId(LoadEmployeeById event) async* {
+  Stream<EmployeeState> onLoadEmployeeIdForEdit(LoadEmployeeByIdForEdit event) async* {
+    yield state.copyWith(employeeStatusUI: EmployeeStatusUI.loading);
     Employee loadedEmployee = await _employeeRepository.getEmployee(event.id);
 
     final firstname = FirstnameInput.dirty(loadedEmployee?.firstName != null ? loadedEmployee.firstName: '');
@@ -177,7 +180,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     yield state.copyWith(loadedEmployee: loadedEmployee, editMode: true,
         firstname: firstname, lastname: lastname, email: email,
         phoneNumber: phoneNumber, hireDate: hireDate, salary: salary,
-        commissionPct: commissionPct);
+        commissionPct: commissionPct, employeeStatusUI: EmployeeStatusUI.done);
 
     emailController.text = loadedEmployee.email;
     lastNameController.text = loadedEmployee.lastName;
@@ -190,12 +193,23 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
 
   Stream<EmployeeState> onDeleteEmployeeId(DeleteEmployeeById event) async* {
     try {
-      //await _employeeRepository.delete(event.id);
-      //this.add(InitList());
+      await _employeeRepository.delete(event.id);
+      this.add(InitList());
       yield state.copyWith(deleteStatus: EmployeeDeleteStatus.ok);
     } catch (e) {
       yield state.copyWith(deleteStatus: EmployeeDeleteStatus.ko,
           generalNotificationKey: HttpUtils.errorServerKey);
+    }
+    yield state.copyWith(deleteStatus: EmployeeDeleteStatus.none);
+  }
+
+  Stream<EmployeeState> onLoadEmployeeIdForView(LoadEmployeeByIdForView event) async* {
+    yield state.copyWith(employeeStatusUI: EmployeeStatusUI.loading);
+    try {
+      Employee loadedEmployee = await _employeeRepository.getEmployee(event.id);
+      yield state.copyWith(loadedEmployee: loadedEmployee, employeeStatusUI: EmployeeStatusUI.done);
+    } catch(e) {
+      yield state.copyWith(loadedEmployee: null, employeeStatusUI: EmployeeStatusUI.error);
     }
   }
 
@@ -210,4 +224,6 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     commissionController.dispose();
     return super.close();
   }
+
+
 }

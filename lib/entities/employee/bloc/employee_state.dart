@@ -1,6 +1,6 @@
 part of 'employee_bloc.dart';
 
-enum EmployeeListStatusUI {init, loading, done}
+enum EmployeeStatusUI {init, loading, error, done}
 enum EmployeeDeleteStatus {ok, ko, none}
 
 class EmployeeState extends Equatable {
@@ -8,7 +8,7 @@ class EmployeeState extends Equatable {
   final Employee loadedEmployee;
   final bool editMode;
   final EmployeeDeleteStatus deleteStatus;
-  final EmployeeListStatusUI employeeListStatusUI;
+  final EmployeeStatusUI employeeListStatusUI;
 
   final FirstnameInput firstname;
   final LastnameInput lastname;
@@ -24,7 +24,7 @@ class EmployeeState extends Equatable {
     this.employees = const [],
     this.loadedEmployee = const Employee(0, '', '', '', '', null, 0, 0),
     this.editMode = false,
-    this.employeeListStatusUI = EmployeeListStatusUI.init,
+    this.employeeListStatusUI = EmployeeStatusUI.init,
     this.firstname = const FirstnameInput.pure(),
     this.lastname = const LastnameInput.pure(),
     this.email = const EmailInput.pure(),
@@ -41,7 +41,7 @@ class EmployeeState extends Equatable {
     List<Employee> employees,
     Employee loadedEmployee,
     bool editMode,
-    EmployeeListStatusUI employeeStatusUI,
+    EmployeeStatusUI employeeStatusUI,
     FirstnameInput firstname,
     LastnameInput lastname,
     EmailInput email,

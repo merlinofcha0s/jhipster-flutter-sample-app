@@ -7,6 +7,7 @@ import 'package:jhipsterfluttersample/entities/employee/bloc/employee_bloc.dart'
 import 'package:jhipsterfluttersample/entities/employee/employee_update_screen.dart';
 import 'package:jhipsterfluttersample/entities/employee/employee_list_screen.dart';
 import 'package:jhipsterfluttersample/entities/employee/employee_repository.dart';
+import 'package:jhipsterfluttersample/entities/employee/employee_view_screen.dart';
 import 'package:jhipsterfluttersample/main/bloc/main_bloc.dart';
 import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/main/main_screen.dart';
@@ -68,8 +69,15 @@ class JhipsterfluttersampleApp extends StatelessWidget {
           EntityArguments arguments = ModalRoute.of(context).settings.arguments;
           return BlocProvider<EmployeeBloc>(
               create: (context) => EmployeeBloc(employeeRepository: EmployeeRepository())
-                ..add(LoadEmployeeById(id: arguments.id)),
+                ..add(LoadEmployeeByIdForEdit(id: arguments.id)),
               child: EmployeeUpdateScreen());
+        },
+        JhipsterfluttersampleRoutes.entitiesEmployeeView: (context) {
+          EntityArguments arguments = ModalRoute.of(context).settings.arguments;
+          return BlocProvider<EmployeeBloc>(
+              create: (context) => EmployeeBloc(employeeRepository: EmployeeRepository())
+                ..add(LoadEmployeeByIdForView(id: arguments.id)),
+              child: EmployeeViewScreen());
         },
       },
         localizationsDelegates: [

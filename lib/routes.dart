@@ -6,4 +6,5 @@ class JhipsterfluttersampleRoutes {
   static final entitiesEmployeeList = '/entities/employee-list';
   static final entitiesEmployeeCreate = '/entities/employee-create';
   static final entitiesEmployeeEdit = '/entities/employee-edit';
+  static final entitiesEmployeeView = '/entities/employee-view';
 }

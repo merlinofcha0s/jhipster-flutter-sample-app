@@ -60,6 +60,7 @@
   "pageEntitiesEmployeeCreateTitle": "Create Employees",
   "pageEntitiesEmployeeUpdateTitle": "Edit Employees",
   "pageEntitiesEmployeeDeletePopupTitle": "Delete employee",
+  "pageEntitiesEmployeeViewTitle": "Employees view",
   "pageEntitiesEmployeeFirstnameField": "Firstname",
   "pageEntitiesEmployeeLastnameField": "Lastname",
   "pageEntitiesEmployeeEmailField": "Email",
