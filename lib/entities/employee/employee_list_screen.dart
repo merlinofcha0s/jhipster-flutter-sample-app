@@ -38,7 +38,7 @@ class EmployeeListScreen extends StatelessWidget {
               buildWhen: (previous, current) => previous.employees != current.employees,
               builder: (context, state) {
                 return Visibility(
-                  visible: state.employeeListStatusUI == EmployeeStatusUI.done,
+                  visible: state.employeeStatusUI == EmployeeStatusUI.done,
                   replacement: LoadingIndicator(),
                   child: Column(children: <Widget>[
                     for (Employee employee in state.employees) employeeCard(employee, context)

@@ -59,8 +59,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "pageEntitiesEmployeeListTitle" : MessageLookupByLibrary.simpleMessage("Liste Employees"),
     "pageEntitiesEmployeePhoneNumberField" : MessageLookupByLibrary.simpleMessage("Phone number"),
     "pageEntitiesEmployeeSalaryField" : MessageLookupByLibrary.simpleMessage("Salary"),
-    "pageEntitiesEmployeeSubmitCreate" : MessageLookupByLibrary.simpleMessage("Créer"),
-    "pageEntitiesEmployeeSubmitEdit" : MessageLookupByLibrary.simpleMessage("Editer"),
     "pageEntitiesEmployeeUpdateTitle" : MessageLookupByLibrary.simpleMessage("Editer Employees"),
     "pageEntitiesEmployeeViewTitle" : MessageLookupByLibrary.simpleMessage("Voir Employee"),
     "pageLoginBar" : MessageLookupByLibrary.simpleMessage("Se connecter"),

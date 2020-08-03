@@ -201,8 +201,8 @@ class EmployeeUpdateScreen extends StatelessWidget {
         buildWhen: (previous, current) => previous.formStatus != current.formStatus,
         builder: (context, state) {
           String buttonLabel = state.editMode == true ?
-          S.of(context).pageEntitiesEmployeeSubmitEdit.toUpperCase() :
-          S.of(context).pageEntitiesEmployeeSubmitCreate.toUpperCase();
+          S.of(context).entityActionEdit.toUpperCase() :
+          S.of(context).entityActionCreate.toUpperCase();
           return RaisedButton(
             child: Container(
                 width: MediaQuery.of(context).size.width,

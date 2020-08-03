@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jhipsterfluttersample/account/login/login_repository.dart';
 import 'package:jhipsterfluttersample/entities/employee/bloc/employee_bloc.dart';
 import 'package:jhipsterfluttersample/entities/employee/employee_model.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
@@ -10,7 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:jhipsterfluttersample/shared/widgets/loading_indicator_widget.dart';
 
 class EmployeeViewScreen extends StatelessWidget {
-  EmployeeViewScreen({Key key}) : super(key: JhipsterfluttersampleKeys.employeeListScreen);
+  EmployeeViewScreen({Key key}) : super(key: JhipsterfluttersampleKeys.employeeViewScreen);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +24,7 @@ class EmployeeViewScreen extends StatelessWidget {
               buildWhen: (previous, current) => previous.loadedEmployee != current.loadedEmployee,
               builder: (context, state) {
                 return Visibility(
-                  visible: state.employeeListStatusUI == EmployeeStatusUI.done,
+                  visible: state.employeeStatusUI == EmployeeStatusUI.done,
                   replacement: LoadingIndicator(),
                   child: Column(children: <Widget>[
                     employeeCard(state.loadedEmployee, context)

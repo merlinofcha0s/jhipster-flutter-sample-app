@@ -723,26 +723,6 @@ class S {
     );
   }
 
-  /// `Create`
-  String get pageEntitiesEmployeeSubmitCreate {
-    return Intl.message(
-      'Create',
-      name: 'pageEntitiesEmployeeSubmitCreate',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Edit`
-  String get pageEntitiesEmployeeSubmitEdit {
-    return Intl.message(
-      'Edit',
-      name: 'pageEntitiesEmployeeSubmitEdit',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Employee deleted successfuly`
   String get pageEntitiesEmployeeDeleteOk {
     return Intl.message(

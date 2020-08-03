@@ -8,7 +8,7 @@ class EmployeeState extends Equatable {
   final Employee loadedEmployee;
   final bool editMode;
   final EmployeeDeleteStatus deleteStatus;
-  final EmployeeStatusUI employeeListStatusUI;
+  final EmployeeStatusUI employeeStatusUI;
 
   final FirstnameInput firstname;
   final LastnameInput lastname;
@@ -25,7 +25,7 @@ class EmployeeState extends Equatable {
     this.employees = const [],
     this.loadedEmployee = const Employee(0, '', '', '', '', null, 0, 0),
     this.editMode = false,
-    this.employeeListStatusUI = EmployeeStatusUI.init,
+    this.employeeStatusUI = EmployeeStatusUI.init,
     this.firstname = const FirstnameInput.pure(),
     this.lastname = const LastnameInput.pure(),
     this.email = const EmailInput.pure(),
@@ -58,7 +58,7 @@ class EmployeeState extends Equatable {
       employees: employees ?? this.employees,
       loadedEmployee: loadedEmployee ?? this.loadedEmployee,
       editMode: editMode ?? this.editMode,
-      employeeListStatusUI: employeeStatusUI ?? this.employeeListStatusUI,
+      employeeStatusUI: employeeStatusUI ?? this.employeeStatusUI,
       firstname: firstname ?? this.firstname,
       lastname: lastname ?? this.lastname,
       email: email ?? this.email,
@@ -72,7 +72,7 @@ class EmployeeState extends Equatable {
   }
 
   @override
-  List<Object> get props => [employees, employeeListStatusUI, firstname, lastname,
+  List<Object> get props => [employees, employeeStatusUI, firstname, lastname,
     email, phoneNumber, hireDate, salary, commissionPct, formStatus, generalNotificationKey,
     loadedEmployee, editMode, deleteStatus];
 
