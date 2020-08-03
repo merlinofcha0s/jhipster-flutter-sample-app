@@ -1,4 +1,5 @@
 import 'package:formz/formz.dart';
+import 'package:jhipsterfluttersample/entities/employee/employee_model.dart';
 
 enum FirstnameValidationError { invalid }
 
@@ -82,6 +83,18 @@ class CommissionPctInput extends FormzInput<int, CommissionValidationError> {
 
   @override
   CommissionValidationError validator(int value) {
+    return null;
+  }
+}
+
+enum LanguageValidationError { invalid }
+
+class LanguageInput extends FormzInput<Language, LanguageValidationError> {
+  const LanguageInput.pure() : super.pure(Language.ENGLISH);
+  const LanguageInput.dirty([Language value]) : super.dirty(value);
+
+  @override
+  LanguageValidationError validator(Language value) {
     return null;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jhipsterfluttersample/entities/employee/bloc/employee_bloc.dart';
+import 'package:jhipsterfluttersample/entities/employee/employee_model.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/keys.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,7 @@ class EmployeeUpdateScreen extends StatelessWidget {
         hireDateField(),
         salaryField(),
         commissionField(),
+        languageField(),
         validationZone(),
         submit(context)
       ]),
@@ -162,6 +164,38 @@ class EmployeeUpdateScreen extends StatelessWidget {
                 labelText: S.of(context).pageEntitiesEmployeeCommissionField,));
         }
     );
+  }
+
+  Widget languageField() {
+    return BlocBuilder<EmployeeBloc, EmployeeState>(
+        buildWhen: (previous, current) => previous.language != current.language,
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 3.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(S.of(context).pageSettingsFormLanguages, style: Theme.of(context).textTheme.bodyText1,),
+                DropdownButton<Language>(
+                    value: state.language.value,
+                    onChanged: (value) { context.bloc<EmployeeBloc>().add(LanguageChanged(language: value)); },
+                    items: createDropdownLanguageItems(Language.values)),
+              ],
+            ),
+          );
+        });
+  }
+
+  List<DropdownMenuItem<Language>> createDropdownLanguageItems(List<Language> languages) {
+    List<DropdownMenuItem<Language>> languageDropDown = [];
+
+    for (Language language in languages) {
+      DropdownMenuItem<Language> drop = DropdownMenuItem<Language>(
+          value: language, child: Text(language.toString()));
+      languageDropDown.add(drop);
+    }
+
+    return languageDropDown;
   }
 
   Widget validationZone() {

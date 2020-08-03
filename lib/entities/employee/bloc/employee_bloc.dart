@@ -52,6 +52,8 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
       yield* onSalaryChange(event);
     } else if (event is CommissionPctChanged) {
       yield* onCommissionChange(event);
+    } else if (event is LanguageChanged) {
+      yield* onLanguageChange(event);
     } else if (event is EmployeeFormSubmitted) {
       yield* onSubmit();
     } else if (event is LoadEmployeeByIdForEdit) {
@@ -132,6 +134,15 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     );
   }
 
+  Stream<EmployeeState> onLanguageChange(LanguageChanged event) async* {
+    final language = LanguageInput.dirty(event.language);
+    yield state.copyWith(
+      language: language,
+      formStatus: Formz.validate([state.firstname, state.lastname, state.email, state.commissionPct,
+        state.salary, state.phoneNumber, state.hireDate]),
+    );
+  }
+
   Stream<EmployeeState> onSubmit() async* {
     if (state.formStatus.isValidated) {
       yield state.copyWith(formStatus: FormzStatus.submissionInProgress);
@@ -140,13 +151,13 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
         if(state.editMode) {
           Employee newEmployee = Employee(state.loadedEmployee.id, state.firstname.value, state.lastname.value,
               state.email.value, state.phoneNumber.value, state.hireDate.value, state.salary.value,
-              state.commissionPct.value);
+              state.commissionPct.value, state.language.value);
 
           result = await _employeeRepository.update(newEmployee);
         } else {
-          Employee newEmployee = Employee(0, state.firstname.value, state.lastname.value,
+          Employee newEmployee = Employee(null, state.firstname.value, state.lastname.value,
               state.email.value, state.phoneNumber.value, state.hireDate.value, state.salary.value,
-              state.commissionPct.value);
+              state.commissionPct.value, state.language.value);
 
           result = await _employeeRepository.create(newEmployee);
         }
@@ -224,6 +235,5 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     commissionController.dispose();
     return super.close();
   }
-
 
 }

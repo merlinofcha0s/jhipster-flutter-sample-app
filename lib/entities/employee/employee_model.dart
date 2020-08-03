@@ -27,8 +27,11 @@ class Employee {
   @JsonProperty(name: 'commissionPct')
   final int commissionPct;
 
+  @JsonProperty(name: 'language')
+  final Language language;
+
   const Employee(this.id, this.firstName, this.lastName, this.email, this.phoneNumber,
-      this.hireDate, this.salary, this.commissionPct);
+      this.hireDate, this.salary, this.commissionPct, this.language);
 
   @override
   String toString() {
@@ -54,4 +57,12 @@ class Employee {
       hireDate.hashCode ^
       salary.hashCode ^
       commissionPct.hashCode;
+}
+
+@jsonSerializable
+@Json(enumValues: Language.values)
+enum Language {
+  FRENCH ,
+  ENGLISH ,
+  SPANISH
 }

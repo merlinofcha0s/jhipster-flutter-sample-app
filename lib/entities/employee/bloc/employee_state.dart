@@ -17,13 +17,14 @@ class EmployeeState extends Equatable {
   final HireDateInput hireDate;
   final SalaryInput salary;
   final CommissionPctInput commissionPct;
+  final LanguageInput language;
   final FormzStatus formStatus;
   final String generalNotificationKey;
 
   EmployeeState(
       HireDateInput hiredate, {
     this.employees = const [],
-    this.loadedEmployee = const Employee(0, '', '', '', '', null, 0, 0),
+    this.loadedEmployee = const Employee(0, '', '', '', '', null, 0, 0, null),
     this.editMode = false,
     this.employeeStatusUI = EmployeeStatusUI.init,
     this.firstname = const FirstnameInput.pure(),
@@ -32,6 +33,7 @@ class EmployeeState extends Equatable {
     this.phoneNumber = const PhoneNumberInput.pure(),
     this.salary = const SalaryInput.pure(),
     this.commissionPct = const CommissionPctInput.pure(),
+        this.language = const LanguageInput.pure(),
     this.formStatus = FormzStatus.pure,
     this.generalNotificationKey = '',
     this.deleteStatus = EmployeeDeleteStatus.none,
@@ -49,6 +51,7 @@ class EmployeeState extends Equatable {
     HireDateInput hireDate,
     SalaryInput salary,
     CommissionPctInput commissionPct,
+    LanguageInput language,
     FormzStatus formStatus,
     String generalNotificationKey,
     EmployeeDeleteStatus deleteStatus
@@ -65,6 +68,7 @@ class EmployeeState extends Equatable {
       phoneNumber: phoneNumber ?? this.phoneNumber,
       salary: salary ?? this.salary,
       commissionPct: commissionPct ?? this.commissionPct,
+        language: language ?? this.language,
       formStatus: formStatus ?? this.formStatus,
       generalNotificationKey: generalNotificationKey ?? this.generalNotificationKey,
       deleteStatus: deleteStatus ?? this.deleteStatus
@@ -74,7 +78,7 @@ class EmployeeState extends Equatable {
   @override
   List<Object> get props => [employees, employeeStatusUI, firstname, lastname,
     email, phoneNumber, hireDate, salary, commissionPct, formStatus, generalNotificationKey,
-    loadedEmployee, editMode, deleteStatus];
+    loadedEmployee, editMode, deleteStatus, language];
 
   @override
   bool get stringify => true;

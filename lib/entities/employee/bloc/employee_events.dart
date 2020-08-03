@@ -105,3 +105,13 @@ class LoadEmployeeByIdForView extends EmployeeEvent {
   List<Object> get props => [id];
 }
 
+class LanguageChanged extends EmployeeEvent {
+  final Language language;
+
+  const LanguageChanged({@required this.language});
+
+  @override
+  List<Object> get props => [language];
+}
+
+
