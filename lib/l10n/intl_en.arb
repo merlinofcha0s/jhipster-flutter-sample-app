@@ -68,5 +68,7 @@
   "pageEntitiesEmployeeHireDateField": "Hire date",
   "pageEntitiesEmployeeSalaryField": "Salary",
   "pageEntitiesEmployeeCommissionField": "Commission",
+  "pageEntitiesEmployeeLanguageField": "Languages",
+  "pageEntitiesEmployeeRightField": "Right",
   "pageEntitiesEmployeeDeleteOk": "Employee deleted successfuly"
 }

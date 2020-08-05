@@ -18,13 +18,14 @@ class EmployeeState extends Equatable {
   final SalaryInput salary;
   final CommissionPctInput commissionPct;
   final LanguageInput language;
+  final RightInput isRight;
   final FormzStatus formStatus;
   final String generalNotificationKey;
 
   EmployeeState(
       HireDateInput hiredate, {
     this.employees = const [],
-    this.loadedEmployee = const Employee(0, '', '', '', '', null, 0, 0, null),
+    this.loadedEmployee = const Employee(0, '', '', '', '', null, 0, 0, null, false),
     this.editMode = false,
     this.employeeStatusUI = EmployeeStatusUI.init,
     this.firstname = const FirstnameInput.pure(),
@@ -37,6 +38,7 @@ class EmployeeState extends Equatable {
     this.formStatus = FormzStatus.pure,
     this.generalNotificationKey = '',
     this.deleteStatus = EmployeeDeleteStatus.none,
+        this.isRight = const RightInput.pure(),
   }) : this.hireDate = hiredate ?? HireDateInput.pure();
 
   EmployeeState copyWith({
@@ -52,6 +54,7 @@ class EmployeeState extends Equatable {
     SalaryInput salary,
     CommissionPctInput commissionPct,
     LanguageInput language,
+    RightInput isRight,
     FormzStatus formStatus,
     String generalNotificationKey,
     EmployeeDeleteStatus deleteStatus
@@ -69,6 +72,7 @@ class EmployeeState extends Equatable {
       salary: salary ?? this.salary,
       commissionPct: commissionPct ?? this.commissionPct,
         language: language ?? this.language,
+      isRight: isRight ?? this.isRight,
       formStatus: formStatus ?? this.formStatus,
       generalNotificationKey: generalNotificationKey ?? this.generalNotificationKey,
       deleteStatus: deleteStatus ?? this.deleteStatus
@@ -78,7 +82,7 @@ class EmployeeState extends Equatable {
   @override
   List<Object> get props => [employees, employeeStatusUI, firstname, lastname,
     email, phoneNumber, hireDate, salary, commissionPct, formStatus, generalNotificationKey,
-    loadedEmployee, editMode, deleteStatus, language];
+    loadedEmployee, editMode, deleteStatus, language, isRight];
 
   @override
   bool get stringify => true;

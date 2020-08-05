@@ -54,6 +54,8 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
       yield* onCommissionChange(event);
     } else if (event is LanguageChanged) {
       yield* onLanguageChange(event);
+    } else if (event is RightChanged) {
+      yield* onRightChanged(event);
     } else if (event is EmployeeFormSubmitted) {
       yield* onSubmit();
     } else if (event is LoadEmployeeByIdForEdit) {
@@ -143,6 +145,15 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     );
   }
 
+  Stream<EmployeeState> onRightChanged(RightChanged event) async* {
+    final isRight = RightInput.dirty(event.right);
+    yield state.copyWith(
+      isRight: isRight,
+      formStatus: Formz.validate([state.firstname, state.lastname, state.email, state.commissionPct,
+        state.salary, state.phoneNumber, state.hireDate]),
+    );
+  }
+
   Stream<EmployeeState> onSubmit() async* {
     if (state.formStatus.isValidated) {
       yield state.copyWith(formStatus: FormzStatus.submissionInProgress);
@@ -151,13 +162,13 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
         if(state.editMode) {
           Employee newEmployee = Employee(state.loadedEmployee.id, state.firstname.value, state.lastname.value,
               state.email.value, state.phoneNumber.value, state.hireDate.value, state.salary.value,
-              state.commissionPct.value, state.language.value);
+              state.commissionPct.value, state.language.value, state.isRight.value);
 
           result = await _employeeRepository.update(newEmployee);
         } else {
           Employee newEmployee = Employee(null, state.firstname.value, state.lastname.value,
               state.email.value, state.phoneNumber.value, state.hireDate.value, state.salary.value,
-              state.commissionPct.value, state.language.value);
+              state.commissionPct.value, state.language.value, state.isRight.value);
 
           result = await _employeeRepository.create(newEmployee);
         }
@@ -235,5 +246,7 @@ class EmployeeBloc extends Bloc<EmployeeEvent, EmployeeState> {
     commissionController.dispose();
     return super.close();
   }
+
+
 
 }

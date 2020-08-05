@@ -114,4 +114,14 @@ class LanguageChanged extends EmployeeEvent {
   List<Object> get props => [language];
 }
 
+class RightChanged extends EmployeeEvent {
+  final bool right;
+
+  const RightChanged({@required this.right});
+
+  @override
+  List<Object> get props => [right];
+}
+
+
 

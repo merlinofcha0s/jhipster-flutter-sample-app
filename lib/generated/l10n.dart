@@ -723,6 +723,26 @@ class S {
     );
   }
 
+  /// `Languages`
+  String get pageEntitiesEmployeeLanguageField {
+    return Intl.message(
+      'Languages',
+      name: 'pageEntitiesEmployeeLanguageField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Right`
+  String get pageEntitiesEmployeeRightField {
+    return Intl.message(
+      'Right',
+      name: 'pageEntitiesEmployeeRightField',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Employee deleted successfuly`
   String get pageEntitiesEmployeeDeleteOk {
     return Intl.message(

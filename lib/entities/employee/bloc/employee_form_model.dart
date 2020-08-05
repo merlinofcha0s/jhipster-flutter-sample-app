@@ -98,3 +98,16 @@ class LanguageInput extends FormzInput<Language, LanguageValidationError> {
     return null;
   }
 }
+
+enum RightValidationError { invalid }
+
+class RightInput extends FormzInput<bool, LanguageValidationError> {
+  const RightInput.pure() : super.pure(false);
+  const RightInput.dirty([bool value]) : super.dirty(value);
+
+  @override
+  LanguageValidationError validator(bool value) {
+    return null;
+  }
+}
+

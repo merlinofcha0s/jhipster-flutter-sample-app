@@ -57,6 +57,7 @@ class EmployeeViewScreen extends StatelessWidget {
             Text('Phone Number : ' + employee.phoneNumber, style: Theme.of(context).textTheme.bodyText1,),
             Text('Salary : ' + employee.salary.toString(), style: Theme.of(context).textTheme.bodyText1,),
             Text('CommissionPct : ' + employee.commissionPct.toString(), style: Theme.of(context).textTheme.bodyText1,),
+            Text('isRight : ' + employee.isRight.toString(), style: Theme.of(context).textTheme.bodyText1,),
           ],
         ),
       ),

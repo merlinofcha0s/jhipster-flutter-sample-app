@@ -52,6 +52,7 @@ class EmployeeUpdateScreen extends StatelessWidget {
         salaryField(),
         commissionField(),
         languageField(),
+        rightField(),
         validationZone(),
         submit(context)
       ]),
@@ -175,7 +176,7 @@ class EmployeeUpdateScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(S.of(context).pageSettingsFormLanguages, style: Theme.of(context).textTheme.bodyText1,),
+                Text(S.of(context).pageEntitiesEmployeeLanguageField, style: Theme.of(context).textTheme.bodyText1,),
                 DropdownButton<Language>(
                     value: state.language.value,
                     onChanged: (value) { context.bloc<EmployeeBloc>().add(LanguageChanged(language: value)); },
@@ -185,6 +186,7 @@ class EmployeeUpdateScreen extends StatelessWidget {
           );
         });
   }
+
 
   List<DropdownMenuItem<Language>> createDropdownLanguageItems(List<Language> languages) {
     List<DropdownMenuItem<Language>> languageDropDown = [];
@@ -196,6 +198,27 @@ class EmployeeUpdateScreen extends StatelessWidget {
     }
 
     return languageDropDown;
+  }
+
+  Widget rightField() {
+    return BlocBuilder<EmployeeBloc, EmployeeState>(
+        buildWhen: (previous, current) => previous.isRight != current.isRight,
+        builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.only(left: 3.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(S.of(context).pageEntitiesEmployeeRightField, style: Theme.of(context).textTheme.bodyText1,),
+                Switch(
+                    value: state.isRight.value,
+                    onChanged: (value) { context.bloc<EmployeeBloc>().add(RightChanged(right: value)); },
+                  activeColor: Theme.of(context).primaryColor,
+                )
+              ],
+            ),
+          );
+        });
   }
 
   Widget validationZone() {

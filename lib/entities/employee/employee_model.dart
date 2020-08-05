@@ -30,8 +30,11 @@ class Employee {
   @JsonProperty(name: 'language')
   final Language language;
 
+  @JsonProperty(name: 'isRight')
+  final bool isRight;
+
   const Employee(this.id, this.firstName, this.lastName, this.email, this.phoneNumber,
-      this.hireDate, this.salary, this.commissionPct, this.language);
+      this.hireDate, this.salary, this.commissionPct, this.language, this.isRight);
 
   @override
   String toString() {
