@@ -522,6 +522,236 @@ class S {
       args: [],
     );
   }
+
+  /// `Loading...`
+  String get loadingLabel {
+    return Intl.message(
+      'Loading...',
+      name: 'loadingLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View`
+  String get entityActionView {
+    return Intl.message(
+      'View',
+      name: 'entityActionView',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get entityActionEdit {
+    return Intl.message(
+      'Edit',
+      name: 'entityActionEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get entityActionCreate {
+    return Intl.message(
+      'Create',
+      name: 'entityActionCreate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get entityActionDelete {
+    return Intl.message(
+      'Delete',
+      name: 'entityActionDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure?`
+  String get entityActionConfirmDelete {
+    return Intl.message(
+      'Are you sure?',
+      name: 'entityActionConfirmDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get entityActionConfirmDeleteYes {
+    return Intl.message(
+      'Yes',
+      name: 'entityActionConfirmDeleteYes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get entityActionConfirmDeleteNo {
+    return Intl.message(
+      'No',
+      name: 'entityActionConfirmDeleteNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employees list`
+  String get pageEntitiesEmployeeListTitle {
+    return Intl.message(
+      'Employees list',
+      name: 'pageEntitiesEmployeeListTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Employees`
+  String get pageEntitiesEmployeeCreateTitle {
+    return Intl.message(
+      'Create Employees',
+      name: 'pageEntitiesEmployeeCreateTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Employees`
+  String get pageEntitiesEmployeeUpdateTitle {
+    return Intl.message(
+      'Edit Employees',
+      name: 'pageEntitiesEmployeeUpdateTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete employee`
+  String get pageEntitiesEmployeeDeletePopupTitle {
+    return Intl.message(
+      'Delete employee',
+      name: 'pageEntitiesEmployeeDeletePopupTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employees view`
+  String get pageEntitiesEmployeeViewTitle {
+    return Intl.message(
+      'Employees view',
+      name: 'pageEntitiesEmployeeViewTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Firstname`
+  String get pageEntitiesEmployeeFirstnameField {
+    return Intl.message(
+      'Firstname',
+      name: 'pageEntitiesEmployeeFirstnameField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lastname`
+  String get pageEntitiesEmployeeLastnameField {
+    return Intl.message(
+      'Lastname',
+      name: 'pageEntitiesEmployeeLastnameField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get pageEntitiesEmployeeEmailField {
+    return Intl.message(
+      'Email',
+      name: 'pageEntitiesEmployeeEmailField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number`
+  String get pageEntitiesEmployeePhoneNumberField {
+    return Intl.message(
+      'Phone number',
+      name: 'pageEntitiesEmployeePhoneNumberField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hire date`
+  String get pageEntitiesEmployeeHireDateField {
+    return Intl.message(
+      'Hire date',
+      name: 'pageEntitiesEmployeeHireDateField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Salary`
+  String get pageEntitiesEmployeeSalaryField {
+    return Intl.message(
+      'Salary',
+      name: 'pageEntitiesEmployeeSalaryField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Commission`
+  String get pageEntitiesEmployeeCommissionField {
+    return Intl.message(
+      'Commission',
+      name: 'pageEntitiesEmployeeCommissionField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Languages`
+  String get pageEntitiesEmployeeLanguageField {
+    return Intl.message(
+      'Languages',
+      name: 'pageEntitiesEmployeeLanguageField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Right`
+  String get pageEntitiesEmployeeRightField {
+    return Intl.message(
+      'Right',
+      name: 'pageEntitiesEmployeeRightField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee deleted successfuly`
+  String get pageEntitiesEmployeeDeleteOk {
+    return Intl.message(
+      'Employee deleted successfuly',
+      name: 'pageEntitiesEmployeeDeleteOk',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
