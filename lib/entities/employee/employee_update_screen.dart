@@ -2,23 +2,22 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jhipsterfluttersample/entities/employee/bloc/employee_bloc.dart';
 import 'package:jhipsterfluttersample/entities/employee/employee_model.dart';
+import 'package:jhipsterfluttersample/entities/employee/employee_route.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
-import 'package:jhipsterfluttersample/keys.dart';
 import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
-import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/repository/http_utils.dart';
 
 class EmployeeUpdateScreen extends StatelessWidget {
-  EmployeeUpdateScreen({Key key}) : super(key: JhipsterfluttersampleKeys.employeeCreateScreen);
+  EmployeeUpdateScreen({Key key}) : super(key: EmployeeRoutes.editScreenKey);
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<EmployeeBloc, EmployeeState>(
       listener: (context, state) {
         if(state.formStatus.isSubmissionSuccess){
-          Navigator.pushNamed(context, JhipsterfluttersampleRoutes.entitiesEmployeeList);
+          Navigator.pushNamed(context, EmployeeRoutes.list);
         }
       },
       child: Scaffold(

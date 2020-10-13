@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jhipsterfluttersample/entities/employee/employee_route.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
 import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/bloc/drawer_bloc.dart';
@@ -42,7 +43,7 @@ class JhipsterfluttersampleDrawer extends StatelessWidget {
             ListTile(
                 leading: Icon(Icons.label, size: iconSize,),
                 title: Text('Employees'),
-                onTap: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.entitiesEmployeeList),
+                onTap: () => Navigator.pushNamed(context, EmployeeRoutes.list),
             )
             // jhipster-merlin-needle-menu-entry-add
           ],

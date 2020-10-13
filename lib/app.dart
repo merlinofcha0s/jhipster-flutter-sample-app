@@ -3,20 +3,15 @@ import 'package:jhipsterfluttersample/account/login/bloc/login_bloc.dart';
 import 'package:jhipsterfluttersample/account/login/login_repository.dart';
 import 'package:jhipsterfluttersample/account/register/bloc/register_bloc.dart';
 import 'package:jhipsterfluttersample/account/settings/settings_screen.dart';
-import 'package:jhipsterfluttersample/entities/employee/bloc/employee_bloc.dart';
-import 'package:jhipsterfluttersample/entities/employee/employee_update_screen.dart';
-import 'package:jhipsterfluttersample/entities/employee/employee_list_screen.dart';
-import 'package:jhipsterfluttersample/entities/employee/employee_repository.dart';
-import 'package:jhipsterfluttersample/entities/employee/employee_view_screen.dart';
 import 'package:jhipsterfluttersample/main/bloc/main_bloc.dart';
-import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:jhipsterfluttersample/shared/models/entity_argument.dart';
+import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/repository/account_repository.dart';
 import 'package:jhipsterfluttersample/themes.dart';
 import 'account/settings/bloc/settings_bloc.dart';
+import 'entities/employee/employee_route.dart';
 import 'generated/l10n.dart';
 
 import 'account/login/login_screen.dart';
@@ -54,31 +49,7 @@ class JhipsterfluttersampleApp extends StatelessWidget {
                 ..add(LoadCurrentUser()),
               child: SettingsScreen());
         },
-        JhipsterfluttersampleRoutes.entitiesEmployeeList: (context) {
-          return BlocProvider<EmployeeBloc>(
-              create: (context) => EmployeeBloc(employeeRepository: EmployeeRepository())
-                ..add(InitList()),
-              child: EmployeeListScreen());
-        },
-        JhipsterfluttersampleRoutes.entitiesEmployeeCreate: (context) {
-          return BlocProvider<EmployeeBloc>(
-              create: (context) => EmployeeBloc(employeeRepository: EmployeeRepository()),
-              child: EmployeeUpdateScreen());
-        },
-        JhipsterfluttersampleRoutes.entitiesEmployeeEdit: (context) {
-          EntityArguments arguments = ModalRoute.of(context).settings.arguments;
-          return BlocProvider<EmployeeBloc>(
-              create: (context) => EmployeeBloc(employeeRepository: EmployeeRepository())
-                ..add(LoadEmployeeByIdForEdit(id: arguments.id)),
-              child: EmployeeUpdateScreen());
-        },
-        JhipsterfluttersampleRoutes.entitiesEmployeeView: (context) {
-          EntityArguments arguments = ModalRoute.of(context).settings.arguments;
-          return BlocProvider<EmployeeBloc>(
-              create: (context) => EmployeeBloc(employeeRepository: EmployeeRepository())
-                ..add(LoadEmployeeByIdForView(id: arguments.id)),
-              child: EmployeeViewScreen());
-        },
+        ...EmployeeRoutes.map
       },
         localizationsDelegates: [
           S.delegate,

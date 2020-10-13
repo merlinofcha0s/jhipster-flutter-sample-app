@@ -2,17 +2,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jhipsterfluttersample/account/login/login_repository.dart';
 import 'package:jhipsterfluttersample/entities/employee/bloc/employee_bloc.dart';
 import 'package:jhipsterfluttersample/entities/employee/employee_model.dart';
+import 'package:jhipsterfluttersample/entities/employee/employee_route.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
-import 'package:jhipsterfluttersample/keys.dart';
 import 'package:flutter/material.dart';
-import 'package:jhipsterfluttersample/routes.dart';
 import 'package:jhipsterfluttersample/shared/models/entity_argument.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/bloc/drawer_bloc.dart';
 import 'package:jhipsterfluttersample/shared/widgets/drawer/drawer_widget.dart';
 import 'package:jhipsterfluttersample/shared/widgets/loading_indicator_widget.dart';
 
 class EmployeeListScreen extends StatelessWidget {
-  EmployeeListScreen({Key key}) : super(key: JhipsterfluttersampleKeys.employeeListScreen);
+  EmployeeListScreen({Key key}) : super(key: EmployeeRoutes.listScreenKey);
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -51,7 +50,7 @@ class EmployeeListScreen extends StatelessWidget {
             create: (context) => DrawerBloc(loginRepository: LoginRepository()),
             child: JhipsterfluttersampleDrawer()),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.entitiesEmployeeCreate),
+          onPressed: () => Navigator.pushNamed(context, EmployeeRoutes.create),
           child: Icon(Icons.add, color: Theme.of(context).iconTheme.color,),
           backgroundColor: Theme.of(context).primaryColor,
         )
@@ -77,7 +76,7 @@ class EmployeeListScreen extends StatelessWidget {
                   child: Text(S.of(context).entityActionView),
                   onPressed: () => Navigator.pushNamed(
                       context,
-                      JhipsterfluttersampleRoutes.entitiesEmployeeView,
+                      EmployeeRoutes.view,
                       arguments: EntityArguments(employee.id)
                   ),
                 ),
@@ -85,7 +84,7 @@ class EmployeeListScreen extends StatelessWidget {
                   child: Text(S.of(context).entityActionEdit),
                   onPressed: () => Navigator.pushNamed(
                       context,
-                      JhipsterfluttersampleRoutes.entitiesEmployeeEdit,
+                      EmployeeRoutes.edit,
                       arguments: EntityArguments(employee.id)
                   ),
                 ),

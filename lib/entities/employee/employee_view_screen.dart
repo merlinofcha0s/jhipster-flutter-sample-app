@@ -1,15 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jhipsterfluttersample/entities/employee/bloc/employee_bloc.dart';
 import 'package:jhipsterfluttersample/entities/employee/employee_model.dart';
+import 'package:jhipsterfluttersample/entities/employee/employee_route.dart';
 import 'package:jhipsterfluttersample/generated/l10n.dart';
-import 'package:jhipsterfluttersample/keys.dart';
 import 'package:flutter/material.dart';
-import 'package:jhipsterfluttersample/routes.dart';
 import 'package:intl/intl.dart';
 import 'package:jhipsterfluttersample/shared/widgets/loading_indicator_widget.dart';
 
 class EmployeeViewScreen extends StatelessWidget {
-  EmployeeViewScreen({Key key}) : super(key: JhipsterfluttersampleKeys.employeeViewScreen);
+  EmployeeViewScreen({Key key}) : super(key: EmployeeRoutes.viewScreenKey);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class EmployeeViewScreen extends StatelessWidget {
             ),
           ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.pushNamed(context, JhipsterfluttersampleRoutes.entitiesEmployeeCreate),
+          onPressed: () => Navigator.pushNamed(context, EmployeeRoutes.create),
           child: Icon(Icons.add, color: Theme.of(context).iconTheme.color,),
           backgroundColor: Theme.of(context).primaryColor,
         )
