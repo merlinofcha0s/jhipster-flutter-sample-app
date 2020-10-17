@@ -1,12 +1,10 @@
 import 'package:jhipsterfluttersample/environment.dart';
 import 'package:flutter/material.dart';
 import 'app.dart';
-import 'main.reflectable.dart';
-import 'mapper.dart';
+import 'main.mapper.g.dart' show initializeJsonMapper;
 
 void main() {
-  initializeReflectable();
-  configMapper();
+  initializeJsonMapper();
   Constants.setEnvironment(Environment.DEV);
   runApp(JhipsterfluttersampleApp());
 }

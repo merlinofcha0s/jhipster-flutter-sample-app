@@ -26,7 +26,7 @@ class _Config {
   static const API = "API";
 
   static Map<String, dynamic> devConstants = {
-    API: "http://192.168.0.24:8080/api",
+    API: "http://3bd6af369009.ngrok.io/api",
   };
 
   static Map<String, dynamic> prodConstants = {
